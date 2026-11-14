@@ -14,10 +14,21 @@ config/name="ASZ"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Core="*uid://kv2lr600deg1"
+Data="*uid://c5ag5tornxr05"
+
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://core/": "red"
+}
 
 [physics]
 
