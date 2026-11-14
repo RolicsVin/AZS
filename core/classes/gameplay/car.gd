@@ -1,12 +1,13 @@
 ## Класс, релизующий машину. в которой едет персонаж. 
 ## Содержит самого персонажа. 
-class_name Car extends Node
+class_name Car extends Node3D
 
 
 @export var character: Character
 
 
 func start(): ## Когда машина подезжает к игроку
+	show()
 	pass
 
 
