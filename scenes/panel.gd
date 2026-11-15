@@ -5,10 +5,15 @@ extends Panel
 
 
 func set_text(texts: Array[String]) -> void: ## Установить текст социальных сетей
+	show()
+	for i in get_children(): # Очищаем все предыдущие записи
+		i.queue_free()
+	
 	for i in texts:
 		# Создаём панель
 		var panel = Panel.new()
 		panel.size_flags_horizontal = Control.SIZE_EXPAND
+		panel.custom_minimum_size.y = 50
 		
 		# Создаём текст
 		var text = Label.new()

@@ -27,6 +27,7 @@ adjustment_enabled = true
 [sub_resource type="Resource" id="Resource_iywne"]
 script = ExtResource("3_p57ef")
 resume = "Это моё резюме, пропустите меня, пожалуйста)))"
+social_networks = Array[String](["Пост1: Я олигарх и у меня много бензина", "Пост2: Бензин", "Пост3: ХЗ чо писать)"])
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
 [sub_resource type="Animation" id="Animation_iywne"]
@@ -101,6 +102,17 @@ _data = {
 }
 
 [sub_resource type="BoxMesh" id="BoxMesh_w1h7m"]
+
+[sub_resource type="Resource" id="Resource_u5sy4"]
+script = ExtResource("3_p57ef")
+resume = "У меня нет резюме)"
+social_networks = Array[String](["Пост1:Я ест ьв ТГ", "Пост2:И ВК)"])
+metadata/_custom_type_script = "uid://tic1p5mu7nxj"
+
+[sub_resource type="Resource" id="Resource_gee14"]
+script = ExtResource("3_p57ef")
+social_networks = Array[String](["Пост: 1 Отдыхаю на пляэе", "Пост 2: На меня напали аборигены"])
+metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hf7dp"]
 size = Vector3(2.0471191, 1.3876495, 0.044921875)
@@ -191,6 +203,7 @@ mesh = SubResource("BoxMesh_w1h7m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
+character = SubResource("Resource_u5sy4")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
@@ -209,6 +222,7 @@ mesh = SubResource("BoxMesh_w1h7m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
+character = SubResource("Resource_gee14")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
@@ -368,6 +382,7 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="UI/Control" unique_id=335995691 node_paths=PackedStringArray("container")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -389,3 +404,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
+[connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
+[connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]

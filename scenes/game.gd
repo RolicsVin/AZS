@@ -10,38 +10,59 @@ extends Node3D
 @export var dialog: Panel ## диалог с кандидатом
 
 var index: int = -1 ## Номер текущей машины. В начале машины нет, поэтому -1
+var current_car: Car ## Текущая машина
 
 
-func _ready() -> void: ## Настройка сцены
+func _ready() -> void: ## Настройка сцены и запуск игрового цикла
 	next()
 
 
 func next() -> void: ## Вызывает следующую машину
-	index = clamp(index + 1, 0, len(cars) - 1) # Учитываем, что индекс может выйти за размер массива
+	index += 1
+	if index > len(cars) - 1:
+		end_game()
+		return
 	var car: Car = cars[index]
+	current_car = car
 	car.start()
 	setup(car)
 
 
 func setup(car: Car) -> void: ## Настраивает машину
 	resume.set_text(car.get_resume())
-	web.set_text(car.get_social_networks())
 
 
-func _process(delta: float) -> void: ## Игровой цикл
+func accert() -> void: ## Принимает машину
+	if not current_car:
+		return
+	current_car.to_accept()
+	next()
+
+
+func deny() -> void: ## Отклоняет машину
+	if not current_car:
+		return
+	current_car.deny()
+	next()
+
+
+func open_web() -> void: ## Откроет социальные сети кандидата
+	if not current_car:
+		return
+	ui.show()
+	web.set_text(current_car.get_social_networks())
+
+
+func start_dialog() -> void: ## Начнёт диалог
 	pass
 
 
-func open_web(): ## Откроет социальные сети кандидата
-	pass
-
-
-func start_dialog(): ## Начнёт диалог
-	pass
-
-
-func player_continue(): ## Игрок покидает ui и продолжает игру
+func player_continue() -> void: ## Игрок покидает ui и продолжает игру
 	web.hide()
 	dialog.hide()
 	ui.hide()
 	player.player_continue()
+
+
+func end_game() -> void: ## Заканичвает игру
+	pass
