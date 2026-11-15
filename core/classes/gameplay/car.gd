@@ -4,19 +4,20 @@ class_name Car extends Node3D
 
 
 @export var character: Character
+@export var anim: AnimationPlayer
 
 
 func start(): ## Когда машина подезжает к игроку
 	show()
-	pass
+	anim.play('start')
 
 
 func to_accept(): ## Пропустить машину дальше
-	pass
+	anim.play('accept')
 
 
 func deny(): ## Не пропускать машину
-	pass
+	anim.play('deny')
 
 
 func get_resume() -> String: ## Вернёт резюме персонажа

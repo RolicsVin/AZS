@@ -92,3 +92,13 @@ func _capture_mouse() -> void:
 ## Освобождает курсор мыши.
 func _release_mouse() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+## Остановит игрока
+func player_stop() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+## Возобновит управление игроком
+func player_continue() -> void:
+	process_mode = Node.PROCESS_MODE_INHERIT
