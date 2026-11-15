@@ -22,6 +22,10 @@ func _ready() -> void:
 	else:
 		camera.make_current()
 
+	if ray_cast != null:
+		ray_cast.enabled = true
+		ray_cast.collide_with_areas = true
+
 	_capture_mouse()
 
 
@@ -34,7 +38,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			_capture_mouse()
+			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+				_try_press_area_button()
+			else:
+				_capture_mouse()
+
 			get_viewport().set_input_as_handled()
 			return
 
@@ -47,6 +55,21 @@ func _physics_process(delta: float) -> void:
 	_handle_movement()
 	_handle_jump()
 	move_and_slide()
+
+
+## Проверяет объект под прицелом и нажимает на AreaButon.
+func _try_press_area_button() -> void:
+	if ray_cast == null:
+		return
+
+	ray_cast.force_raycast_update()
+
+	if not ray_cast.is_colliding():
+		return
+
+	var collider := ray_cast.get_collider()
+	if collider is AreaButon:
+		collider.press()
 
 
 ## Поворачивает персонажа по горизонтали, а камеру — по вертикали.
