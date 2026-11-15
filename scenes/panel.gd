@@ -6,7 +6,7 @@ extends Panel
 
 func set_text(texts: Array[String]) -> void: ## Установить текст социальных сетей
 	show()
-	for i in get_children(): # Очищаем все предыдущие записи
+	for i in container.get_children(): # Очищаем все предыдущие записи
 		i.queue_free()
 	
 	for i in texts:
