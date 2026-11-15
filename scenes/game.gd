@@ -63,7 +63,7 @@ func start_dialog() -> void: ## Начнёт диалог
 
 func player_continue() -> void: ## Игрок покидает ui и продолжает игру
 	web.hide()
-	#dialog.hide()
+	dialog.hide()
 	ui.hide()
 	player.player_continue()
 
