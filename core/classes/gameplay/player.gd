@@ -123,8 +123,10 @@ func _release_mouse() -> void:
 ## Остановит игрока
 func player_stop() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
+	_release_mouse()
 
 
 ## Возобновит управление игроком
 func player_continue() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
+	_capture_mouse()
