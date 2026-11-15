@@ -26,3 +26,11 @@ func get_resume() -> String: ## Вернёт резюме персонажа
 
 func get_social_networks() -> Array[String]: ## Вернёт резюме персонажа
 	return character.social_networks
+
+
+func get_dialogs() -> Dictionary[String, Array]:
+	return character.dialogs
+
+
+func get_start_phrase() -> String:
+	return character.start_phrase

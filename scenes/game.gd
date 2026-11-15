@@ -55,10 +55,11 @@ func open_web() -> void: ## Откроет социальные сети кан�
 
 
 func start_dialog() -> void: ## Начнёт диалог
-	if not current_car:
+	if not current_car or not current_car.get_dialogs():
 		return
+	ui.show()
 	player.player_stop()
-	pass
+	dialog.start_dialog(current_car.get_dialogs(), current_car.get_start_phrase())
 
 
 func player_continue() -> void: ## Игрок покидает ui и продолжает игру

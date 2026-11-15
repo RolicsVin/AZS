@@ -29,6 +29,11 @@ adjustment_enabled = true
 script = ExtResource("3_p57ef")
 resume = "Это моё резюме, пропустите меня, пожалуйста)))"
 social_networks = Array[String](["Пост1: Я олигарх и у меня много бензина", "Пост2: Бензин", "Пост3: ХЗ чо писать)"])
+start_phrase = "Привет!"
+dialogs = Dictionary[String, Array]({
+"Как ваши дела?": ["Отлично!", "А как ваши?"],
+"Что везёте?": ["Себя"]
+})
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
 [sub_resource type="Animation" id="Animation_iywne"]
@@ -108,6 +113,11 @@ _data = {
 script = ExtResource("3_p57ef")
 resume = "У меня нет резюме)"
 social_networks = Array[String](["Пост1:Я ест ьв ТГ", "Пост2:И ВК)"])
+start_phrase = "Я приехал к вам"
+dialogs = Dictionary[String, Array]({
+"Ваша любимая еда?": ["То, что мне нравится"],
+"Откуда вы?": ["Планета земля"]
+})
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
 [sub_resource type="Resource" id="Resource_gee14"]
@@ -135,6 +145,12 @@ size = Vector3(0.3, 0.3, 0.3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_a1aj3"]
 size = Vector3(0.3, 0.3, 0.3)
 
+[sub_resource type="BoxMesh" id="BoxMesh_a1aj3"]
+size = Vector3(1.9240723, 0.578125, 0.6689453)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lnu2h"]
+data = PackedVector3Array(-0.96199995, 0.2891, 0.33449998, 0.96199995, 0.2891, 0.33449998, -0.96199995, -0.2891, 0.33449998, 0.96199995, 0.2891, 0.33449998, 0.96199995, -0.2891, 0.33449998, -0.96199995, -0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, -0.96199995, 0.2891, -0.33449998, 0.96199995, -0.2891, -0.33449998, -0.96199995, 0.2891, -0.33449998, -0.96199995, -0.2891, -0.33449998, 0.96199995, -0.2891, -0.33449998, 0.96199995, 0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, 0.96199995, -0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, 0.96199995, -0.2891, -0.33449998, 0.96199995, -0.2891, 0.33449998, -0.96199995, 0.2891, -0.33449998, -0.96199995, 0.2891, 0.33449998, -0.96199995, -0.2891, -0.33449998, -0.96199995, 0.2891, 0.33449998, -0.96199995, -0.2891, 0.33449998, -0.96199995, -0.2891, -0.33449998, 0.96199995, 0.2891, 0.33449998, -0.96199995, 0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, -0.96199995, 0.2891, 0.33449998, -0.96199995, 0.2891, -0.33449998, 0.96199995, 0.2891, -0.33449998, -0.96199995, -0.2891, 0.33449998, 0.96199995, -0.2891, 0.33449998, -0.96199995, -0.2891, -0.33449998, 0.96199995, -0.2891, 0.33449998, 0.96199995, -0.2891, -0.33449998, -0.96199995, -0.2891, -0.33449998)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1h7m"]
 size = Vector3(0.3791504, 0.1015625, 0.35766602)
 
@@ -150,11 +166,8 @@ albedo_color = Color(0.99999994, 0.13018629, 0.22936049, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
 albedo_color = Color(0.055130094, 0.43638292, 1, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_a1aj3"]
-size = Vector3(1.9240723, 0.578125, 0.6689453)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lnu2h"]
-data = PackedVector3Array(-0.96199995, 0.2891, 0.33449998, 0.96199995, 0.2891, 0.33449998, -0.96199995, -0.2891, 0.33449998, 0.96199995, 0.2891, 0.33449998, 0.96199995, -0.2891, 0.33449998, -0.96199995, -0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, -0.96199995, 0.2891, -0.33449998, 0.96199995, -0.2891, -0.33449998, -0.96199995, 0.2891, -0.33449998, -0.96199995, -0.2891, -0.33449998, 0.96199995, -0.2891, -0.33449998, 0.96199995, 0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, 0.96199995, -0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, 0.96199995, -0.2891, -0.33449998, 0.96199995, -0.2891, 0.33449998, -0.96199995, 0.2891, -0.33449998, -0.96199995, 0.2891, 0.33449998, -0.96199995, -0.2891, -0.33449998, -0.96199995, 0.2891, 0.33449998, -0.96199995, -0.2891, 0.33449998, -0.96199995, -0.2891, -0.33449998, 0.96199995, 0.2891, 0.33449998, -0.96199995, 0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, -0.96199995, 0.2891, 0.33449998, -0.96199995, 0.2891, -0.33449998, 0.96199995, 0.2891, -0.33449998, -0.96199995, -0.2891, 0.33449998, 0.96199995, -0.2891, 0.33449998, -0.96199995, -0.2891, -0.33449998, 0.96199995, -0.2891, 0.33449998, 0.96199995, -0.2891, -0.33449998, -0.96199995, -0.2891, -0.33449998)
+[sub_resource type="BoxShape3D" id="BoxShape3D_oq1mk"]
+size = Vector3(2.111084, 1, 0.20532227)
 
 [node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("player", "cars", "ui", "resume", "web", "dialog")]
 script = ExtResource("1_uwrxv")
@@ -305,6 +318,15 @@ mesh = SubResource("BoxMesh_3v8q0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024390174, -0.8516017)
 shape = SubResource("BoxShape3D_a1aj3")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Home" unique_id=1480722444]
+transform = Transform3D(0.3883495, 0, 0, 0, 0.3883495, 0, 0, 0, 0.3883495, 0, 0.081941746, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Home/StaticBody3D" unique_id=95111037]
+mesh = SubResource("BoxMesh_a1aj3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Home/StaticBody3D" unique_id=1800050718]
+shape = SubResource("ConcavePolygonShape3D_lnu2h")
+
 [node name="Buttons" type="Node3D" parent="." unique_id=1700726276]
 
 [node name="Accert" type="Area3D" parent="Buttons" unique_id=203084752]
@@ -343,14 +365,13 @@ shape = SubResource("BoxShape3D_w1h7m")
 mesh = SubResource("BoxMesh_oq1mk")
 surface_material_override/0 = SubResource("StandardMaterial3D_iywne")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Buttons" unique_id=1480722444]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211, 0)
+[node name="Dialog" type="Area3D" parent="Buttons" unique_id=1727247794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1002741, -2.5654778)
+script = ExtResource("4_u5sy4")
+metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons/StaticBody3D" unique_id=95111037]
-mesh = SubResource("BoxMesh_a1aj3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/StaticBody3D" unique_id=1800050718]
-shape = SubResource("ConcavePolygonShape3D_lnu2h")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/Dialog" unique_id=49423970]
+shape = SubResource("BoxShape3D_oq1mk")
 
 [node name="Resume" type="Node3D" parent="." unique_id=777495571]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.453, -2.205)
@@ -364,6 +385,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0117338, 0.7367963, 1.6293
 jump_velocity = 0.1
 
 [node name="UI" type="Control" parent="." unique_id=197028051]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -407,6 +429,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Dialog" type="Control" parent="UI" unique_id=624629380]
+visible = false
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 1
 anchors_preset = 12
@@ -416,7 +439,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Panel" type="Panel" parent="UI/Dialog" unique_id=58255931]
+[node name="Panel" type="Panel" parent="UI/Dialog" unique_id=58255931 node_paths=PackedStringArray("container")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -424,6 +447,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_gee14")
+container = NodePath("../HBoxContainer")
 
 [node name="Label" type="Label" parent="UI/Dialog/Panel" unique_id=1538048693]
 layout_mode = 1
@@ -475,4 +499,5 @@ text = "Назад"
 [connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
 [connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]
+[connection signal="pressed" from="Buttons/Dialog" to="." method="start_dialog"]
 [connection signal="pressed" from="UI/Button" to="." method="player_continue"]
