@@ -6,9 +6,10 @@
 radius = 0.19433594
 height = 1.3183594
 
-[node name="Player" type="CharacterBody3D" unique_id=1731817529 node_paths=PackedStringArray("camera")]
+[node name="Player" type="CharacterBody3D" unique_id=1731817529 node_paths=PackedStringArray("camera", "ray_cast")]
 script = ExtResource("1_d6veg")
 camera = NodePath("Camera3D")
+ray_cast = NodePath("Camera3D/RayCast3D")
 metadata/_custom_type_script = "uid://be64msm0ualqy"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=943834465]

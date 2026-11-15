@@ -3,14 +3,17 @@
 class_name Player extends CharacterBody3D
 
 
-@export_category("Camera")
+@export_group("Camera")
 @export var camera: Camera3D
 @export_range(0.001, 1.0, 0.001) var mouse_sensitivity: float = 0.1
 @export_range(60.0, 89.9, 0.1) var max_look_angle: float = 89.0
 
-@export_category("Movement")
+@export_group("Movement")
 @export_range(0.1, 20.0, 0.1) var move_speed: float = 5.0
 @export_range(0.1, 20.0, 0.1) var jump_velocity: float = 4.5
+
+@export_group("Dependencies")
+@export var ray_cast: RayCast3D
 
 
 func _ready() -> void:
