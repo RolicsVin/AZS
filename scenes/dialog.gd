@@ -7,13 +7,13 @@ extends Panel
 func start_dialog(dialogs: Dictionary[String, Array], start_phrase: String):
 	$Label.text = start_phrase
 	
-	for child in container.get_children(): # очищаем все предыдущие вопросы
+	for child in container.get_children(): # Очищаем все предыдущие вопросы
 		child.queue_free()
 	
-	for question in dialogs:
+	for question in dialogs: # Создаём новые вопросы
 		var button = Button.new()
 		button.text = question
-		button.connect(func(t=dialogs[question]): return play(t))
+		button.pressed.connect(play.bind(dialogs[question]))
 		
 		container.add_child(button)
 
