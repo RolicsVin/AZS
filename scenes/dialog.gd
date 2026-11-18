@@ -53,11 +53,17 @@ func show_choises(choise_name: String) -> void:
 	clear_choises()
 
 	if choise_name.is_empty():
+		_finish_dialog()
 		return
 
 	var choise := _find_choise(choise_name)
 	if not choise:
 		push_error("Выбор с именем '%s' не найден у персонажа." % choise_name)
+		_finish_dialog()
+		return
+
+	if choise.choises.is_empty():
+		_finish_dialog()
 		return
 
 	for answer_text in choise.choises:
@@ -66,6 +72,15 @@ func show_choises(choise_name: String) -> void:
 		choice_button.dialog_name = choise.choises[answer_text]
 		choice_button.choised.connect(play)
 		container.add_child(choice_button)
+
+
+func _finish_dialog() -> void:
+	curent_dialog = null
+	clear_choises()
+	$Label.text = ""
+
+	# Вызываем общий выход из интерфейса и возвращаем управление игроку.
+	get_parent().get_parent().player_continue()
 
 
 func _find_dialog(dialog_name: String) -> LinearDialog:
