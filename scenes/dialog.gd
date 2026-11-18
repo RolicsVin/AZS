@@ -1,17 +1,19 @@
-## Скрипт для диалогов, между персонажами
+## Скрипт для диалогов между персонажами.
 extends Control
 
 @export var container: CircularContainer
 @export var button: PackedScene
 
+var character: Character
 var curent_dialog: LinearDialog
-var id: int = -1 ## Текущей номер фразы. В начале фразы нет, поэтому -1
+var id: int = -1 ## Текущий номер реплики
 
 
-func start_dialog(dialogs: Array, start_phrase: LinearDialog) -> void:
+func start_dialog(target_character: Character) -> void:
+	character = target_character
 	show()
 	get_parent().show()
-	play(start_phrase)
+	play(character.start_dialog)
 
 
 func _process(_delta: float) -> void:
@@ -21,37 +23,65 @@ func _process(_delta: float) -> void:
 		next()
 
 
-func play(dialog: LinearDialog) -> void: ## Запустить диалог
-	id = -1 # Сбрасываем id назад
+func play(dialog_name: String) -> void: ## Запустить диалог по имени
+	var dialog := _find_dialog(dialog_name)
+	if not dialog:
+		push_error("Диалог с именем '%s' не найден у персонажа." % dialog_name)
+		return
+
+	clear_choises()
+	id = -1
 	curent_dialog = dialog
-	# логично было бы вызывать next(), но он срабатывает в _process
 
 
-func next() -> void: ## Покажет следующий текст
-	if not curent_dialog or not curent_dialog.replicas:
+func next() -> void: ## Показать следующую реплику
+	if not curent_dialog:
 		return
+
 	id += 1
-	
-	if id > len(curent_dialog.replicas) - 1:
-		qustions(curent_dialog.choise)
-		$Label.text = ''
+	if id >= curent_dialog.replicas.size():
+		var choise_name := curent_dialog.next_choise
+		curent_dialog = null
+		$Label.text = ""
+		show_choises(choise_name)
 		return
-	
+
 	$Label.text = curent_dialog.replicas[id]
 
 
-func qustions(choise: Choise) -> void:
+func show_choises(choise_name: String) -> void:
 	clear_choises()
-	
-	for c in choise.choises: # Создаём новые вопросы
-		var button: Button = button.instantiate()
-		button.text = c
-		button.choise = choise.choises[c]
-		button.choised.connect(play)
-		
-		container.add_child(button)
+
+	if choise_name.is_empty():
+		return
+
+	var choise := _find_choise(choise_name)
+	if not choise:
+		push_error("Выбор с именем '%s' не найден у персонажа." % choise_name)
+		return
+
+	for answer_text in choise.choises:
+		var choice_button := button.instantiate()
+		choice_button.text = answer_text
+		choice_button.dialog_name = choise.choises[answer_text]
+		choice_button.choised.connect(play)
+		container.add_child(choice_button)
 
 
-func clear_choises() -> void: ## Очистит список вопросов
-	for child in container.get_children(): # Очищаем все предыдущие вопросы
+func _find_dialog(dialog_name: String) -> LinearDialog:
+	for dialog in character.dialogs:
+		if dialog.name == dialog_name:
+			return dialog
+	return null
+
+
+func _find_choise(choise_name: String) -> Choise:
+	for choise in character.choises:
+		if choise.name == choise_name:
+			return choise
+	return null
+
+
+func clear_choises() -> void: ## Очистить список вариантов ответа
+	for child in container.get_children():
 		child.queue_free()
