@@ -7,19 +7,19 @@ extends Node3D
 @export var ui: Control ## Пользовательский интерфейс
 @export var resume: Node3D ## Узел для отображения резюме кандидата
 @export var web: Panel ## Панель для отображения социальных сетей кандидата
-@export var dialog: Control ## диалог с кандидатом
+@export var dialog: Control ## Диалог с кандидатом
 
 var index: int = -1 ## Номер текущей машины. В начале машины нет, поэтому -1
 var current_car: Car ## Текущая машина
 
 
-func _ready() -> void: ## Настройка сцены и запуск игрового цикла
+func _ready() -> void:
 	next()
 
 
-func next() -> void: ## Вызывает следующую машину
+func next() -> void:
 	index += 1
-	if index > len(cars) - 1:
+	if index > cars.size() - 1:
 		end_game()
 		return
 	var car: Car = cars[index]
@@ -28,25 +28,25 @@ func next() -> void: ## Вызывает следующую машину
 	setup(car)
 
 
-func setup(car: Car) -> void: ## Настраивает машину
+func setup(car: Car) -> void:
 	resume.set_text(car.get_resume())
 
 
-func accert() -> void: ## Принимает машину
+func accert() -> void:
 	if not current_car:
 		return
 	current_car.to_accept()
 	next()
 
 
-func deny() -> void: ## Отклоняет машину
+func deny() -> void:
 	if not current_car:
 		return
 	current_car.deny()
 	next()
 
 
-func open_web() -> void: ## Откроет социальные сети кандидата
+func open_web() -> void:
 	if not current_car:
 		return
 	ui.show()
@@ -54,22 +54,25 @@ func open_web() -> void: ## Откроет социальные сети кан�
 	player.player_stop()
 
 
-func start_dialog() -> void: ## Начнёт диалог
-	if not current_car or not current_car.get_dialogs():
+func start_dialog() -> void:
+	if not current_car or not current_car.character:
+		return
+	if current_car.character.start_dialog.is_empty():
+		push_error("У персонажа не задано имя стартового диалога.")
 		return
 	ui.show()
 	player.player_stop()
-	dialog.start_dialog(current_car.get_dialogs(), current_car.get_start_phrase())
+	dialog.start_dialog(current_car.get_character())
 
 
-func player_continue() -> void: ## Игрок покидает ui и продолжает игру
+func player_continue() -> void:
 	web.hide()
 	dialog.hide()
 	ui.hide()
 	player.player_continue()
 
 
-func end_game() -> void: ## Заканичвает игру
+func end_game() -> void:
 	player.player_stop()
 	ui.show()
 	$UI/Label.show()
