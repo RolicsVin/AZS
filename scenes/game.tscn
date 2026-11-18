@@ -4,10 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://dsudxosaviuxx" path="res://assets/player/player.tscn" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://clmjcoqlf4st7" path="res://scenes/resume.gd" id="3_iywne"]
 [ext_resource type="Script" uid="uid://gcg38oqbhffp" path="res://core/classes/gameplay/car.gd" id="3_lnu2h"]
-[ext_resource type="Script" uid="uid://tic1p5mu7nxj" path="res://core/classes/gameplay/character.gd" id="3_p57ef"]
+[ext_resource type="Script" uid="uid://tic1p5mu7nxj" path="res://core/classes/resources/character.gd" id="3_p57ef"]
+[ext_resource type="Script" uid="uid://xy3l37ktt48x" path="res://core/classes/resources/choise.gd" id="3_vtaks"]
+[ext_resource type="Script" uid="uid://cqdq3s3etltn0" path="res://core/classes/resources/linear_dialog.gd" id="4_kvpfn"]
 [ext_resource type="Script" uid="uid://bjs4mlnnvenhf" path="res://scenes/panel.gd" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://bgmdgnweoav8o" path="res://core/classes/gameplay/area_button.gd" id="4_u5sy4"]
 [ext_resource type="Script" uid="uid://cuomswlv4mlrx" path="res://scenes/dialog.gd" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://t81okwm581ti" path="res://assets/ui/choise_button.tscn" id="11_dinhu"]
+[ext_resource type="Script" uid="uid://ob2eebenxy77" path="res://core/classes/ui/circular_container.gd" id="11_kvpfn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -25,15 +29,45 @@ sdfgi_enabled = true
 glow_enabled = true
 adjustment_enabled = true
 
+[sub_resource type="Resource" id="Resource_dinhu"]
+script = ExtResource("4_kvpfn")
+replicas = Array[String](["Рыбак: Третий день уже. Жена старается не показывать, но я вижу, как она переживает. Хоть бы сегодня повезло..."])
+metadata/_custom_type_script = "uid://cqdq3s3etltn0"
+
+[sub_resource type="Resource" id="Resource_trtic"]
+script = ExtResource("4_kvpfn")
+replicas = Array[String](["Рыбак: Да уж, вижу, человечности тут не осталось. Ладно, сам как-нибудь справлюсь."])
+metadata/_custom_type_script = "uid://cqdq3s3etltn0"
+
+[sub_resource type="Resource" id="Resource_kvuet"]
+script = ExtResource("3_vtaks")
+choises = Dictionary[String, ExtResource("4_kvpfn")]({
+"Агрессивно: Мне плевать, кто у тебя там голодный. Бензин не раздают бесплатно.": SubResource("Resource_trtic"),
+"С сочувствием: Тяжело тебе, наверное... Давно ничего не ловил?": SubResource("Resource_dinhu")
+})
+metadata/_custom_type_script = "uid://xy3l37ktt48x"
+
+[sub_resource type="Resource" id="Resource_kvpfn"]
+script = ExtResource("4_kvpfn")
+replicas = Array[String](["Рыбак: Здорово. Слушай, мне бы немного бензина.", "Литров десять, если найдётся.", "Игрок: Зачем столько?", "Рыбак: На озере ещё осталась рыба. Но близко к берегу уже пусто.", "Придётся идти дальше. Дома дети голодные, понимаешь?"])
+choise = SubResource("Resource_kvuet")
+metadata/_custom_type_script = "uid://cqdq3s3etltn0"
+
 [sub_resource type="Resource" id="Resource_iywne"]
 script = ExtResource("3_p57ef")
-resume = "Это моё резюме, пропустите меня, пожалуйста)))"
-social_networks = Array[String](["Пост1: Я олигарх и у меня много бензина", "Пост2: Бензин", "Пост3: ХЗ чо писать)"])
-start_phrase = "Привет!"
-dialogs = Dictionary[String, Array]({
-"Как ваши дела?": ["Отлично!", "А как ваши?"],
-"Что везёте?": ["Себя"]
-})
+resume = "Я рыбак, и у мне нужно топливо,
+чтобы рыбачит на своей лодке.
+Мне нечем кормить семью"
+social_networks = Array[String](["Пост №1 — за несколько месяцев до кризиса
+
+Фото: утренний улов на фоне озера
+
+Вот это я понимаю — удачная рыбалка! Сегодня даже пришлось второй раз возвращаться к берегу. Жена уже шутит, что скоро рыбу из дома выгонять придётся. Всем хорошего клёва!", "Пост №2 — начало кризиса
+
+Фото: лодка у пустого берега
+
+Что-то совсем невесело стало. Бензин дорожает, снасти дорожают, а рыбы всё меньше. Сегодня впервые за много лет вернулся домой с пустыми руками. Надеюсь, скоро всё наладится."])
+start_dialog = SubResource("Resource_kvpfn")
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
 [sub_resource type="Animation" id="Animation_iywne"]
@@ -113,11 +147,6 @@ _data = {
 script = ExtResource("3_p57ef")
 resume = "У меня нет резюме)"
 social_networks = Array[String](["Пост1:Я ест ьв ТГ", "Пост2:И ВК)"])
-start_phrase = "Я приехал к вам"
-dialogs = Dictionary[String, Array]({
-"Ваша любимая еда?": ["То, что мне нравится"],
-"Откуда вы?": ["Планета земля"]
-})
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
 [sub_resource type="Resource" id="Resource_gee14"]
@@ -176,7 +205,7 @@ cars = [NodePath("Cars/Car"), NodePath("Cars/Car2"), NodePath("Cars/Car3")]
 ui = NodePath("UI")
 resume = NodePath("Resume")
 web = NodePath("UI/Control/Panel")
-dialog = NodePath("UI/Dialog/Panel")
+dialog = NodePath("UI/Dialog")
 
 [node name="Light" type="Node3D" parent="." unique_id=653589676]
 
@@ -196,7 +225,7 @@ shadow_enabled = true
 [node name="Cars" type="Node3D" parent="." unique_id=537433337]
 
 [node name="Car" type="Node3D" parent="Cars" unique_id=463594966 node_paths=PackedStringArray("anim")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006052017, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
 character = SubResource("Resource_iywne")
@@ -385,7 +414,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0117338, 0.7367963, 1.6293
 jump_velocity = 0.1
 
 [node name="UI" type="Control" parent="." unique_id=197028051]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -428,9 +456,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Dialog" type="Control" parent="UI" unique_id=624629380]
-visible = false
-custom_minimum_size = Vector2(0, 200)
+[node name="Dialog" type="Control" parent="UI" unique_id=624629380 node_paths=PackedStringArray("container")]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -438,37 +465,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="Panel" type="Panel" parent="UI/Dialog" unique_id=58255931 node_paths=PackedStringArray("container")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("8_gee14")
-container = NodePath("../HBoxContainer")
+container = NodePath("CircularContainer")
+button = ExtResource("11_dinhu")
 
-[node name="Label" type="Label" parent="UI/Dialog/Panel" unique_id=1538048693]
+[node name="CircularContainer" type="Container" parent="UI/Dialog" unique_id=1825434233]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("11_kvpfn")
+start_angle = 0.0
+metadata/_custom_type_script = "uid://ob2eebenxy77"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Dialog" unique_id=1599729028]
+[node name="Label" type="Label" parent="UI/Dialog" unique_id=1985374353]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -305.0
-offset_bottom = -204.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="UI" unique_id=1609445190]
 visible = false
@@ -485,6 +503,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="UI" unique_id=1068076007]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

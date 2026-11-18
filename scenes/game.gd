@@ -7,7 +7,7 @@ extends Node3D
 @export var ui: Control ## Пользовательский интерфейс
 @export var resume: Node3D ## Узел для отображения резюме кандидата
 @export var web: Panel ## Панель для отображения социальных сетей кандидата
-@export var dialog: Panel ## диалог с кандидатом
+@export var dialog: Control ## диалог с кандидатом
 
 var index: int = -1 ## Номер текущей машины. В начале машины нет, поэтому -1
 var current_car: Car ## Текущая машина

@@ -28,9 +28,9 @@ func get_social_networks() -> Array[String]: ## Вернёт резюме пер
 	return character.social_networks
 
 
-func get_dialogs() -> Dictionary[String, Array]:
-	return character.dialogs
+func get_dialogs() -> Array: ## первый элемент - диалоги(Array[LinearDialog]), второй - выборы(Array[Choise])
+	return [character.dialogs, character.choises]
 
 
-func get_start_phrase() -> String:
-	return character.start_phrase
+func get_start_phrase() -> LinearDialog:
+	return character.start_dialog

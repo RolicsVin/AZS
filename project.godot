@@ -22,12 +22,14 @@ Data="*uid://c5ag5tornxr05"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [file_customization]
 
 folder_colors={
+"res://assets/ui/": "green",
 "res://core/": "red"
 }
 

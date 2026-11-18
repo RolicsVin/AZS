@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://t81okwm581ti"]
+
+[sub_resource type="GDScript" id="GDScript_dinhu"]
+resource_name = "button"
+script/source = "extends Button
+
+signal choised(choise: Choise)
+
+@export var choise: Choise
+
+
+func _pressed() -> void:
+	choised.emit(choise)
+"
+
+[node name="ChoiseButton" type="Button" unique_id=300677169]
+theme_override_font_sizes/font_size = 7
+script = SubResource("GDScript_dinhu")
