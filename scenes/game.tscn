@@ -160,12 +160,6 @@ script = ExtResource("3_p57ef")
 social_networks = Array[String](["Пост: 1 Отдыхаю на пляэе", "Пост 2: На меня напали аборигены"])
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hf7dp"]
-size = Vector3(2.0471191, 1.3876495, 0.044921875)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fqxyq"]
-size = Vector3(2.0739746, 0.056396484, 2.0739746)
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_uwrxv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hf7dp"]
@@ -177,14 +171,8 @@ size = Vector3(2.9528809, 1, 2.7333984)
 [sub_resource type="BoxMesh" id="BoxMesh_3v8q0"]
 size = Vector3(0.3, 0.3, 0.3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_a1aj3"]
-size = Vector3(0.3, 0.3, 0.3)
-
 [sub_resource type="BoxMesh" id="BoxMesh_a1aj3"]
 size = Vector3(1.9240723, 0.578125, 0.6689453)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lnu2h"]
-data = PackedVector3Array(-0.96199995, 0.2891, 0.33449998, 0.96199995, 0.2891, 0.33449998, -0.96199995, -0.2891, 0.33449998, 0.96199995, 0.2891, 0.33449998, 0.96199995, -0.2891, 0.33449998, -0.96199995, -0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, -0.96199995, 0.2891, -0.33449998, 0.96199995, -0.2891, -0.33449998, -0.96199995, 0.2891, -0.33449998, -0.96199995, -0.2891, -0.33449998, 0.96199995, -0.2891, -0.33449998, 0.96199995, 0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, 0.96199995, -0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, 0.96199995, -0.2891, -0.33449998, 0.96199995, -0.2891, 0.33449998, -0.96199995, 0.2891, -0.33449998, -0.96199995, 0.2891, 0.33449998, -0.96199995, -0.2891, -0.33449998, -0.96199995, 0.2891, 0.33449998, -0.96199995, -0.2891, 0.33449998, -0.96199995, -0.2891, -0.33449998, 0.96199995, 0.2891, 0.33449998, -0.96199995, 0.2891, 0.33449998, 0.96199995, 0.2891, -0.33449998, -0.96199995, 0.2891, 0.33449998, -0.96199995, 0.2891, -0.33449998, 0.96199995, 0.2891, -0.33449998, -0.96199995, -0.2891, 0.33449998, 0.96199995, -0.2891, 0.33449998, -0.96199995, -0.2891, -0.33449998, 0.96199995, -0.2891, 0.33449998, 0.96199995, -0.2891, -0.33449998, -0.96199995, -0.2891, -0.33449998)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1h7m"]
 size = Vector3(0.3791504, 0.1015625, 0.35766602)
@@ -289,26 +277,6 @@ mesh = SubResource("BoxMesh_w1h7m")
 [node name="Home" type="StaticBody3D" parent="." unique_id=1805503239]
 transform = Transform3D(2.575, 0, 0, 0, 2.575, 0, 0, 0, 2.575, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Home" unique_id=1653698353]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69571686, -1.0226246)
-shape = SubResource("BoxShape3D_hf7dp")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Home" unique_id=1905494586]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69571686, 1.003677)
-shape = SubResource("BoxShape3D_hf7dp")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Home" unique_id=547730079]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.0190728, 0.69571686, -0.006513849)
-shape = SubResource("BoxShape3D_hf7dp")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Home" unique_id=362194999]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0190728, 0.69571686, -0.006513849)
-shape = SubResource("BoxShape3D_hf7dp")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Home" unique_id=1695739603]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.026135594, 0)
-shape = SubResource("BoxShape3D_fqxyq")
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Home" unique_id=559434752]
 mesh = SubResource("PlaneMesh_uwrxv")
 
@@ -348,20 +316,12 @@ mesh = SubResource("BoxMesh_fqxyq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024390174, -0.8516017)
 mesh = SubResource("BoxMesh_3v8q0")
 
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="Home" unique_id=952762927]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024390174, -0.8516017)
-shape = SubResource("BoxShape3D_a1aj3")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Home" unique_id=1480722444]
-transform = Transform3D(0.3883495, 0, 0, 0, 0.3883495, 0, 0, 0, 0.3883495, 0, 0.081941746, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Home/StaticBody3D" unique_id=95111037]
-mesh = SubResource("BoxMesh_a1aj3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Home/StaticBody3D" unique_id=1800050718]
-shape = SubResource("ConcavePolygonShape3D_lnu2h")
-
 [node name="Buttons" type="Node3D" parent="." unique_id=1700726276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4395705, 0, -2.0866966)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons" unique_id=95111037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211, 0)
+mesh = SubResource("BoxMesh_a1aj3")
 
 [node name="Accert" type="Area3D" parent="Buttons" unique_id=203084752]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6268636, 0.5165838, 0)
@@ -399,20 +359,20 @@ shape = SubResource("BoxShape3D_w1h7m")
 mesh = SubResource("BoxMesh_oq1mk")
 surface_material_override/0 = SubResource("StandardMaterial3D_iywne")
 
-[node name="Dialog" type="Area3D" parent="Buttons" unique_id=1727247794]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1002741, -2.5654778)
-script = ExtResource("4_u5sy4")
-metadata/_custom_type_script = "uid://bgmdgnweoav8o"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/Dialog" unique_id=49423970]
-shape = SubResource("BoxShape3D_oq1mk")
-
 [node name="Resume" type="Node3D" parent="." unique_id=777495571]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.453, -2.205)
 script = ExtResource("3_iywne")
 
 [node name="Label3D" type="Label3D" parent="Resume" unique_id=246045015]
 font_size = 20
+
+[node name="Dialog" type="Area3D" parent="." unique_id=1727247794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11267769, 1.109772, -2.5897028)
+script = ExtResource("4_u5sy4")
+metadata/_custom_type_script = "uid://bgmdgnweoav8o"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dialog" unique_id=49423970]
+shape = SubResource("BoxShape3D_oq1mk")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1287069292]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.03702569, 1.0806606, -1.4133594)
@@ -526,5 +486,5 @@ text = "Назад"
 [connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
 [connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]
-[connection signal="pressed" from="Buttons/Dialog" to="." method="start_dialog"]
+[connection signal="pressed" from="Dialog" to="." method="start_dialog"]
 [connection signal="pressed" from="UI/Button" to="." method="player_continue"]
