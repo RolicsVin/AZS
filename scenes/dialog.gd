@@ -6,8 +6,6 @@ extends Control
 
 @export_category("Настройки выбора")
 @export var choice_font_size: int = 8
-@export var selected_color: Color = Color.YELLOW
-@export var normal_color: Color = Color.WHITE
 
 var character: Character
 var curent_dialog: LinearDialog
@@ -23,6 +21,9 @@ func _ready() -> void:
 
 	if not choice_visual.choice_changed.is_connected(set_choice):
 		choice_visual.choice_changed.connect(set_choice)
+
+	if not choice_visual.choice_confirmed.is_connected(_on_choice_confirmed):
+		choice_visual.choice_confirmed.connect(_on_choice_confirmed)
 
 
 func start_dialog(target_character: Character) -> void:
@@ -99,7 +100,7 @@ func show_choises(choise_name: String) -> void:
 		_finish_dialog()
 		return
 
-	current_choice = 0
+	current_choice = -1
 
 	for answer_text in choise.choises:
 		var choice_label := Label.new()
@@ -110,20 +111,30 @@ func show_choises(choise_name: String) -> void:
 
 		container.add_child(choice_label)
 
-	update_choice_visual()
-
 	choice_visual.reset_choice()
+	choice_visual.setup_choices(container)
 	choice_visual.show()
+
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
 func confirm_choice() -> void:
-	var children = container.get_children()
-
-	if current_choice < 0 or current_choice >= children.size():
+	if choice_visual.locked:
 		return
 
-	var selected_label = children[current_choice]
+	if current_choice < 0 or current_choice >= container.get_child_count():
+		return
+
+	choice_visual.confirm_choice_animation(container, current_choice)
+
+
+func _on_choice_confirmed(choice_index: int) -> void:
+	var children = container.get_children()
+
+	if choice_index < 0 or choice_index >= children.size():
+		return
+
+	var selected_label = children[choice_index]
 	var dialog_name: String = selected_label.get_meta("dialog_name")
 
 	choice_visual.hide()
@@ -137,19 +148,7 @@ func set_choice(choice_index: int) -> void:
 		return
 
 	current_choice = choice_index
-	update_choice_visual()
-
-
-func update_choice_visual() -> void:
-	var children = container.get_children()
-
-	for i in range(children.size()):
-		var label = children[i]
-
-		if i == current_choice:
-			label.modulate = selected_color
-		else:
-			label.modulate = normal_color
+	choice_visual.update_choice_visual(container, current_choice)
 
 
 func _finish_dialog() -> void:
@@ -168,6 +167,7 @@ func _find_dialog(dialog_name: String) -> LinearDialog:
 	for dialog in character.dialogs:
 		if dialog.name == dialog_name:
 			return dialog
+
 	return null
 
 
@@ -175,6 +175,7 @@ func _find_choise(choise_name: String) -> Choise:
 	for choise in character.choises:
 		if choise.name == choise_name:
 			return choise
+
 	return null
 
 
