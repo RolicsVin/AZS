@@ -8,6 +8,7 @@ extends Node3D
 @export var resume: Node3D ## Узел для отображения резюме кандидата
 @export var web: Panel ## Панель для отображения социальных сетей кандидата
 @export var dialog: Control ## Диалог с кандидатом
+@export var back_button: Button
 
 var index: int = -1 ## Номер текущей машины. В начале машины нет, поэтому -1
 var current_car: Car ## Текущая машина
@@ -52,6 +53,7 @@ func open_web() -> void:
 	if not current_car:
 		return
 	ui.show()
+	back_button.show()
 	web.set_text(current_car.get_social_networks())
 	
 
@@ -63,7 +65,7 @@ func start_dialog() -> void:
 		push_error("У персонажа не задано имя стартового диалога.")
 		return
 	ui.show()
-	
+	back_button.hide()
 	dialog.start_dialog(current_car.get_character())
 
 
@@ -71,11 +73,9 @@ func player_continue() -> void:
 	web.hide()
 	dialog.hide()
 	ui.hide()
-	
 
 
 func end_game() -> void:
-	
 	ui.show()
 	$UI/Label.show()
 	$UI/Button.hide()

@@ -189,13 +189,14 @@ albedo_color = Color(0.055130094, 0.43638292, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_oq1mk"]
 size = Vector3(1.4253235, 0.89941406, 0.20532227)
 
-[node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("cars", "ui", "resume", "web", "dialog")]
+[node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("cars", "ui", "resume", "web", "dialog", "back_button")]
 script = ExtResource("1_uwrxv")
 cars = [NodePath("Cars/Car"), NodePath("Cars/Car2"), NodePath("Cars/Car3")]
 ui = NodePath("UI")
 resume = NodePath("Resume")
 web = NodePath("UI/Control/Panel")
 dialog = NodePath("UI/Dialog")
+back_button = NodePath("UI/Button")
 
 [node name="Light" type="Node3D" parent="." unique_id=653589676]
 
@@ -373,6 +374,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.03702569
 script = ExtResource("8_dinhu")
 
 [node name="UI" type="Control" parent="." unique_id=197028051]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -494,6 +496,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="UI" unique_id=1068076007]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
