@@ -163,16 +163,13 @@ metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 [sub_resource type="PlaneMesh" id="PlaneMesh_uwrxv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hf7dp"]
-size = Vector3(0.033203125, 1.421875, 2.0839844)
+size = Vector3(0.033203125, 1.421875, 2.361206)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fqxyq"]
 size = Vector3(2.9528809, 1, 2.7333984)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3v8q0"]
 size = Vector3(0.3, 0.3, 0.3)
-
-[sub_resource type="BoxMesh" id="BoxMesh_a1aj3"]
-size = Vector3(1.9240723, 0.578125, 0.6689453)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1h7m"]
 size = Vector3(0.3791504, 0.1015625, 0.35766602)
@@ -190,7 +187,7 @@ albedo_color = Color(0.99999994, 0.13018629, 0.22936049, 1)
 albedo_color = Color(0.055130094, 0.43638292, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oq1mk"]
-size = Vector3(2.111084, 1, 0.20532227)
+size = Vector3(1.4253235, 0.89941406, 0.20532227)
 
 [node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("cars", "ui", "resume", "web", "dialog")]
 script = ExtResource("1_uwrxv")
@@ -293,7 +290,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.0
 mesh = SubResource("BoxMesh_hf7dp")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Home" unique_id=306040924]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6006849, 0.6604692, -1.0164169)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.462074, 0.6604692, -1.0164169)
 mesh = SubResource("BoxMesh_hf7dp")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Home" unique_id=1144596272]
@@ -319,12 +316,8 @@ mesh = SubResource("BoxMesh_3v8q0")
 [node name="Buttons" type="Node3D" parent="." unique_id=1700726276]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4395705, 0, -2.0866966)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons" unique_id=95111037]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211, 0)
-mesh = SubResource("BoxMesh_a1aj3")
-
 [node name="Accert" type="Area3D" parent="Buttons" unique_id=203084752]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6268636, 0.5165838, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.289, 1.7, -0.489)
 script = ExtResource("4_u5sy4")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
@@ -336,7 +329,7 @@ mesh = SubResource("BoxMesh_oq1mk")
 surface_material_override/0 = SubResource("StandardMaterial3D_lnu2h")
 
 [node name="Deny" type="Area3D" parent="Buttons" unique_id=1626958929]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66838574, 0.5108223, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.289, 0.7, -0.489)
 script = ExtResource("4_u5sy4")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
@@ -348,7 +341,7 @@ mesh = SubResource("BoxMesh_oq1mk")
 surface_material_override/0 = SubResource("StandardMaterial3D_lbhrr")
 
 [node name="SocialNetworks" type="Area3D" parent="Buttons" unique_id=1920646718]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024781525, 0.50466204, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.289, 1.2, -0.489)
 script = ExtResource("4_u5sy4")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
@@ -372,6 +365,7 @@ script = ExtResource("4_u5sy4")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dialog" unique_id=49423970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1985321, 0.05029297, 0)
 shape = SubResource("BoxShape3D_oq1mk")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1287069292]
