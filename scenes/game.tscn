@@ -417,7 +417,6 @@ font_size = 20
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1287069292]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.03702569, 1.0806606, -1.4133594)
 script = ExtResource("8_dinhu")
-offset = Vector3(0, -3, 0)
 
 [node name="UI" type="Control" parent="." unique_id=197028051]
 layout_mode = 3

@@ -22,7 +22,7 @@ Data="*uid://c5ag5tornxr05"
 
 [display]
 
-window/size/mode=2
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
