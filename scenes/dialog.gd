@@ -8,8 +8,13 @@ var character: Character
 var curent_dialog: LinearDialog
 var id: int = -1 ## Текущий номер реплики
 
+var end: bool = true
+
 
 func start_dialog(target_character: Character) -> void:
+	if not end:
+		return
+	end = false
 	character = target_character
 	show()
 	get_parent().show()
@@ -25,12 +30,14 @@ func _process(_delta: float) -> void:
 
 func play(dialog_name: String) -> void: ## Запустить диалог по имени
 	var dialog := _find_dialog(dialog_name)
+	
 	if not dialog:
 		push_error("Диалог с именем '%s' не найден у персонажа." % dialog_name)
 		return
-
+	
 	clear_choises()
 	id = -1
+	
 	curent_dialog = dialog
 
 
@@ -41,9 +48,13 @@ func next() -> void: ## Показать следующую реплику
 	id += 1
 	if id >= curent_dialog.replicas.size():
 		var choise_name := curent_dialog.next_choise
-		curent_dialog = null
 		$Label.text = ""
+		
+		if not curent_dialog.next_choise: # Защита от ложного срабатывания
+			end = true
+		
 		show_choises(choise_name)
+		curent_dialog = null
 		return
 
 	$Label.text = curent_dialog.replicas[id]

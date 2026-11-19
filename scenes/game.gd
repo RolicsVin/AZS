@@ -19,9 +19,11 @@ func _ready() -> void:
 
 func next() -> void:
 	index += 1
+	
 	if index > cars.size() - 1:
 		end_game()
 		return
+	
 	var car: Car = cars[index]
 	current_car = car
 	car.start()

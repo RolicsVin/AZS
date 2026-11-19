@@ -4,6 +4,8 @@ class_name AreaButon extends Area3D
 signal pressed ## Издаётся, когда был вызван метод "press"
 
 var inarea: bool = false
+
+
 func press():
 	pressed.emit()
 

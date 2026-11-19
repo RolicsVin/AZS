@@ -5,6 +5,8 @@ class_name Car extends Node3D
 @export var character: Character
 @export var anim: AnimationPlayer
 
+var dialog: bool = false
+
 
 func start() -> void:
 	show()
