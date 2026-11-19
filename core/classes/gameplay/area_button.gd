@@ -6,6 +6,11 @@ signal pressed ## Издаётся, когда был вызван метод "p
 var inarea: bool = false
 
 
+func _ready() -> void:
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
+
+
 func press():
 	pressed.emit()
 
