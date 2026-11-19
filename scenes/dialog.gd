@@ -45,7 +45,7 @@ func play(dialog_name: String) -> void: ## Запустить диалог по 
 func next() -> void: ## Показать следующую реплику
 	if not curent_dialog:
 		return
-
+	
 	id += 1
 	if id >= curent_dialog.replicas.size():
 		var choise_name := curent_dialog.next_choise
@@ -57,27 +57,27 @@ func next() -> void: ## Показать следующую реплику
 		show_choises(choise_name)
 		curent_dialog = null
 		return
-
+	
 	$Label.text = curent_dialog.replicas[id]
 
 
 func show_choises(choise_name: String) -> void: ## Показать кнопки
 	clear_choises()
-
+	
 	if choise_name.is_empty():
 		_finish_dialog()
 		return
-
+	
 	var choise := _find_choise(choise_name)
 	if not choise:
 		push_error("Выбор с именем '%s' не найден у персонажа." % choise_name)
 		_finish_dialog()
 		return
-
+	
 	if choise.choises.is_empty():
 		_finish_dialog()
 		return
-
+	
 	for answer_text in choise.choises:
 		var choice_button := button.instantiate()
 		choice_button.text = answer_text
@@ -90,7 +90,7 @@ func _finish_dialog() -> void:
 	curent_dialog = null
 	clear_choises()
 	$Label.text = ""
-
+	
 	# Вызываем общий выход из интерфейса и возвращаем управление игроку.
 	get_parent().get_parent().player_continue()
 
