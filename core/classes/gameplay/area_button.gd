@@ -8,7 +8,7 @@ func press():
 	pressed.emit()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if inarea:
 		if Input.is_action_just_pressed("left_mouse"):
 			press()
