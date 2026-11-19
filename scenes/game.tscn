@@ -433,9 +433,6 @@ grow_vertical = 0
 script = ExtResource("8_gee14")
 container = NodePath("CircularContainer")
 choice_visual = NodePath("choise_visual")
-choice_font_size = null
-selected_color = null
-normal_color = null
 
 [node name="CircularContainer" type="Container" parent="UI/Dialog" unique_id=1825434233]
 layout_mode = 1
@@ -475,18 +472,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = 7.5
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 47.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="UI/Dialog/choise_visual/Chooser" unique_id=575941014]
 layout_mode = 0
 offset_left = 68.5
-offset_top = 1.5
+offset_top = -12.0
 offset_right = 108.5
-offset_bottom = 41.5
+offset_bottom = 28.0
 
 [node name="Label" type="Label" parent="UI" unique_id=1609445190]
 visible = false
