@@ -524,9 +524,6 @@ offset_bottom = -18.0
 grow_vertical = 0
 text = "Назад"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=817089082]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0230083, 0, 0.5629346)
-
 [connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
 [connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]
