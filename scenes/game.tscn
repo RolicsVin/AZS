@@ -486,5 +486,7 @@ text = "Назад"
 [connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
 [connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]
+[connection signal="mouse_entered" from="Dialog" to="Dialog" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Dialog" to="Dialog" method="_on_mouse_exited"]
 [connection signal="pressed" from="Dialog" to="." method="start_dialog"]
 [connection signal="pressed" from="UI/Button" to="." method="player_continue"]

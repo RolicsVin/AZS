@@ -1,7 +1,7 @@
 ## В этом скрипте хранится основной игровой цикл
 extends Node3D
 
-@export var player: Player ## Игрок
+
 @export var cars: Array[Car] ## Список автомобилей по очереди
 
 @export var ui: Control ## Пользовательский интерфейс
@@ -51,7 +51,7 @@ func open_web() -> void:
 		return
 	ui.show()
 	web.set_text(current_car.get_social_networks())
-	player.player_stop()
+	
 
 
 func start_dialog() -> void:
@@ -61,7 +61,7 @@ func start_dialog() -> void:
 		push_error("У персонажа не задано имя стартового диалога.")
 		return
 	ui.show()
-	player.player_stop()
+	
 	dialog.start_dialog(current_car.get_character())
 
 
@@ -69,11 +69,11 @@ func player_continue() -> void:
 	web.hide()
 	dialog.hide()
 	ui.hide()
-	player.player_continue()
+	
 
 
 func end_game() -> void:
-	player.player_stop()
+	
 	ui.show()
 	$UI/Label.show()
 	$UI/Button.hide()
