@@ -9,3 +9,5 @@ class_name Character extends Resource
 @export var start_dialog: String ## Имя стартового диалога
 @export var dialogs: Array[LinearDialog] ## Диалоги персонажа
 @export var choises: Array[Choise] ## Выборы персонажа
+
+var dialog_end: bool = false ## Был ли уже диалог

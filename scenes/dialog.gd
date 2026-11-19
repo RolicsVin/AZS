@@ -12,9 +12,10 @@ var end: bool = true
 
 
 func start_dialog(target_character: Character) -> void:
-	if not end:
+	if not end or target_character.dialog_end:
 		return
 	end = false
+	target_character.dialog_end = true
 	character = target_character
 	show()
 	get_parent().show()
