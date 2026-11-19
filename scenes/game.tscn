@@ -369,9 +369,20 @@ metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1985321, 0.05029297, 0)
 shape = SubResource("BoxShape3D_oq1mk")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1287069292]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1287069292 node_paths=PackedStringArray("rotation_point", "position_point")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.03702569, 1.0806606, -1.4133594)
 script = ExtResource("8_dinhu")
+rotation_point = NodePath("../CameraHoldPoints/HoldPont1")
+position_point = NodePath("../CameraHoldPoints/HoldPoint2")
+dead_zone = 0.2
+
+[node name="CameraHoldPoints" type="Node3D" parent="." unique_id=882987782]
+
+[node name="HoldPont1" type="Node3D" parent="CameraHoldPoints" unique_id=509984968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03702569, 1.0806606, -1.4133594)
+
+[node name="HoldPoint2" type="Node3D" parent="CameraHoldPoints" unique_id=1686289279]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.03702569, 0.99140334, -2.2254038)
 
 [node name="UI" type="Control" parent="." unique_id=197028051]
 visible = false
