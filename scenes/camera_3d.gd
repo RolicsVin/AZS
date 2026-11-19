@@ -1,4 +1,3 @@
-
 extends Camera3D
 
 @export var speed: float = 5.0
@@ -8,18 +7,21 @@ extends Camera3D
 var normal_rotation: Vector3
 var mouse_rotation: Vector2 = Vector2.ZERO
 
+
 func _ready():
 	normal_rotation = rotation_degrees
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_viewport().warp_mouse(get_viewport().size / 2)
 
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_rotation.x -= event.relative.y * mouse_sensitivity
 		mouse_rotation.y -= event.relative.x * mouse_sensitivity
-
+		
 		mouse_rotation.x = clampf(mouse_rotation.x, -limit, limit)
 		mouse_rotation.y = clampf(mouse_rotation.y, -limit, limit)
+
 
 func _process(delta):
 	var target_rotation: Vector3 = normal_rotation + Vector3(
@@ -27,7 +29,7 @@ func _process(delta):
 		mouse_rotation.y,
 		0.0
 	)
-
+	
 	rotation_degrees = rotation_degrees.lerp(
 		target_rotation,
 		clampf(speed * delta, 0.0, 1.0)
