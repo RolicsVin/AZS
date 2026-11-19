@@ -61,7 +61,7 @@ func next() -> void: ## Показать следующую реплику
 	$Label.text = curent_dialog.replicas[id]
 
 
-func show_choises(choise_name: String) -> void:
+func show_choises(choise_name: String) -> void: ## Показать кнопки
 	clear_choises()
 
 	if choise_name.is_empty():
