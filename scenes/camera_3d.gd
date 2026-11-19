@@ -6,6 +6,8 @@ extends Camera3D
 @export var speed1 = 5.0
 @export var limit1 = 0.5
 
+@export var offset: Vector3
+
 var modepos = false
 var normal_rotation: Vector3
 var normal_position: Vector3
@@ -37,7 +39,7 @@ func _process(delta):
 			-(mouse.y - 0.5) * limit,
 			-(mouse.x - 0.5) * limit,
 			0.0
-		)
+		) + offset
 
 		position = position.lerp(normal_position, clampf(speed1 * delta, 0.0, 1.0))
 		rotation_degrees = rotation_degrees.lerp(target_rotation, clampf(speed * delta, 0.0, 1.0))
