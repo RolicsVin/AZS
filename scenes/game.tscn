@@ -311,6 +311,12 @@ dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_66xif"), SubResou
 choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_ms3bu")])
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
+[sub_resource type="Resource" id="Resource_mmvbu"]
+script = ExtResource("3_pr1ej")
+event_text = "Наступила твоя вторая смена.
+Всё также, как и в прошлый раз!"
+metadata/_custom_type_script = "uid://8nrd34x813vr"
+
 [sub_resource type="Resource" id="Resource_h3rex"]
 script = ExtResource("3_vtaks")
 name = "choise"
@@ -973,7 +979,7 @@ mesh = SubResource("SphereMesh_hf7dp")
 [node name="Work2" type="Node3D" parent="." unique_id=1595405582]
 script = ExtResource("work_script")
 anim_name = "evening"
-sequence = [NodePath("Car"), NodePath("Car2")]
+sequence = [SubResource("Resource_mmvbu"), NodePath("Car"), NodePath("Car2")]
 metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 
 [node name="Car" type="Node3D" parent="Work2" unique_id=337705866 node_paths=PackedStringArray("anim")]
