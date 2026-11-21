@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cxl2ubmp65djc"]
+
+[resource]
+resource_name = "gasStation4"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.22207916, 0.31985632, 0.65820265, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://co2wn0g7g8jlm"]
+
+[resource]
+resource_name = "computer3"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6202513, 0.5747188, 0.45916277, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0

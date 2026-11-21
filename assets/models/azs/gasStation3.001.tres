@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b3s5dsqwhfke"]
+
+[resource]
+resource_name = "gasStation3.001"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6708773, 0.19462484, 0.21898793, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0

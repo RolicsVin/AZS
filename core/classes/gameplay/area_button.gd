@@ -3,6 +3,7 @@ class_name AreaButon extends Area3D
 
 signal pressed ## Издаётся, когда был вызван метод "press"
 
+@export var active: bool = true
 var inarea: bool = false
 
 
@@ -11,7 +12,17 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 
 
-func press():
+func on() -> void:
+	active = true
+
+
+func off() -> void:
+	active = false
+
+
+func press() -> void:
+	if not active:
+		return
 	pressed.emit()
 
 

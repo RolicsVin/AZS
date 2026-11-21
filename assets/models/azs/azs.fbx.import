@@ -1,0 +1,459 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://c4sk53ojjtfib"
+path="res://.godot/imported/azs.fbx-ffd0d2c620b798bab67998867429fb97.scn"
+
+[deps]
+
+source_file="res://assets/models/azs/azs.fbx"
+dest_files=["res://.godot/imported/azs.fbx-ffd0d2c620b798bab67998867429fb97.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Material.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/Material.001.tres",
+"use_external/path": "uid://dcauhnni1uyko"
+},
+"blackPlastic": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/blackPlastic.tres",
+"use_external/path": "uid://i1lkjkg2ypm6"
+},
+"book": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/book.tres",
+"use_external/path": "uid://c1ddpph2mcat5"
+},
+"book.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/book.001.tres",
+"use_external/path": "uid://b5eiuqup0k25p"
+},
+"book2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/book2.tres",
+"use_external/path": "uid://dktrbkefiovp1"
+},
+"box.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/box.001.tres",
+"use_external/path": "uid://57q2oghil2mg"
+},
+"building": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/building.tres",
+"use_external/path": "uid://c7wint54fk5yh"
+},
+"building2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/building2.tres",
+"use_external/path": "uid://ctducqe047dyc"
+},
+"building3": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/building3.tres",
+"use_external/path": "uid://cpyq7r53etl26"
+},
+"button": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/button.tres",
+"use_external/path": "uid://buxmgjayc6cyi"
+},
+"computer": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/computer.tres",
+"use_external/path": "uid://ce3f2xtlslkh7"
+},
+"computer2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/computer2.tres",
+"use_external/path": "uid://c78bjcvgdrnef"
+},
+"computer3": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/computer3.tres",
+"use_external/path": "uid://co2wn0g7g8jlm"
+},
+"drink": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/drink.tres",
+"use_external/path": "uid://cjvbsvqhb1clp"
+},
+"gasStation1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/gasStation1.tres",
+"use_external/path": "uid://fi3pgc35grgp"
+},
+"gasStation2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/gasStation2.tres",
+"use_external/path": "uid://dbcrn0totg5jw"
+},
+"gasStation3": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/gasStation3.tres",
+"use_external/path": "uid://jxynfyf8iumc"
+},
+"gasStation3.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/gasStation3.001.tres",
+"use_external/path": "uid://b3s5dsqwhfke"
+},
+"gasStation4": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/gasStation4.tres",
+"use_external/path": "uid://cxl2ubmp65djc"
+},
+"gasStation5": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/gasStation5.tres",
+"use_external/path": "uid://cmwbdcfyd7vst"
+},
+"gasStation6": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/gasStation6.tres",
+"use_external/path": "uid://dhed653aj5y3c"
+},
+"ground": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/ground.tres",
+"use_external/path": "uid://rshyymx21b3e"
+},
+"lamp.003": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/lamp.003.tres",
+"use_external/path": "uid://cb50c725jdf3g"
+},
+"lamp2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/lamp2.tres",
+"use_external/path": "uid://c5noyvq1t5r6d"
+},
+"microphone": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/microphone.tres",
+"use_external/path": "uid://b7hudcp4hqlnx"
+},
+"microphone.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/microphone.001.tres",
+"use_external/path": "uid://dy3y8rwd1dk28"
+},
+"mug": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/mug.tres",
+"use_external/path": "uid://0xphtxktlrbe"
+},
+"plant": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/plant.tres",
+"use_external/path": "uid://cqcmix7f3glfq"
+},
+"table": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/table.tres",
+"use_external/path": "uid://drs4xdfk082xh"
+},
+"table.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/table.001.tres",
+"use_external/path": "uid://csodk7xyoxw2m"
+},
+"table2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/table2.tres",
+"use_external/path": "uid://c17ftfcddcnfe"
+},
+"table2.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/table2.001.tres",
+"use_external/path": "uid://ck1vkr01lsxna"
+},
+"window": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/azs/window.tres",
+"use_external/path": "uid://brmuoi57gtmri"
+}
+},
+"meshes": {
+"Cube_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_002.res",
+"save_to_file/path": "uid://c3iawew5bkkqg"
+},
+"Cube_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_003.res",
+"save_to_file/path": "uid://d3ef1xvcx7144"
+},
+"Cube_010": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_010.res",
+"save_to_file/path": "uid://cwcoljx4n4vkv"
+},
+"Cube_090": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_090.res",
+"save_to_file/path": "uid://bebv76ch3dwjl"
+},
+"Cube_093": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_093.res",
+"save_to_file/path": "uid://cdufkd8djpj2a"
+},
+"Cube_095": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_095.res",
+"save_to_file/path": "uid://dcnf3j5oxvxsk"
+},
+"Cube_096": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_096.res",
+"save_to_file/path": "uid://b5a2yi6waata8"
+},
+"Cube_097": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_097.res",
+"save_to_file/path": "uid://p2kmc5w4u8hc"
+},
+"Cube_098": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_098.res",
+"save_to_file/path": "uid://dmifkc37xodbq"
+},
+"Cube_099": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_099.res",
+"save_to_file/path": "uid://dy5t6o4ol0qy6"
+},
+"Cube_100": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_100.res",
+"save_to_file/path": "uid://cypgn0atb8dui"
+},
+"Cube_102": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_102.res",
+"save_to_file/path": "uid://bm7a2fwvpu1ml"
+},
+"Cube_105": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_105.res",
+"save_to_file/path": "uid://cdv8jorw3qnqs"
+},
+"Cube_107": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_107.res",
+"save_to_file/path": "uid://yieatx58bae"
+},
+"Cube_108": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_108.res",
+"save_to_file/path": "uid://bsrp0ik340yjk"
+},
+"Cube_109": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_109.res",
+"save_to_file/path": "uid://cx7sb6ugyaepb"
+},
+"Cube_111": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_111.res",
+"save_to_file/path": "uid://cvpj1vxthpdao"
+},
+"Cube_114": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cube_114.res",
+"save_to_file/path": "uid://b4n6tb3gmko6e"
+},
+"Cylinder_011": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cylinder_011.res",
+"save_to_file/path": "uid://cycns4fhdlmgr"
+},
+"Cylinder_032": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cylinder_032.res",
+"save_to_file/path": "uid://nxt3838n2t83"
+},
+"Cylinder_043": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cylinder_043.res",
+"save_to_file/path": "uid://bclipfxl58qfw"
+},
+"Cylinder_044": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cylinder_044.res",
+"save_to_file/path": "uid://cs3qtgjqjnai"
+},
+"Cylinder_046": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cylinder_046.res",
+"save_to_file/path": "uid://blhi0s41apwjr"
+},
+"Cylinder_047": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Cylinder_047.res",
+"save_to_file/path": "uid://bhtcwekl1l44v"
+},
+"Plane": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Plane.res",
+"save_to_file/path": "uid://3jb04cq84mcc"
+},
+"Plane_006": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Plane_006.res",
+"save_to_file/path": "uid://lpwdsdmiqiyt"
+},
+"Plane_009": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/azs/Plane_009.res",
+"save_to_file/path": "uid://c3wiq7ugd5iem"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
+fbx/naming_version=2
