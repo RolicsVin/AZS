@@ -2,6 +2,7 @@
 ## Машины являются дочерними узлами Work, события — ресурсами Event.
 class_name Work extends Node3D
 
+@export var anim_name: String ## Какую анимацию проигрывать во время этйо рабочей смены
 @export var sequence: Array[Variant] = [] ## Последовательность NodePath машин и ресурсов Event
 
 
