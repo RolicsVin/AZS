@@ -29,7 +29,3 @@ func _on_back_pressed() -> void:
 	tween.tween_property(ui, "modulate:a", 0.0, 0.3)
 	tween.tween_callback(ui.hide)
 	tween.tween_callback(func(): camera_enabled = true)
-
-
-func _on_play_mouse_entered() -> void:
-	pass # Replace with function body.
