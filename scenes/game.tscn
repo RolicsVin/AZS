@@ -91,6 +91,14 @@ event_text = "Слева есть монитор - нажав на него
 этого человека."
 metadata/_custom_type_script = "uid://8nrd34x813vr"
 
+[sub_resource type="Resource" id="Resource_458eo"]
+script = ExtResource("3_pr1ej")
+event_text = "Поздравляем! Ты закончил свою
+первую смену. В награду за это
+мы даём тебе подарок: Золотой куб"
+anim_name = "gold_cube"
+metadata/_custom_type_script = "uid://8nrd34x813vr"
+
 [sub_resource type="Resource" id="Resource_dinhu"]
 script = ExtResource("3_vtaks")
 name = "choise"
@@ -310,6 +318,16 @@ emission_energy_multiplier = 0.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_oq1mk"]
 size = Vector3(1.4253235, 0.6828613, 0.20532227)
 
+[sub_resource type="GDScript" id="GDScript_pr1ej"]
+resource_name = "UI"
+script/source = "extends Control
+
+
+func _process(delta: float) -> void:
+	$\"../ProgressBar\".value = Data.money
+	$\"../ProgressBar2\".value = Data.respect
+"
+
 [sub_resource type="LabelSettings" id="LabelSettings_pr1ej"]
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
@@ -343,7 +361,7 @@ shadow_enabled = true
 [node name="Work" type="Node3D" parent="." unique_id=622417747]
 script = ExtResource("work_script")
 anim_name = "day"
-sequence = [SubResource("Resource_8ool0"), SubResource("Resource_pr1ej"), SubResource("Resource_05nbr"), NodePath("Car"), SubResource("Resource_oaba0"), SubResource("Resource_0sl42"), NodePath("Car2"), NodePath("Car3")]
+sequence = [SubResource("Resource_8ool0"), SubResource("Resource_pr1ej"), SubResource("Resource_05nbr"), NodePath("Car"), SubResource("Resource_oaba0"), SubResource("Resource_0sl42"), NodePath("Car2"), SubResource("Resource_458eo")]
 metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 
 [node name="Car" type="Node3D" parent="Work" unique_id=463594966 node_paths=PackedStringArray("anim")]
@@ -1031,6 +1049,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = SubResource("GDScript_pr1ej")
 
 [node name="Control" type="Control" parent="UI" unique_id=769137728]
 layout_mode = 1
@@ -1194,6 +1213,22 @@ layout_mode = 1
 offset_right = 210.0
 offset_bottom = 86.0
 text = "Назад"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1940274801]
+modulate = Color(1, 1, 0, 1)
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 94.0
+offset_bottom = 20.0
+show_percentage = false
+
+[node name="ProgressBar2" type="ProgressBar" parent="." unique_id=910233065]
+modulate = Color(0, 1, 0, 1)
+offset_left = 3.0
+offset_top = 25.0
+offset_right = 94.0
+offset_bottom = 42.0
+show_percentage = false
 
 [connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]

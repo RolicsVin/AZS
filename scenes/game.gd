@@ -10,6 +10,7 @@ extends Node3D
 @export var dialog: Control
 @export var back_button: Button
 
+@export var anim: AnimationPlayer
 @onready var accert_button: AreaButon = $Buttons/Accert
 @onready var deny_button: AreaButon = $Buttons/Deny
 
