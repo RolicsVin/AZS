@@ -10,8 +10,8 @@
 [ext_resource type="Script" uid="uid://bgmdgnweoav8o" path="res://core/classes/gameplay/area_button.gd" id="4_u5sy4"]
 [ext_resource type="Script" uid="uid://sod803kv4dsw" path="res://scenes/camera_3d.gd" id="8_dinhu"]
 [ext_resource type="Script" uid="uid://cuomswlv4mlrx" path="res://scenes/dialog.gd" id="8_gee14"]
-[ext_resource type="PackedScene" uid="uid://t81okwm581ti" path="res://assets/ui/choise_button.tscn" id="11_dinhu"]
 [ext_resource type="Script" uid="uid://ob2eebenxy77" path="res://core/classes/ui/circular_container.gd" id="11_kvpfn"]
+[ext_resource type="Script" uid="uid://dnj1dhrdae4tj" path="res://core/classes/ui/choise_visual.gd" id="12_dinhu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -163,16 +163,13 @@ metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 [sub_resource type="PlaneMesh" id="PlaneMesh_uwrxv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hf7dp"]
-size = Vector3(0.033203125, 1.421875, 2.0839844)
+size = Vector3(0.033203125, 1.421875, 2.361206)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fqxyq"]
 size = Vector3(2.9528809, 1, 2.7333984)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3v8q0"]
 size = Vector3(0.3, 0.3, 0.3)
-
-[sub_resource type="BoxMesh" id="BoxMesh_a1aj3"]
-size = Vector3(1.9240723, 0.578125, 0.6689453)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1h7m"]
 size = Vector3(0.3791504, 0.1015625, 0.35766602)
@@ -190,15 +187,16 @@ albedo_color = Color(0.99999994, 0.13018629, 0.22936049, 1)
 albedo_color = Color(0.055130094, 0.43638292, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oq1mk"]
-size = Vector3(2.111084, 1, 0.20532227)
+size = Vector3(1.4253235, 0.89941406, 0.20532227)
 
-[node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("cars", "ui", "resume", "web", "dialog")]
+[node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("cars", "ui", "resume", "web", "dialog", "back_button")]
 script = ExtResource("1_uwrxv")
 cars = [NodePath("Cars/Car"), NodePath("Cars/Car2"), NodePath("Cars/Car3")]
 ui = NodePath("UI")
 resume = NodePath("Resume")
 web = NodePath("UI/Control/Panel")
 dialog = NodePath("UI/Dialog")
+back_button = NodePath("UI/Button")
 
 [node name="Light" type="Node3D" parent="." unique_id=653589676]
 
@@ -293,7 +291,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.0
 mesh = SubResource("BoxMesh_hf7dp")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Home" unique_id=306040924]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6006849, 0.6604692, -1.0164169)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.462074, 0.6604692, -1.0164169)
 mesh = SubResource("BoxMesh_hf7dp")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Home" unique_id=1144596272]
@@ -319,12 +317,8 @@ mesh = SubResource("BoxMesh_3v8q0")
 [node name="Buttons" type="Node3D" parent="." unique_id=1700726276]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4395705, 0, -2.0866966)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons" unique_id=95111037]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211, 0)
-mesh = SubResource("BoxMesh_a1aj3")
-
 [node name="Accert" type="Area3D" parent="Buttons" unique_id=203084752]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6268636, 0.5165838, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.289, 1.7, -0.489)
 script = ExtResource("4_u5sy4")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
@@ -336,7 +330,7 @@ mesh = SubResource("BoxMesh_oq1mk")
 surface_material_override/0 = SubResource("StandardMaterial3D_lnu2h")
 
 [node name="Deny" type="Area3D" parent="Buttons" unique_id=1626958929]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66838574, 0.5108223, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.289, 0.7, -0.489)
 script = ExtResource("4_u5sy4")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
@@ -348,7 +342,7 @@ mesh = SubResource("BoxMesh_oq1mk")
 surface_material_override/0 = SubResource("StandardMaterial3D_lbhrr")
 
 [node name="SocialNetworks" type="Area3D" parent="Buttons" unique_id=1920646718]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024781525, 0.50466204, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.289, 1.2, -0.489)
 script = ExtResource("4_u5sy4")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
@@ -372,13 +366,26 @@ script = ExtResource("4_u5sy4")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dialog" unique_id=49423970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1985321, 0.05029297, 0)
 shape = SubResource("BoxShape3D_oq1mk")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1287069292]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1287069292 node_paths=PackedStringArray("rotation_point", "position_point")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.03702569, 1.0806606, -1.4133594)
 script = ExtResource("8_dinhu")
+rotation_point = NodePath("../CameraHoldPoints/HoldPont1")
+position_point = NodePath("../CameraHoldPoints/HoldPoint2")
+dead_zone = 0.2
+
+[node name="CameraHoldPoints" type="Node3D" parent="." unique_id=882987782]
+
+[node name="HoldPont1" type="Node3D" parent="CameraHoldPoints" unique_id=509984968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03702569, 1.0806606, -1.4133594)
+
+[node name="HoldPoint2" type="Node3D" parent="CameraHoldPoints" unique_id=1686289279]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.03702569, 0.99140334, -2.2254038)
 
 [node name="UI" type="Control" parent="." unique_id=197028051]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -421,7 +428,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Dialog" type="Control" parent="UI" unique_id=624629380 node_paths=PackedStringArray("container")]
+[node name="Dialog" type="Control" parent="UI" unique_id=624629380 node_paths=PackedStringArray("container", "choice_visual")]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 12
@@ -432,7 +439,7 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("8_gee14")
 container = NodePath("CircularContainer")
-button = ExtResource("11_dinhu")
+choice_visual = NodePath("choise_visual")
 
 [node name="CircularContainer" type="Container" parent="UI/Dialog" unique_id=1825434233]
 layout_mode = 1
@@ -455,6 +462,36 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="choise_visual" type="Control" parent="UI/Dialog" unique_id=456860733]
+anchors_preset = 0
+anchor_right = 1.0008681
+anchor_bottom = 1.005
+mouse_filter = 1
+script = ExtResource("12_dinhu")
+metadata/_custom_type_script = "uid://dnj1dhrdae4tj"
+metadata/_edit_use_anchors_ = true
+
+[node name="Chooser" type="Control" parent="UI/Dialog/choise_visual" unique_id=1664152534]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 7.5
+offset_right = 20.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/Dialog/choise_visual/Chooser" unique_id=575941014]
+layout_mode = 0
+offset_left = 68.5
+offset_top = -12.0
+offset_right = 108.5
+offset_bottom = 28.0
 
 [node name="Label" type="Label" parent="UI" unique_id=1609445190]
 visible = false
@@ -486,7 +523,5 @@ text = "Назад"
 [connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
 [connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]
-[connection signal="mouse_entered" from="Dialog" to="Dialog" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Dialog" to="Dialog" method="_on_mouse_exited"]
 [connection signal="pressed" from="Dialog" to="." method="start_dialog"]
 [connection signal="pressed" from="UI/Button" to="." method="player_continue"]
