@@ -28,7 +28,7 @@ func _ready() -> void:
 		push_error("Dialog: не назначен ChoiceVisual.")
 		return
 
-	choice_visual.setup(container)
+	choice_visual.setup(container, choice_font_size)
 	choice_visual.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
@@ -64,7 +64,7 @@ func _process(_delta: float) -> void:
 
 	if choice_visual.visible:
 		confirm_choice()
-	elif current_dialog != null and not current_dialog.replicas.is_empty():
+	elif current_dialog != null:
 		next_replica()
 
 
