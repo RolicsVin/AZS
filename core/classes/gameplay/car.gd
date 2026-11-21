@@ -1,7 +1,10 @@
 ## Класс, реализующий машину, в которой едет персонаж.
 class_name Car extends Node3D
 
-
+@export var given_money_min: int = 10
+@export var given_money_max: int = 15
+@export var given_respect_min: int = 10
+@export var given_respect_max: int = 15
 @export var character: Character
 @export var anim: AnimationPlayer
 
@@ -15,6 +18,7 @@ func start() -> void:
 
 func to_accept() -> void:
 	anim.play("accept")
+	
 
 
 func deny() -> void:

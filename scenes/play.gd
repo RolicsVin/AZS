@@ -16,6 +16,7 @@ func _ready() -> void:
 func _on_mouse_entered() -> void:
 	if is_instance_valid(mat):
 		mat.emission_energy_multiplier = 6
+	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_POINTING_HAND)
 
 	super._on_mouse_entered()
 	# Используем новый способ смены формы системного курсора.
@@ -25,5 +26,5 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	if is_instance_valid(mat):
 		mat.emission_energy_multiplier = 0
-
+	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_POINTING_HAND)
 	super._on_mouse_exited()
