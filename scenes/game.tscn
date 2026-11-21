@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://clmjcoqlf4st7" path="res://scenes/resume.gd" id="3_iywne"]
 [ext_resource type="Script" uid="uid://gcg38oqbhffp" path="res://core/classes/gameplay/car.gd" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://tic1p5mu7nxj" path="res://core/classes/resources/character.gd" id="3_p57ef"]
+[ext_resource type="Script" uid="uid://8nrd34x813vr" path="res://core/classes/resources/event.gd" id="3_pr1ej"]
 [ext_resource type="Script" uid="uid://xy3l37ktt48x" path="res://core/classes/resources/choise.gd" id="3_vtaks"]
 [ext_resource type="Script" uid="uid://cqdq3s3etltn0" path="res://core/classes/resources/linear_dialog.gd" id="4_kvpfn"]
 [ext_resource type="Script" uid="uid://bjs4mlnnvenhf" path="res://scenes/panel.gd" id="4_lbhrr"]
@@ -58,6 +59,25 @@ ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
 adjustment_enabled = true
+
+[sub_resource type="Resource" id="Resource_8ool0"]
+script = ExtResource("3_pr1ej")
+event_text = "Ты работник заправки!
+К тебе каждый день приезжае
+множество дюдей. Бензина мало
+и на всех не хватит."
+metadata/_custom_type_script = "uid://8nrd34x813vr"
+
+[sub_resource type="Resource" id="Resource_pr1ej"]
+script = ExtResource("3_pr1ej")
+event_text = "Попробуй поговорить с новым посетителем. И сделай выбор:"
+metadata/_custom_type_script = "uid://8nrd34x813vr"
+
+[sub_resource type="Resource" id="Resource_05nbr"]
+script = ExtResource("3_pr1ej")
+event_text = "Зелёная кнопка - дать бензин.
+Красная - отказать."
+metadata/_custom_type_script = "uid://8nrd34x813vr"
 
 [sub_resource type="Resource" id="Resource_dinhu"]
 script = ExtResource("3_vtaks")
@@ -278,12 +298,17 @@ emission_energy_multiplier = 0.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_oq1mk"]
 size = Vector3(1.4253235, 0.6828613, 0.20532227)
 
-[node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("works", "ui", "resume", "web", "dialog", "back_button")]
+[sub_resource type="LabelSettings" id="LabelSettings_pr1ej"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("works", "ui", "resume", "web", "event_panel", "dialog", "back_button")]
 script = ExtResource("1_uwrxv")
 works = [NodePath("Work")]
 ui = NodePath("UI")
 resume = NodePath("Resume")
 web = NodePath("UI/Control/Panel")
+event_panel = NodePath("UI/Panel")
 dialog = NodePath("UI/Dialog")
 back_button = NodePath("UI/Button")
 
@@ -305,7 +330,8 @@ shadow_enabled = true
 
 [node name="Work" type="Node3D" parent="." unique_id=622417747]
 script = ExtResource("work_script")
-sequence = [NodePath("Car"), NodePath("Car2"), NodePath("Car3")]
+anim_name = "day"
+sequence = [SubResource("Resource_8ool0"), SubResource("Resource_pr1ej"), SubResource("Resource_05nbr"), NodePath("Car"), NodePath("Car2"), NodePath("Car3")]
 metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 
 [node name="Car" type="Node3D" parent="Work" unique_id=463594966 node_paths=PackedStringArray("anim")]
@@ -986,7 +1012,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03702569, 1.0806606, -1.41
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.03702569, 0.99140334, -2.2254038)
 
 [node name="UI" type="Control" parent="." unique_id=197028051]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1030,6 +1055,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Dialog" type="Control" parent="UI" unique_id=624629380 node_paths=PackedStringArray("container", "choice_visual")]
+visible = false
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 12
@@ -1061,6 +1087,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+label_settings = SubResource("LabelSettings_pr1ej")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1108,6 +1135,47 @@ text = "Игра окончена!
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Panel" type="Panel" parent="UI" unique_id=467885109]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -267.0
+offset_right = 295.0
+offset_bottom = 267.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="UI/Panel" unique_id=190633531]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="UI/Panel" unique_id=940692491]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -75.0
+offset_right = 72.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Продолжить"
+
 [node name="Button" type="Button" parent="UI" unique_id=1068076007]
 visible = false
 layout_mode = 1
@@ -1123,4 +1191,5 @@ text = "Назад"
 [connection signal="dialog_finished" from="UI/Dialog" to="Buttons/Deny" method="on"]
 [connection signal="dialog_started" from="UI/Dialog" to="Buttons/Accert" method="off"]
 [connection signal="dialog_started" from="UI/Dialog" to="Buttons/Deny" method="off"]
+[connection signal="pressed" from="UI/Panel/Button" to="." method="player_continue"]
 [connection signal="pressed" from="UI/Button" to="." method="player_continue"]

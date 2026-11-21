@@ -6,6 +6,7 @@ extends Node3D
 @export var ui: Control
 @export var resume: Node3D
 @export var web: Panel
+@export var event_panel: Control
 @export var dialog: Control
 @export var back_button: Button
 
@@ -34,6 +35,8 @@ func _ready() -> void:
 func next() -> void:
 	_set_decision_buttons_enabled(false)
 	current_car = null
+	
+	event_panel.hide()
 
 	while work_index < works.size():
 		var work: Work = works[work_index]
@@ -64,9 +67,12 @@ func next() -> void:
 func _show_event(event: Event) -> void:
 	# События не требуют решения игрока — показываем только текст.
 	waiting_for_event = true
-	resume.set_text(event.event_text)
+	event_panel.show()
+	
+	$UI/Panel/Label.text = event.event_text
+	$UI/Button.hide()
 	ui.show()
-	$UI/Button.show()
+	$UI/Panel.show()
 
 
 func setup(car: Car) -> void:
