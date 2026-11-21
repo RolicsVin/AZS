@@ -1,7 +1,6 @@
 class_name Button_manager extends Node3D
 
 var camera_enabled: bool = true
-var settings_tween: Tween
 
 
 func play() -> void:
@@ -10,19 +9,7 @@ func play() -> void:
 
 func settings() -> void:
 	camera_enabled = false
-
-	var ui = $"../UI/settings"
-	ui.show()
-	ui.modulate.a = 0.0
-
-	# Не допускаем наложения анимаций при повторном нажатии.
-	if settings_tween and settings_tween.is_running():
-		settings_tween.kill()
-
-	# Только плавное изменение прозрачности, без масштабирования и bounce.
-	settings_tween = create_tween()
-	settings_tween.set_trans(Tween.TRANS_LINEAR)
-	settings_tween.tween_property(ui, "modulate:a", 1.0, 0.2)
+	$"../UI/settings".show()
 
 
 func quit() -> void:
@@ -30,21 +17,5 @@ func quit() -> void:
 
 
 func _on_back_pressed() -> void:
-	var ui = $"../UI/settings"
-
-	if settings_tween and settings_tween.is_running():
-		settings_tween.kill()
-
-	# Скрываем настройки обычным fade-out без bounce.
-	settings_tween = create_tween()
-	settings_tween.set_trans(Tween.TRANS_LINEAR)
-	settings_tween.tween_property(ui, "modulate:a", 0.0, 0.2)
-	settings_tween.tween_callback(ui.hide)
-	settings_tween.tween_callback(_resume_camera_without_bounce)
-
-
-func _resume_camera_without_bounce() -> void:
-	var camera = get_node_or_null("../Camera3D")
-	if is_instance_valid(camera) and camera.has_method("snap_to_rotation_point"):
-		camera.snap_to_rotation_point()
+	$"../UI/settings".hide()
 	camera_enabled = true
