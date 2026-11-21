@@ -41,6 +41,7 @@ func next() -> void:
 
 	while work_index < works.size():
 		var work: Work = works[work_index]
+		anim.play(work.anim_name)
 
 		if item_index >= work.sequence.size():
 			work_index += 1
@@ -57,6 +58,7 @@ func next() -> void:
 			return
 
 		if item is Event:
+			anim.play(item.anim_name)
 			_show_event(item as Event)
 			return
 
