@@ -45,7 +45,7 @@ func _on_mouse_entered() -> void:
 		return
 	
 	inarea = true
-	print("MOUSE ENTERED")
+	
 	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_POINTING_HAND)
 
 
