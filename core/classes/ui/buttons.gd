@@ -1,8 +1,7 @@
 class_name Button_manager extends Node3D
 
 var camera_enabled: bool = true
-
-
+var settings_tween: Tween
 
 
 func play() -> void:
@@ -10,16 +9,20 @@ func play() -> void:
 
 
 func settings() -> void:
-	
-
 	camera_enabled = false
 
 	var ui = $"../UI/settings"
 	ui.show()
-	ui.modulate.a = 0
+	ui.modulate.a = 0.0
 
-	var tween = create_tween()
-	tween.tween_property(ui, "modulate:a", 1.0, 0.3)
+	# Не допускаем наложения анимаций при повторном нажатии.
+	if settings_tween and settings_tween.is_running():
+		settings_tween.kill()
+
+	# Только плавное изменение прозрачности, без масштабирования и bounce.
+	settings_tween = create_tween()
+	settings_tween.set_trans(Tween.TRANS_LINEAR)
+	settings_tween.tween_property(ui, "modulate:a", 1.0, 0.2)
 
 
 func quit() -> void:
@@ -29,8 +32,12 @@ func quit() -> void:
 func _on_back_pressed() -> void:
 	var ui = $"../UI/settings"
 
-	var tween = create_tween()
-	tween.tween_property(ui, "modulate:a", 0.0, 0.3)
-	tween.tween_callback(ui.hide)
-	tween.tween_callback(func(): camera_enabled = true)
-	
+	if settings_tween and settings_tween.is_running():
+		settings_tween.kill()
+
+	# Скрываем настройки обычным fade-out без bounce.
+	settings_tween = create_tween()
+	settings_tween.set_trans(Tween.TRANS_LINEAR)
+	settings_tween.tween_property(ui, "modulate:a", 0.0, 0.2)
+	settings_tween.tween_callback(ui.hide)
+	settings_tween.tween_callback(func(): camera_enabled = true)
