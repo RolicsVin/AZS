@@ -36,7 +36,7 @@
 [ext_resource type="ArrayMesh" uid="uid://3jb04cq84mcc" path="res://assets/models/azs/Plane.res" id="34_yd4ix"]
 [ext_resource type="ArrayMesh" uid="uid://lpwdsdmiqiyt" path="res://assets/models/azs/Plane_006.res" id="35_66xif"]
 [ext_resource type="ArrayMesh" uid="uid://c3wiq7ugd5iem" path="res://assets/models/azs/Plane_009.res" id="36_bnuda"]
-[ext_resource type="Script" uid="uid://bkvkwqkc8smpp" path="res://scenes/camera_3d_menu.gd" id="36_m4url"]
+[ext_resource type="Script" uid="uid://sod803kv4dsw" path="res://scenes/camera_3d.gd" id="36_m4url"]
 [ext_resource type="ArrayMesh" uid="uid://cypgn0atb8dui" path="res://assets/models/azs/Cube_100.res" id="37_0rmfi"]
 [ext_resource type="ArrayMesh" uid="uid://bm7a2fwvpu1ml" path="res://assets/models/azs/Cube_102.res" id="38_xbak0"]
 [ext_resource type="ArrayMesh" uid="uid://dy5t6o4ol0qy6" path="res://assets/models/azs/Cube_099.res" id="39_3x28f"]
