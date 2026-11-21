@@ -1,4 +1,5 @@
 
+
 extends Camera3D
 
 @export_category("Hold Points")
@@ -29,7 +30,7 @@ var position_mouse_offset: Vector2 = Vector2.ZERO
 var position_mode: bool = false
 
 # Если скрипт используется вне меню, узел Buttons может отсутствовать.
-@onready var button_manager: Button_manager = get_node_or_null("../Buttons")
+@onready var button_manager: Node = get_node_or_null("../Buttons")
 
 
 func _ready() -> void:
@@ -37,7 +38,7 @@ func _ready() -> void:
 	
 
 func _input(event: InputEvent) -> void:
-	if is_instance_valid(button_manager) and not button_manager.camera_enabled:
+	if not _camera_input_enabled():
 		return
 
 	if event is InputEventMouseMotion:
