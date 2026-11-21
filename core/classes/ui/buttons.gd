@@ -9,9 +9,14 @@ func play() -> void:
 
 
 func settings() -> void:
-	camera_enabled = false
-
 	var ui = $"../UI/settings"
+
+	# Не открываем настройки повторно, если они уже открыты
+	# или ещё выполняется их закрытие.
+	if ui.visible:
+		return
+
+	camera_enabled = false
 	ui.show()
 	ui.modulate.a = 0.0
 
@@ -19,7 +24,6 @@ func settings() -> void:
 	if settings_tween and settings_tween.is_running():
 		settings_tween.kill()
 
-	# Только плавное изменение прозрачности, без масштабирования и bounce.
 	settings_tween = create_tween()
 	settings_tween.set_trans(Tween.TRANS_LINEAR)
 	settings_tween.tween_property(ui, "modulate:a", 1.0, 0.2)
@@ -31,6 +35,10 @@ func quit() -> void:
 
 func _on_back_pressed() -> void:
 	var ui = $"../UI/settings"
+
+	# Игнорируем повторный вызов Back, если настройки уже скрыты.
+	if not ui.visible:
+		return
 
 	if settings_tween and settings_tween.is_running():
 		settings_tween.kill()
