@@ -99,7 +99,7 @@ event_text = "Поздравляем! Ты закончил свою
 anim_name = "gold_cube"
 metadata/_custom_type_script = "uid://8nrd34x813vr"
 
-[sub_resource type="Resource" id="Resource_pf7vy"]
+[sub_resource type="Resource" id="Resource_q8j3a"]
 script = ExtResource("3_vtaks")
 name = "choise"
 choises = Dictionary[String, String]({
@@ -108,26 +108,26 @@ choises = Dictionary[String, String]({
 })
 metadata/_custom_type_script = "uid://xy3l37ktt48x"
 
-[sub_resource type="Resource" id="Resource_i4re6"]
+[sub_resource type="Resource" id="Resource_7ixpq"]
 script = ExtResource("4_kvpfn")
 name = "start"
-replicas = Array[String](["Рыбак: Здорово. Слушай, мне бы немного бензина. Литров десять, если найдётся.", "Игрок: Зачем столько?", "Рыбак: На озере ещё осталась рыба. Но близко к берегу уже пусто. Придётся идти дальше. Дома дети голодные, понимаешь?"])
+replicas = Array[String](["Рыбак: Слушай, мне бы немного бензина. Литров десять, если найдётся.", "Игрок: Зачем столько?", "Рыбак: На озере ещё осталась рыба. Но близко к берегу уже пусто. Придётся идти дальше. Дома дети голодные, понимаешь?"])
 next_choise = "choise"
 metadata/_custom_type_script = "uid://cqdq3s3etltn0"
 
-[sub_resource type="Resource" id="Resource_o8ni1"]
+[sub_resource type="Resource" id="Resource_bk1p3"]
 script = ExtResource("4_kvpfn")
 name = "agro"
 replicas = Array[String](["Рыбак (на агрессивный ответ): Да уж, вижу, человечности тут не осталось. Ладно, сам как-нибудь справлюсь."])
 metadata/_custom_type_script = "uid://cqdq3s3etltn0"
 
-[sub_resource type="Resource" id="Resource_3hbvx"]
+[sub_resource type="Resource" id="Resource_n8ral"]
 script = ExtResource("4_kvpfn")
 name = "good"
 replicas = Array[String](["Рыбак (на сочувственный ответ): Третий день уже. Жена старается не показывать, но я вижу, как она переживает. Хоть бы сегодня повезло..."])
 metadata/_custom_type_script = "uid://cqdq3s3etltn0"
 
-[sub_resource type="Resource" id="Resource_q8j3a"]
+[sub_resource type="Resource" id="Resource_yd4ix"]
 script = ExtResource("3_p57ef")
 resume = "Он просит бензин, чтобы добраться
 до дальнего участка озера, где, по
@@ -142,8 +142,8 @@ social_networks = Array[String](["Пост №1 — за несколько ме
 
 Что-то совсем невесело стало. Бензин дорожает, снасти дорожают, а рыбы всё меньше. Сегодня впервые за много лет вернулся домой с пустыми руками. Надеюсь, скоро всё наладится."])
 start_dialog = "start"
-dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_i4re6"), SubResource("Resource_o8ni1"), SubResource("Resource_3hbvx")])
-choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_pf7vy")])
+dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_7ixpq"), SubResource("Resource_bk1p3"), SubResource("Resource_n8ral")])
+choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_q8j3a")])
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
 [sub_resource type="Animation" id="Animation_iywne"]
@@ -263,7 +263,7 @@ albedo_color = Color(0.8332363, 0.75295025, 0.5369804, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_hf7dp"]
 material = SubResource("StandardMaterial3D_7025r")
 
-[sub_resource type="Resource" id="Resource_fedci"]
+[sub_resource type="Resource" id="Resource_ms3bu"]
 script = ExtResource("3_vtaks")
 name = "choise"
 choises = Dictionary[String, String]({
@@ -272,26 +272,26 @@ choises = Dictionary[String, String]({
 })
 metadata/_custom_type_script = "uid://xy3l37ktt48x"
 
-[sub_resource type="Resource" id="Resource_h3rex"]
+[sub_resource type="Resource" id="Resource_66xif"]
 script = ExtResource("4_kvpfn")
 name = "start"
 replicas = Array[String](["Работник ЖКХ: Здравствуйте. Мне нужно топливо. Желательно литров пятнадцать.", "Игрок: И куда это вы собрались?", "Работник ЖКХ: Насосная станция на окраине встала. Если сегодня не запустить насосы, несколько районов останутся без воды.", "Игрок: А почему я должен вам верить?", "Работник ЖКХ: А вы думаете, мне самому охота по такой жаре мотаться? Я уже неделю без выходных работаю."])
 next_choise = "choise"
 metadata/_custom_type_script = "uid://cqdq3s3etltn0"
 
-[sub_resource type="Resource" id="Resource_8qswn"]
+[sub_resource type="Resource" id="Resource_bnuda"]
 script = ExtResource("4_kvpfn")
 name = "angry"
 replicas = Array[String](["Работник ЖКХ (на агрессивный ответ): Ну и ладно. Только когда из кранов перестанет течь вода, не жалуйтесь."])
 metadata/_custom_type_script = "uid://cqdq3s3etltn0"
 
-[sub_resource type="Resource" id="Resource_rm0al"]
+[sub_resource type="Resource" id="Resource_0rmfi"]
 script = ExtResource("4_kvpfn")
 name = "good"
 replicas = Array[String](["Работник ЖКХ (на сочувственный ответ): Со вчерашнего вечера. Там ещё пара мужиков осталась, но генератор без топлива долго не протянет."])
 metadata/_custom_type_script = "uid://cqdq3s3etltn0"
 
-[sub_resource type="Resource" id="Resource_ms3bu"]
+[sub_resource type="Resource" id="Resource_xbak0"]
 script = ExtResource("3_p57ef")
 resume = "Сейчас ему необходимо топливо для
 служебной машины, чтобы добраться
@@ -307,11 +307,39 @@ social_networks = Array[String](["Пост №1 — до кризиса
 
 Сегодня опять задержали зарплату. Говорят, проблемы с поставками топлива и запчастей. А трубы сами себя чинить не будут. Странно, что когда всё работает, нас никто не замечает. А когда ломается — виноваты сразу мы."])
 start_dialog = "start"
-dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_h3rex"), SubResource("Resource_8qswn"), SubResource("Resource_rm0al")])
-choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_fedci")])
+dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_66xif"), SubResource("Resource_bnuda"), SubResource("Resource_0rmfi")])
+choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_ms3bu")])
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
-[sub_resource type="Resource" id="Resource_iywne"]
+[sub_resource type="Resource" id="Resource_h3rex"]
+script = ExtResource("3_vtaks")
+name = "choise"
+choises = Dictionary[String, String]({
+"Агрессивно: И что теперь? Я должен спасать каждого, кто сюда придёт?": "agro",
+"С жалостью: Ребёнок, говорите?.. И помочь ему больше некому?": "good"
+})
+metadata/_custom_type_script = "uid://xy3l37ktt48x"
+
+[sub_resource type="Resource" id="Resource_fedci"]
+script = ExtResource("4_kvpfn")
+name = "start"
+replicas = Array[String](["Врач: Добрый день. Мне нужно немного бензина. Литров пять-десять.", "Игрок: Для чего?", "Врач: В соседнем посёлке несколько больных. Один из них ребёнок. Самостоятельно до больницы они не доберутся.", "Игрок: А скорая где?", "Врач: (после короткой паузы) Больше нет скорой. Машину разобрали на запчасти ещё на прошлой неделе."])
+next_choise = "choise"
+metadata/_custom_type_script = "uid://cqdq3s3etltn0"
+
+[sub_resource type="Resource" id="Resource_8qswn"]
+script = ExtResource("4_kvpfn")
+name = "agro"
+replicas = Array[String](["Врач (на агрессивный ответ): Я понимаю. Но если мы все начнём думать только о себе, то скоро лечить будет уже некого."])
+metadata/_custom_type_script = "uid://cqdq3s3etltn0"
+
+[sub_resource type="Resource" id="Resource_rm0al"]
+script = ExtResource("4_kvpfn")
+name = "good"
+replicas = Array[String](["Врач (на сочувственный ответ): К сожалению, нет. Я обещал его матери, что вернусь. Не хочу нарушать это обещание."])
+metadata/_custom_type_script = "uid://cqdq3s3etltn0"
+
+[sub_resource type="Resource" id="Resource_i4re6"]
 script = ExtResource("3_p57ef")
 resume = "Сегодня ему необходимо попасть в
 небольшой посёлок, где несколько
@@ -328,11 +356,39 @@ social_networks = Array[String](["Пост №1 — до кризиса
 
 Сегодня пришлось отказать трём пациентам. Нет необходимых препаратов, часть оборудования не работает, а поставки задерживаются. Никогда не думал, что однажды буду вынужден объяснять людям, почему не могу им помочь. Тяжёлые времена."])
 start_dialog = "start"
-dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_i4re6"), SubResource("Resource_o8ni1"), SubResource("Resource_3hbvx")])
-choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_pf7vy")])
+dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_fedci"), SubResource("Resource_8qswn"), SubResource("Resource_rm0al")])
+choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_h3rex")])
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
-[sub_resource type="Resource" id="Resource_u5sy4"]
+[sub_resource type="Resource" id="Resource_pf7vy"]
+script = ExtResource("3_vtaks")
+name = "choise"
+choises = Dictionary[String, String]({
+"Агрессивно: Нашёлся тут спаситель человечества. Иди работай, а не выпрашивай бензин.": "agro",
+"С добротой: Похоже, у тебя там действительно много забот. Давно этим занимаешься?": "good"
+})
+metadata/_custom_type_script = "uid://xy3l37ktt48x"
+
+[sub_resource type="Resource" id="Resource_o8ni1"]
+script = ExtResource("4_kvpfn")
+name = "start"
+replicas = Array[String](["Строитель: Здорово. Слушай, не выручишь бензином? Литров двадцать хотя бы.", "Игрок: Немало. Куда собрался?", "Строитель: За город. Мы там убежище строим. Несколько семей поселились в старом здании, а крыша после последнего дождя почти обвалилась.", "Игрок: И без тебя никак?", "Строитель: (усмехается) Ну, если ты умеешь поднимать бетонные плиты голыми руками, то, может, и без меня."])
+next_choise = "choise"
+metadata/_custom_type_script = "uid://cqdq3s3etltn0"
+
+[sub_resource type="Resource" id="Resource_3hbvx"]
+script = ExtResource("4_kvpfn")
+name = "agro"
+replicas = Array[String](["Строитель (на агрессивный ответ): Да я и не прошу бесплатно. Просто хотел помочь людям. Видимо, зря."])
+metadata/_custom_type_script = "uid://cqdq3s3etltn0"
+
+[sub_resource type="Resource" id="Resource_3x28f"]
+script = ExtResource("4_kvpfn")
+name = "good"
+replicas = Array[String](["Строитель (на добрый ответ): С самого начала кризиса. Сначала думали, что всё быстро закончится. А теперь сами не знаем, сколько ещё продержимся."])
+metadata/_custom_type_script = "uid://cqdq3s3etltn0"
+
+[sub_resource type="Resource" id="Resource_l6q63"]
 script = ExtResource("3_p57ef")
 resume = "Без бензина работа встанет, а люди,
 оставшиеся в убежище, рискуют
@@ -348,8 +404,8 @@ social_networks = Array[String](["Пост №1 — до кризиса
 
 Ну вот и приехали. Стройку заморозили, половину бригады распустили. Говорят, денег нет, материалов нет, бензина нет. А люди всё ещё нуждаются в жилье. Думаю, пора перестать ждать, пока кто-то решит наши проблемы."])
 start_dialog = "start"
-dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_h3rex"), SubResource("Resource_8qswn"), SubResource("Resource_rm0al")])
-choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_fedci")])
+dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_o8ni1"), SubResource("Resource_3hbvx"), SubResource("Resource_3x28f")])
+choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_pf7vy")])
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4url"]
@@ -728,7 +784,7 @@ metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006052017, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
-character = SubResource("Resource_q8j3a")
+character = SubResource("Resource_yd4ix")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
@@ -823,7 +879,7 @@ mesh = SubResource("SphereMesh_hf7dp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
-character = SubResource("Resource_ms3bu")
+character = SubResource("Resource_xbak0")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
@@ -917,14 +973,14 @@ mesh = SubResource("SphereMesh_hf7dp")
 [node name="Work2" type="Node3D" parent="." unique_id=1595405582]
 script = ExtResource("work_script")
 anim_name = "evening"
-sequence = [NodePath("../Work/Car"), NodePath("../Work/Car2")]
+sequence = [NodePath("Car"), NodePath("Car2")]
 metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 
 [node name="Car" type="Node3D" parent="Work2" unique_id=337705866 node_paths=PackedStringArray("anim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006052017, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
-character = SubResource("Resource_iywne")
+character = SubResource("Resource_i4re6")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
@@ -1019,7 +1075,7 @@ mesh = SubResource("SphereMesh_hf7dp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
-character = SubResource("Resource_u5sy4")
+character = SubResource("Resource_l6q63")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
@@ -1701,7 +1757,7 @@ show_percentage = false
 libraries/ = SubResource("AnimationLibrary_oaba0")
 autoplay = &"ready"
 
-[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=2087642190 layer=100]
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=2087642190]
 
 [node name="TransitionOverlay" type="ColorRect" parent="TransitionLayer" unique_id=2087642191]
 visible = false
