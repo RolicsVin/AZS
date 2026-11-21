@@ -135,3 +135,15 @@ func _process(delta: float) -> void:
 			target_rotation,
 			clampf(speed * delta, 0.0, 1.0)
 		)
+
+
+func _camera_input_enabled() -> bool:
+	if not is_instance_valid(button_manager):
+		return true
+
+	# Узел Buttons в этой сцене может быть обычным Node3D без менеджера.
+	for property in button_manager.get_property_list():
+		if property.name == "camera_enabled":
+			return button_manager.get("camera_enabled") == true
+
+	return true
