@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dg03p4ulwdij3"]
 
 [ext_resource type="Script" uid="uid://dx8dioudnth1k" path="res://core/classes/ui/buttons.gd" id="1_vjb58"]
+[ext_resource type="Script" uid="uid://bgmdgnweoav8o" path="res://core/classes/gameplay/area_button.gd" id="2_con2f"]
 [ext_resource type="Script" uid="uid://bqqq216ui6c7n" path="res://scenes/play.gd" id="2_mhnvy"]
 [ext_resource type="ArrayMesh" uid="uid://cwcoljx4n4vkv" path="res://assets/models/azs/Cube_010.res" id="4_hwfsl"]
 [ext_resource type="Shader" uid="uid://d0ivgi6ble16m" path="res://assets/shaders/menu.gdshader" id="4_mhnvy"]
@@ -33,7 +34,7 @@
 [ext_resource type="Script" uid="uid://sod803kv4dsw" path="res://scenes/camera_3d.gd" id="31_a04p5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mhnvy"]
-size = Vector3(0.39093018, 0.10107422, 0.38110352)
+size = Vector3(0.49526978, 0.20568848, 0.94403076)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4ytvr"]
 size = Vector3(0.3828125, 0.10449219, 0.36523438)
@@ -46,11 +47,6 @@ emission_energy_multiplier = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v86rl"]
 albedo_color = Color(0.49354547, 0.49354553, 0.49354553, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhnvy"]
-albedo_color = Color(0.00023940236, 0.20977458, 0.6866278, 1)
-emission_enabled = true
-emission = Color(0.15294118, 0.7372549, 0.99215686, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ytvr"]
 albedo_color = Color(0.53126246, 0.044710986, 4.813075e-08, 1)
@@ -136,28 +132,13 @@ mesh = SubResource("BoxMesh_4ytvr")
 surface_material_override/0 = SubResource("StandardMaterial3D_v86rl")
 
 [node name="Play2" type="Area3D" parent="Buttons" unique_id=2103994248]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 1.2177023, -0.5023145)
-script = ExtResource("2_mhnvy")
+transform = Transform3D(-3.6060047e-08, -0.7071065, -0.7071069, -5.489811e-08, 0.7071069, -0.7071065, 0.99999976, 1.3320524e-08, -6.431711e-08, 0.2895956, 3.568369, -0.26561344)
+script = ExtResource("2_con2f")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
-[node name="Label3D2" type="Label3D" parent="Buttons/Play2" unique_id=1068359963]
-transform = Transform3D(-9.8550075e-09, 0.22545618, 4.3711385e-08, -0.2254563, -9.855002e-09, -4.3711385e-08, -9.8550075e-09, -9.855002e-09, 0.99999994, -0.0058214366, -0.013288736, 0.078398466)
-text = "настройки"
-font_size = 54
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/Play2" unique_id=1840560941]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.009124041, 0.009124041)
+transform = Transform3D(1, -3.5527137e-15, 1.0658141e-14, 2.6645353e-14, 0, -1, 2.6645353e-14, 1, 0, 0.0521698, -0.025572777, 0.06143236)
 shape = SubResource("BoxShape3D_mhnvy")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons/Play2" unique_id=1560053598]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.009124041, 0.009124041)
-mesh = SubResource("BoxMesh_4ytvr")
-surface_material_override/0 = SubResource("StandardMaterial3D_mhnvy")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Buttons/Play2" unique_id=1506516963]
-transform = Transform3D(1.06, 0, 0, 0, -4.633407e-08, -1.06, 0, 1.06, -4.633407e-08, 0, -0.009124041, -0.01824832)
-mesh = SubResource("BoxMesh_4ytvr")
-surface_material_override/0 = SubResource("StandardMaterial3D_v86rl")
 
 [node name="Play3" type="Area3D" parent="Buttons" unique_id=1761434353]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 0.7182912, -0.50231457)
