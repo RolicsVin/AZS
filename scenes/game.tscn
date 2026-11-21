@@ -915,7 +915,7 @@ mesh = SubResource("SphereMesh_hf7dp")
 
 [node name="Work2" type="Node3D" parent="." unique_id=1595405582]
 script = ExtResource("work_script")
-anim_name = "day"
+anim_name = "evening"
 sequence = [NodePath("../Work/Car"), NodePath("../Work/Car2")]
 metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 
