@@ -1,0 +1,207 @@
+[gd_scene format=3 uid="uid://bup0f3bsbbx2i"]
+
+[ext_resource type="Script" uid="uid://baunya5rlsjbr" path="res://core/classes/menu/buttons.gd" id="1_mhnvy"]
+[ext_resource type="Script" uid="uid://b6atvsk4p1qj7" path="res://core/classes/menu/accert.gd" id="2_4ytvr"]
+[ext_resource type="Script" uid="uid://b7i0fq8jk1ekw" path="res://core/classes/menu/camera_3d.gd" id="3_g3eks"]
+[ext_resource type="Shader" uid="uid://vk6gxknt62o2" path="res://core/classes/menu/MainMenuShaders/menu.gdshader" id="4_mhnvy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ouk20"]
+size = Vector3(0.3828125, 0.10449219, 0.36523438)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mae5d"]
+albedo_color = Color(0.35438812, 0.6104262, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ouk20"]
+size = Vector3(0.3791504, 0.3774414, 0.23840332)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
+albedo_color = Color(0.055130094, 0.43638292, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.62352943, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbhrr"]
+albedo_color = Color(0.99999994, 0.13018629, 0.22936049, 1)
+emission_enabled = true
+emission = Color(0.9999905, 0.18217033, 0.13774827, 1)
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+glow_enabled = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 29
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+bg_color = Color(0, 0, 0, 0.34901962)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4hy44"]
+shader = ExtResource("4_mhnvy")
+shader_parameter/lod = 2.0
+
+[node name="Menu" type="Node3D" unique_id=923132435]
+
+[node name="Buttons" type="Node3D" parent="." unique_id=612334993]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.27692842, 0.18896395, 0.403512)
+script = ExtResource("1_mhnvy")
+
+[node name="Play" type="Area3D" parent="Buttons" unique_id=2073527633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 1.6939555, -0.5023145)
+script = ExtResource("2_4ytvr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons/Play" unique_id=174860856]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_ouk20")
+surface_material_override/0 = SubResource("StandardMaterial3D_mae5d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/Play" unique_id=2019863425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0056152344, -0.059631348)
+shape = SubResource("BoxShape3D_ouk20")
+
+[node name="Label3D" type="Label3D" parent="Buttons/Play" unique_id=1297497775]
+transform = Transform3D(-9.8550075e-09, 0.22545618, 4.3711385e-08, -0.2254563, -9.855002e-09, -4.3711385e-08, -9.8550075e-09, -9.855002e-09, 0.99999994, 0, 0, 0.057163417)
+text = "играть"
+font_size = 82
+
+[node name="Play2" type="Area3D" parent="Buttons" unique_id=410961904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 1.2177023, -0.5023145)
+script = ExtResource("2_4ytvr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons/Play2" unique_id=1367294535]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.025116444, 0)
+mesh = SubResource("BoxMesh_ouk20")
+surface_material_override/0 = SubResource("StandardMaterial3D_iywne")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Buttons/Play2" unique_id=66630567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0184685, -0.059631348)
+shape = SubResource("BoxShape3D_ouk20")
+
+[node name="Label3D2" type="Label3D" parent="Buttons/Play2" unique_id=1068359963]
+transform = Transform3D(-9.8550075e-09, 0.22545618, 4.3711385e-08, -0.2254563, -9.855002e-09, -4.3711385e-08, -9.8550075e-09, -9.855002e-09, 0.99999994, 0, -0.026324093, 0.057163417)
+text = "настройки"
+font_size = 59
+
+[node name="Play3" type="Area3D" parent="Buttons" unique_id=2124881303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 0.7182912, -0.50231457)
+script = ExtResource("2_4ytvr")
+
+[node name="Label3D2" type="Label3D" parent="Buttons/Play3" unique_id=1862326084]
+transform = Transform3D(-9.8550075e-09, 0.22545618, 4.3711385e-08, -0.2254563, -9.855002e-09, -4.3711385e-08, -9.8550075e-09, -9.855002e-09, 0.99999994, 0, -0.0022403002, 0.057163447)
+text = "выйти"
+font_size = 82
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons/Play3" unique_id=1216764542]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_ouk20")
+surface_material_override/0 = SubResource("StandardMaterial3D_lbhrr")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Buttons/Play3" unique_id=1544533249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.002415806, -0.059631288)
+shape = SubResource("BoxShape3D_ouk20")
+
+[node name="bg" type="Node3D" parent="." unique_id=1114111548]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="bg" unique_id=818018000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022155762, -0.42626953, -0.74975586)
+size = Vector3(1.3626709, 0.14746094, 2.4995117)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="bg" unique_id=1183551610]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2, -0.8776808)
+light_energy = 0.302
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="bg" unique_id=1321044799]
+environment = SubResource("Environment_g4v7s")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1668227767]
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 1, -0.7912086)
+fov = 39.8
+script = ExtResource("3_g3eks")
+
+[node name="UI" type="Control" parent="." unique_id=1415142118]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="settings" type="Control" parent="UI" unique_id=372641365]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/settings" unique_id=1358133923]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3003472
+anchor_top = 0.09876543
+anchor_right = 0.6901042
+anchor_bottom = 0.8796296
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="UI/settings/VBoxContainer" unique_id=1383053859]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="UI/settings/VBoxContainer/Control" unique_id=53001419]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "There's nothing in there..."
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="UI/settings/VBoxContainer/Control" unique_id=1651792981]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
+
+[node name="ColorRect" type="ColorRect" parent="UI/settings" unique_id=1432620778]
+z_index = -1
+material = SubResource("ShaderMaterial_4hy44")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="back" type="Button" parent="UI/settings" unique_id=701649767]
+layout_mode = 0
+anchor_right = 0.048611112
+anchor_bottom = 0.047839507
+offset_right = -48.0
+offset_bottom = -23.0
+text = "назад"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="Buttons/Play" to="Buttons/Play" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/Play" to="Buttons/Play" method="_on_mouse_exited"]
+[connection signal="pressed" from="Buttons/Play" to="Buttons" method="play"]
+[connection signal="mouse_entered" from="Buttons/Play2" to="Buttons/Play2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/Play2" to="Buttons/Play2" method="_on_mouse_exited"]
+[connection signal="pressed" from="Buttons/Play2" to="Buttons" method="settings"]
+[connection signal="mouse_entered" from="Buttons/Play3" to="Buttons/Play3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/Play3" to="Buttons/Play3" method="_on_mouse_exited"]
+[connection signal="pressed" from="Buttons/Play3" to="Buttons" method="quit"]
+[connection signal="pressed" from="UI/settings/back" to="Buttons" method="_on_back_pressed"]

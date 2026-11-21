@@ -31,7 +31,7 @@ var position_mode: bool = false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	get_viewport().warp_mouse(get_viewport().size / 2)
+	
 
 
 func _input(event: InputEvent) -> void:
