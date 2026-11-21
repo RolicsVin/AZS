@@ -261,12 +261,18 @@ size = Vector3(0.3828125, 0.10449219, 0.36523438)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnu2h"]
 albedo_color = Color(0.35438812, 0.6104262, 0, 1)
+emission_enabled = true
+emission = Color(3.946722e-06, 0.73929614, 0.056992605, 1)
+emission_energy_multiplier = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr1ej"]
 albedo_color = Color(0.49354547, 0.49354553, 0.49354553, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbhrr"]
 albedo_color = Color(0.99999994, 0.13018629, 0.22936049, 1)
+emission_enabled = true
+emission = Color(0.8934089, 0.12166699, 0, 1)
+emission_energy_multiplier = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oq1mk"]
 size = Vector3(1.4253235, 0.6828613, 0.20532227)

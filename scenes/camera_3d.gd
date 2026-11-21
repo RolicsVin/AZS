@@ -126,4 +126,3 @@ func _process(delta: float) -> void:
 			target_rotation,
 			clampf(speed * delta, 0.0, 1.0)
 		)
-
