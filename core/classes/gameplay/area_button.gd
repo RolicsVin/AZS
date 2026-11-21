@@ -49,4 +49,3 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	inarea = false
-	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
