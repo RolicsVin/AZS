@@ -79,6 +79,11 @@ event_text = "Зелёная кнопка - дать бензин.
 Красная - отказать."
 metadata/_custom_type_script = "uid://8nrd34x813vr"
 
+[sub_resource type="Resource" id="Resource_oaba0"]
+script = ExtResource("3_pr1ej")
+event_text = "Снизу есть резюме человека - его можно прочитать."
+metadata/_custom_type_script = "uid://8nrd34x813vr"
+
 [sub_resource type="Resource" id="Resource_0sl42"]
 script = ExtResource("3_pr1ej")
 event_text = "Слева есть монитор - нажав на него
@@ -338,7 +343,7 @@ shadow_enabled = true
 [node name="Work" type="Node3D" parent="." unique_id=622417747]
 script = ExtResource("work_script")
 anim_name = "day"
-sequence = [SubResource("Resource_8ool0"), SubResource("Resource_pr1ej"), SubResource("Resource_05nbr"), NodePath("Car"), SubResource("Resource_0sl42"), NodePath("Car2"), NodePath("Car3")]
+sequence = [SubResource("Resource_8ool0"), SubResource("Resource_pr1ej"), SubResource("Resource_05nbr"), NodePath("Car"), SubResource("Resource_oaba0"), SubResource("Resource_0sl42"), NodePath("Car2"), NodePath("Car3")]
 metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 
 [node name="Car" type="Node3D" parent="Work" unique_id=463594966 node_paths=PackedStringArray("anim")]
