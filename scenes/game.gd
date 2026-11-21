@@ -1,20 +1,21 @@
 ## В этом скрипте хранится основной игровой цикл
 extends Node3D
 
+@export var works: Array[Work] ## Рабочие смены по очереди
 
-@export var cars: Array[Car] ## Список автомобилей по очереди
-
-@export var ui: Control ## Пользовательский интерфейс
-@export var resume: Node3D ## Узел для отображения резюме кандидата
-@export var web: Panel ## Панель для отображения социальных сетей кандидата
-@export var dialog: Control ## Диалог с кандидатом
+@export var ui: Control
+@export var resume: Node3D
+@export var web: Panel
+@export var dialog: Control
 @export var back_button: Button
 
 @onready var accert_button: AreaButon = $Buttons/Accert
 @onready var deny_button: AreaButon = $Buttons/Deny
 
-var index: int = -1 ## Номер текущей машины. В начале машины нет, поэтому -1
-var current_car: Car ## Текущая машина
+var work_index: int = 0
+var item_index: int = 0
+var current_car: Car
+var waiting_for_event: bool = false
 
 
 func _ready() -> void:
@@ -28,20 +29,44 @@ func _ready() -> void:
 	next()
 
 
+## Переходит к следующему элементу текущей смены.
+## Элементом может быть машина или текстовое событие.
 func next() -> void:
-	# Разрешение на принятие решения не должно переноситься на следующего персонажа.
 	_set_decision_buttons_enabled(false)
+	current_car = null
 
-	index += 1
+	while work_index < works.size():
+		var work: Work = works[work_index]
 
-	if index > cars.size() - 1:
-		end_game()
-		return
+		if item_index >= work.sequence.size():
+			work_index += 1
+			item_index = 0
+			continue
 
-	var car: Car = cars[index]
-	current_car = car
-	car.start()
-	setup(car)
+		var item: Variant = work.get_sequence_item(item_index)
+		item_index += 1
+
+		if item is Car:
+			current_car = item as Car
+			current_car.start()
+			setup(current_car)
+			return
+
+		if item is Event:
+			_show_event(item as Event)
+			return
+
+		push_warning("Неизвестный элемент в рабочей смене: %s" % [item])
+	
+	end_game()
+
+
+func _show_event(event: Event) -> void:
+	# События не требуют решения игрока — показываем только текст.
+	waiting_for_event = true
+	resume.set_text(event.event_text)
+	ui.show()
+	$UI/Button.show()
 
 
 func setup(car: Car) -> void:
@@ -105,8 +130,13 @@ func player_continue() -> void:
 	dialog.hide()
 	ui.hide()
 
+	if waiting_for_event:
+		waiting_for_event = false
+		next()
+
 
 func end_game() -> void:
+	current_car = null
 	ui.show()
 	$UI/Label.show()
 	$UI/Button.hide()
