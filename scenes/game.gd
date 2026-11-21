@@ -16,8 +16,9 @@ var current_car: Car ## Текущая машина
 
 func _ready() -> void:
 	if dialog != null and dialog.has_signal("dialog_finished"):
-		if not dialog.dialog_finished.is_connected(player_continue):
-			dialog.dialog_finished.connect(player_continue)
+		var finished_callback := Callable(self, "player_continue")
+		if not dialog.is_connected("dialog_finished", finished_callback):
+			dialog.connect("dialog_finished", finished_callback)
 	next()
 
 
