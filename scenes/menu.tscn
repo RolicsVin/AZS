@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dx8dioudnth1k" path="res://core/classes/ui/buttons.gd" id="1_vjb58"]
 [ext_resource type="Script" uid="uid://bkvkwqkc8smpp" path="res://scenes/camera_3d_menu.gd" id="1_yqeox"]
-[ext_resource type="Script" uid="uid://bgmdgnweoav8o" path="res://core/classes/gameplay/area_button.gd" id="2_con2f"]
+[ext_resource type="Script" uid="uid://bqqq216ui6c7n" path="res://scenes/play.gd" id="2_mhnvy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ouk20"]
 size = Vector3(0.3828125, 0.10449219, 0.36523438)
@@ -45,7 +45,7 @@ metadata/_custom_type_script = "uid://dx8dioudnth1k"
 
 [node name="Play" type="Area3D" parent="Buttons" unique_id=2074529677]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 1.6939555, -0.5023145)
-script = ExtResource("2_con2f")
+script = ExtResource("2_mhnvy")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons/Play" unique_id=174860856]
@@ -64,7 +64,7 @@ font_size = 82
 
 [node name="Play2" type="Area3D" parent="Buttons" unique_id=2103994248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 1.2177023, -0.5023145)
-script = ExtResource("2_con2f")
+script = ExtResource("2_mhnvy")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons/Play2" unique_id=1367294535]
@@ -83,7 +83,7 @@ font_size = 59
 
 [node name="Play3" type="Area3D" parent="Buttons" unique_id=1761434353]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 0.7182912, -0.50231457)
-script = ExtResource("2_con2f")
+script = ExtResource("2_mhnvy")
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
 [node name="Label3D2" type="Label3D" parent="Buttons/Play3" unique_id=1862326084]
