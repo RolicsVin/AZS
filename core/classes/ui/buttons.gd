@@ -1,5 +1,7 @@
 class_name Button_manager extends Node3D
 
+var camera_enabled: bool = true
+
 
 
 
@@ -9,6 +11,8 @@ func play() -> void:
 
 func settings() -> void:
 	
+
+	camera_enabled = false
 
 	var ui = $"../UI/settings"
 	ui.show()
@@ -28,4 +32,5 @@ func _on_back_pressed() -> void:
 	var tween = create_tween()
 	tween.tween_property(ui, "modulate:a", 0.0, 0.3)
 	tween.tween_callback(ui.hide)
+	tween.tween_callback(func(): camera_enabled = true)
 	
