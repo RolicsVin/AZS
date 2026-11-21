@@ -57,9 +57,6 @@ albedo_color = Color(0.53126246, 0.044710986, 4.813075e-08, 1)
 emission_enabled = true
 emission = Color(0.94870466, 0.1259211, 0, 1)
 
-[sub_resource type="Environment" id="Environment_g4v7s"]
-glow_enabled = true
-
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
 font_size = 29
 
@@ -69,6 +66,43 @@ bg_color = Color(0, 0, 0, 0.34901962)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ytvr"]
 shader = ExtResource("4_mhnvy")
 shader_parameter/lod = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05nbr"]
+albedo_color = Color(0.61981034, 0.68230593, 0.42204976, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a04p5"]
+material = SubResource("StandardMaterial3D_05nbr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4url"]
+albedo_color = Color(0.44235373, 0.27548793, 0.08068857, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b5gwo"]
+material = SubResource("StandardMaterial3D_m4url")
+size = Vector3(0.41625977, 1, 0.4025879)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ool0"]
+albedo_color = Color(0.4412696, 0.61115396, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ndyk"]
+material = SubResource("StandardMaterial3D_8ool0")
+size = Vector3(1.4316406, 3.5540466, 1.4567871)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0qewb"]
+sky_top_color = Color(0.4296553, 0.6243575, 0.8699786, 1)
+sky_horizon_color = Color(0.5509047, 0.68050736, 0.85318047, 1)
+ground_horizon_color = Color(0.54901963, 0.68235296, 0.85490197, 1)
+
+[sub_resource type="Sky" id="Sky_yqjtg"]
+sky_material = SubResource("ProceduralSkyMaterial_0qewb")
+
+[sub_resource type="Environment" id="Environment_mhjd8"]
+background_mode = 2
+sky = SubResource("Sky_yqjtg")
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+adjustment_enabled = true
 
 [node name="Menu" type="Node3D" unique_id=923132435]
 
@@ -154,12 +188,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v86rl")
 [node name="CSGBox3D" type="CSGBox3D" parent="bg" unique_id=818018000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022155762, -0.42626953, -0.74975586)
 size = Vector3(1.3626709, 0.14746094, 2.4995117)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="bg" unique_id=1183551610]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2, -0.8776808)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="bg" unique_id=1321044799]
-environment = SubResource("Environment_g4v7s")
 
 [node name="UI" type="Control" parent="." unique_id=1415142118]
 layout_mode = 3
@@ -353,7 +381,7 @@ mesh = ExtResource("30_ygt0d")
 [node name="Label3D" type="Label3D" parent="AZSModel" unique_id=405689709]
 transform = Transform3D(-0.72537446, 0, -0.6883545, 0, 1, 0, 0.6883545, 0, -0.72537446, 3.5564072, 2.9454715, -21.78095)
 pixel_size = 0.0013
-text = "Почитать об этом человеке"
+text = "Настройки"
 font_size = 40
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=727671551 node_paths=PackedStringArray("rotation_point", "position_point")]
@@ -369,6 +397,215 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03702569, 1.0806606, -1.41
 
 [node name="HoldPoint2" type="Node3D" parent="CameraHoldPoints" unique_id=444900456]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.03702569, 0.99140334, -2.2254038)
+
+[node name="Map" type="Node3D" parent="." unique_id=1648251699]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map" unique_id=1408623451]
+transform = Transform3D(73.015, 0, 0, 0, 73.015, 0, 0, 0, 73.015, 0, -0.020544052, -69.44011)
+mesh = SubResource("PlaneMesh_a04p5")
+
+[node name="Tree" type="Marker3D" parent="Map" unique_id=1238147157]
+transform = Transform3D(1.47, 0, 0, 0, 1.47, 0, 0, 0, 1.47, 2.333702, 0, -30.874002)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree" unique_id=2006999913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree" unique_id=1091068387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree2" type="Marker3D" parent="Map" unique_id=105509646]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, -6.6457024, 0, -26.921705)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree2" unique_id=528843902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree2" unique_id=485817778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree3" type="Marker3D" parent="Map" unique_id=2071095628]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, -3.388011, 0, -33.59626)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree3" unique_id=1602148575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree3" unique_id=1607491083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree4" type="Marker3D" parent="Map" unique_id=1250554167]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, 5.433936, 0, -27.129356)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree4" unique_id=1882475883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree4" unique_id=1628700194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree5" type="Marker3D" parent="Map" unique_id=346657402]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, 12.624864, 0, -32.636436)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree5" unique_id=716957234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree5" unique_id=1436755737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree6" type="Marker3D" parent="Map" unique_id=600119448]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, 6.230901, 0, -40.965885)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree6" unique_id=169262005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree6" unique_id=2043057281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree7" type="Marker3D" parent="Map" unique_id=575561922]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, 1.7462454, 0, -36.63957)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree7" unique_id=200770532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree7" unique_id=792635165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree8" type="Marker3D" parent="Map" unique_id=485926872]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, -10.54666, 0, -42.560726)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree8" unique_id=242853869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree8" unique_id=2096195616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree9" type="Marker3D" parent="Map" unique_id=1265078400]
+transform = Transform3D(1.795, 0, 0, 0, 1.795, 0, 0, 0, 1.795, -11.863997, 0, -33.70378)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree9" unique_id=1550417363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree9" unique_id=827915993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree10" type="Marker3D" parent="Map" unique_id=2075671985]
+transform = Transform3D(1.42, 0, 0, 0, 1.42, 0, 0, 0, 1.42, -0.54915524, 0, -47.163803)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree10" unique_id=1460832768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree10" unique_id=203208032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree11" type="Marker3D" parent="Map" unique_id=1196780616]
+transform = Transform3D(1.35, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -19.962425, 0, -47.163803)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree11" unique_id=64444730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree11" unique_id=1822884119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree12" type="Marker3D" parent="Map" unique_id=1451753529]
+transform = Transform3D(1.465, 0, 0, 0, 1.465, 0, 0, 0, 1.465, -20.413862, 0, -41.48697)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree12" unique_id=516916251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree12" unique_id=131246968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree13" type="Marker3D" parent="Map" unique_id=106132474]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, 22.609468, 0, -35.573414)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree13" unique_id=1841597752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree13" unique_id=1963915008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree14" type="Marker3D" parent="Map" unique_id=990960312]
+transform = Transform3D(1.54, 0, 0, 0, 1.54, 0, 0, 0, 1.54, 22.609468, 0, -44.866844)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree14" unique_id=1470629690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree14" unique_id=964248725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree15" type="Marker3D" parent="Map" unique_id=1962409332]
+transform = Transform3D(1.925, 0, 0, 0, 1.925, 0, 0, 0, 1.925, 14.674574, 0, -39.908882)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree15" unique_id=853704021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree15" unique_id=1237920162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree16" type="Marker3D" parent="Map" unique_id=1357081355]
+transform = Transform3D(1.23, 0, 0, 0, 1.23, 0, 0, 0, 1.23, 28.209066, 0, -39.908882)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree16" unique_id=1676287886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree16" unique_id=1072463748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Tree17" type="Marker3D" parent="Map" unique_id=7429765]
+transform = Transform3D(1.495, 0, 0, 0, 1.495, 0, 0, 0, 1.495, 14.641668, 0, -49.941406)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/Tree17" unique_id=374190376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41620737, 0)
+mesh = SubResource("BoxMesh_b5gwo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/Tree17" unique_id=842676973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310821, 0)
+mesh = SubResource("BoxMesh_0ndyk")
+
+[node name="Light" type="Node3D" parent="." unique_id=1661165494]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Light" unique_id=200992921]
+environment = SubResource("Environment_mhjd8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Light" unique_id=352454370]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+shadow_bias = 0.02
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Light" unique_id=1769134746]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.7640347, -2.2866378)
+visible = false
+light_color = Color(0.9077261, 0.72885305, 0.55710304, 1)
+shadow_enabled = true
 
 [connection signal="pressed" from="Buttons/Play" to="Buttons" method="play"]
 [connection signal="pressed" from="Buttons/Play2" to="Buttons" method="settings"]
