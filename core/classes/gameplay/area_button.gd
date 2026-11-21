@@ -25,7 +25,7 @@ func off() -> void:
 	active = false
 	if inarea:
 		inarea = false
-		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
 
 
 func press() -> void:
@@ -44,9 +44,9 @@ func _on_mouse_entered() -> void:
 		return
 
 	inarea = true
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_POINTING_HAND)
 
 
 func _on_mouse_exited() -> void:
 	inarea = false
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
