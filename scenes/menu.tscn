@@ -1,9 +1,36 @@
 [gd_scene format=3 uid="uid://dg03p4ulwdij3"]
 
 [ext_resource type="Script" uid="uid://dx8dioudnth1k" path="res://core/classes/ui/buttons.gd" id="1_vjb58"]
-[ext_resource type="Script" uid="uid://bkvkwqkc8smpp" path="res://scenes/camera_3d_menu.gd" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://bqqq216ui6c7n" path="res://scenes/play.gd" id="2_mhnvy"]
+[ext_resource type="ArrayMesh" uid="uid://cwcoljx4n4vkv" path="res://assets/models/azs/Cube_010.res" id="4_hwfsl"]
 [ext_resource type="Shader" uid="uid://d0ivgi6ble16m" path="res://assets/shaders/menu.gdshader" id="4_mhnvy"]
+[ext_resource type="ArrayMesh" uid="uid://bebv76ch3dwjl" path="res://assets/models/azs/Cube_090.res" id="5_a04p5"]
+[ext_resource type="ArrayMesh" uid="uid://b5a2yi6waata8" path="res://assets/models/azs/Cube_096.res" id="6_b5gwo"]
+[ext_resource type="ArrayMesh" uid="uid://p2kmc5w4u8hc" path="res://assets/models/azs/Cube_097.res" id="7_0ndyk"]
+[ext_resource type="ArrayMesh" uid="uid://cdufkd8djpj2a" path="res://assets/models/azs/Cube_093.res" id="8_0qewb"]
+[ext_resource type="ArrayMesh" uid="uid://dcnf3j5oxvxsk" path="res://assets/models/azs/Cube_095.res" id="9_mhjd8"]
+[ext_resource type="ArrayMesh" uid="uid://dmifkc37xodbq" path="res://assets/models/azs/Cube_098.res" id="10_d3h35"]
+[ext_resource type="ArrayMesh" uid="uid://cdv8jorw3qnqs" path="res://assets/models/azs/Cube_105.res" id="11_v8lyk"]
+[ext_resource type="ArrayMesh" uid="uid://yieatx58bae" path="res://assets/models/azs/Cube_107.res" id="12_ruys5"]
+[ext_resource type="ArrayMesh" uid="uid://bsrp0ik340yjk" path="res://assets/models/azs/Cube_108.res" id="13_jlmas"]
+[ext_resource type="ArrayMesh" uid="uid://cx7sb6ugyaepb" path="res://assets/models/azs/Cube_109.res" id="14_qfcyc"]
+[ext_resource type="ArrayMesh" uid="uid://cvpj1vxthpdao" path="res://assets/models/azs/Cube_111.res" id="15_spe5f"]
+[ext_resource type="ArrayMesh" uid="uid://b4n6tb3gmko6e" path="res://assets/models/azs/Cube_114.res" id="16_jcbs5"]
+[ext_resource type="ArrayMesh" uid="uid://cycns4fhdlmgr" path="res://assets/models/azs/Cylinder_011.res" id="17_jamij"]
+[ext_resource type="ArrayMesh" uid="uid://nxt3838n2t83" path="res://assets/models/azs/Cylinder_032.res" id="18_nsg6j"]
+[ext_resource type="ArrayMesh" uid="uid://cs3qtgjqjnai" path="res://assets/models/azs/Cylinder_044.res" id="19_qwtqu"]
+[ext_resource type="ArrayMesh" uid="uid://bclipfxl58qfw" path="res://assets/models/azs/Cylinder_043.res" id="20_dg0of"]
+[ext_resource type="ArrayMesh" uid="uid://blhi0s41apwjr" path="res://assets/models/azs/Cylinder_046.res" id="21_21umf"]
+[ext_resource type="ArrayMesh" uid="uid://bhtcwekl1l44v" path="res://assets/models/azs/Cylinder_047.res" id="22_bugl6"]
+[ext_resource type="ArrayMesh" uid="uid://c3iawew5bkkqg" path="res://assets/models/azs/Cube_002.res" id="23_leckd"]
+[ext_resource type="ArrayMesh" uid="uid://d3ef1xvcx7144" path="res://assets/models/azs/Cube_003.res" id="24_tg78l"]
+[ext_resource type="ArrayMesh" uid="uid://3jb04cq84mcc" path="res://assets/models/azs/Plane.res" id="25_055ta"]
+[ext_resource type="ArrayMesh" uid="uid://lpwdsdmiqiyt" path="res://assets/models/azs/Plane_006.res" id="26_6jp1x"]
+[ext_resource type="ArrayMesh" uid="uid://c3wiq7ugd5iem" path="res://assets/models/azs/Plane_009.res" id="27_dslam"]
+[ext_resource type="ArrayMesh" uid="uid://cypgn0atb8dui" path="res://assets/models/azs/Cube_100.res" id="28_moj2y"]
+[ext_resource type="ArrayMesh" uid="uid://bm7a2fwvpu1ml" path="res://assets/models/azs/Cube_102.res" id="29_al2sc"]
+[ext_resource type="ArrayMesh" uid="uid://dy5t6o4ol0qy6" path="res://assets/models/azs/Cube_099.res" id="30_ygt0d"]
+[ext_resource type="Script" uid="uid://sod803kv4dsw" path="res://scenes/camera_3d.gd" id="31_a04p5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mhnvy"]
 size = Vector3(0.39093018, 0.10107422, 0.38110352)
@@ -15,6 +42,7 @@ size = Vector3(0.3828125, 0.10449219, 0.36523438)
 albedo_color = Color(0.052067414, 0.49288005, 0, 1)
 emission_enabled = true
 emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v86rl"]
 albedo_color = Color(0.49354547, 0.49354553, 0.49354553, 1)
@@ -45,7 +73,7 @@ shader_parameter/lod = 2.0
 [node name="Menu" type="Node3D" unique_id=923132435]
 
 [node name="Buttons" type="Node3D" parent="." unique_id=1736474227]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.27692842, 0.18896395, 0.403512)
+transform = Transform3D(-1.7484554e-08, -0.39999998, -2.6226834e-08, 0, -1.7484554e-08, 0.6, -0.39999998, 1.7484554e-08, 1.1464113e-15, 0.60885096, 0.82411164, -2.1613193)
 script = ExtResource("1_vjb58")
 metadata/_custom_type_script = "uid://dx8dioudnth1k"
 
@@ -133,11 +161,6 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="bg" unique_id=1321044799]
 environment = SubResource("Environment_g4v7s")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1668227767]
-transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 1, -0.7912086)
-fov = 39.8
-script = ExtResource("1_yqeox")
-
 [node name="UI" type="Control" parent="." unique_id=1415142118]
 layout_mode = 3
 anchors_preset = 15
@@ -214,6 +237,136 @@ offset_right = -48.0
 offset_bottom = -23.0
 text = "назад"
 metadata/_edit_use_anchors_ = true
+
+[node name="AZSModel" type="Node3D" parent="." unique_id=790634665]
+transform = Transform3D(-0.24, 0, -3.623899e-08, 0, 0.24, 0, 3.623899e-08, 0, -0.24, 0.06416154, 0, -7.4928384)
+
+[node name="Cube" type="MeshInstance3D" parent="AZSModel" unique_id=1923606537]
+transform = Transform3D(100, 0, 0, 0, -2.3841858e-05, 99.99999, 0, -99.99999, -2.3841858e-05, -0.094381, 3.9470387, -24.225065)
+mesh = ExtResource("4_hwfsl")
+
+[node name="Cube_063" type="MeshInstance3D" parent="AZSModel" unique_id=840827018]
+transform = Transform3D(-100, 3.894143e-05, 1.5099592e-05, 1.5099578e-05, -3.5762787e-05, 99.99999, 3.8941438e-05, 99.99999, 3.5762787e-05, -0.057717856, 1.9630003, -21.844044)
+mesh = ExtResource("5_a04p5")
+
+[node name="Cube_064" type="MeshInstance3D" parent="AZSModel" unique_id=97441723]
+transform = Transform3D(175.38297, -126.29076, -73.23831, 87.9326, 0, 210.57124, -116.5378, -190.06061, 48.66512, -4.1831164, 3.4751935, -21.342104)
+mesh = ExtResource("6_b5gwo")
+
+[node name="Cube_065" type="MeshInstance3D" parent="AZSModel" unique_id=1410286675]
+transform = Transform3D(190.06058, -126.29081, -4.0804225e-05, 1.3601408e-05, -8.160845e-05, 228.19376, -126.29081, -190.06058, -5.440563e-05, -4.162798, 2.201909, -21.355606)
+mesh = ExtResource("7_0ndyk")
+
+[node name="Cube_066" type="MeshInstance3D" parent="AZSModel" unique_id=116357482]
+transform = Transform3D(-37.546333, -92.683716, 0.000101327896, -2.980232e-06, 0.00011920928, 99.99999, -92.68371, 37.54634, -3.5762787e-05, -3.6807077, 2.1553395, -22.095354)
+mesh = ExtResource("8_0qewb")
+
+[node name="Cube_067" type="MeshInstance3D" parent="AZSModel" unique_id=1775967772]
+transform = Transform3D(65.788086, -98.72393, -4.5963145e-05, 0, -5.6570025e-05, 118.63594, -98.72393, -65.788086, -2.8285012e-05, -3.6807077, 2.369432, -22.095354)
+mesh = ExtResource("9_mhjd8")
+
+[node name="Cube_068" type="MeshInstance3D" parent="AZSModel" unique_id=1409971132]
+transform = Transform3D(190.06058, -126.29081, -4.0804225e-05, 1.3601408e-05, -8.160845e-05, 228.19376, -126.29081, -190.06058, -5.440563e-05, -4.163645, 2.2175002, -21.355047)
+mesh = ExtResource("10_d3h35")
+
+[node name="Cube_069" type="MeshInstance3D" parent="AZSModel" unique_id=890741451]
+transform = Transform3D(100, 0, 0, 0, -2.3841858e-05, 99.99999, 0, -99.99999, -2.3841858e-05, 4.652336, 5.065813, -23.857193)
+mesh = ExtResource("11_v8lyk")
+
+[node name="Cube_070" type="MeshInstance3D" parent="AZSModel" unique_id=71934643]
+transform = Transform3D(100, 0, 0, 0, -2.3841858e-05, 99.99999, 0, -99.99999, -2.3841858e-05, 4.2666955, 4.9449887, -21.590899)
+mesh = ExtResource("12_ruys5")
+
+[node name="Cube_071" type="MeshInstance3D" parent="AZSModel" unique_id=1999168255]
+transform = Transform3D(77.53506, 0, 0, 0, -9.687422e-06, 22.828224, 0, -40.63199, -5.4426732e-06, -0.063603066, 2.2130873, -20.108778)
+mesh = ExtResource("13_jlmas")
+
+[node name="Cube_072" type="MeshInstance3D" parent="AZSModel" unique_id=1373667527]
+transform = Transform3D(2.84949, 0, 0, 0, 1.6984283e-07, 2.84949, 0, -2.84949, 1.6984283e-07, -0.063603066, 2.2613804, -20.597689)
+mesh = ExtResource("14_qfcyc")
+
+[node name="Cube_073" type="MeshInstance3D" parent="AZSModel" unique_id=1916025820]
+transform = Transform3D(34.376587, 4.204545, 2.625868e-07, 0, -7.3793253e-06, 23.495869, 2.3403418, -61.759308, -2.8009258e-06, 4.652336, 5.398619, -23.20025)
+mesh = ExtResource("15_spe5f")
+
+[node name="Cube_074" type="MeshInstance3D" parent="AZSModel" unique_id=99669616]
+transform = Transform3D(100.2128, 0, 0, 0, -2.3892593e-05, 100.21279, 0, -100.21279, -2.3892593e-05, -0.094381, 3.9470387, -24.225065)
+visible = false
+mesh = ExtResource("16_jcbs5")
+
+[node name="Cylinder_039" type="MeshInstance3D" parent="AZSModel" unique_id=932165003]
+transform = Transform3D(190.06058, -126.29081, -4.0804225e-05, 1.3601408e-05, -8.160845e-05, 228.19376, -126.29081, -190.06058, -5.440563e-05, -4.278337, 2.1040614, -21.278833)
+mesh = ExtResource("17_jamij")
+
+[node name="Cylinder_040" type="MeshInstance3D" parent="AZSModel" unique_id=483935049]
+transform = Transform3D(190.06058, -126.29081, -4.0804225e-05, 1.3601408e-05, -8.160845e-05, 228.19376, -126.29081, -190.06058, -5.440563e-05, -4.41401, 2.223588, -21.188679)
+mesh = ExtResource("18_nsg6j")
+
+[node name="Cylinder_041" type="MeshInstance3D" parent="AZSModel" unique_id=564108741]
+transform = Transform3D(86.920815, 41.61365, -4.896327e-06, 0, 5.7440216e-06, 109.528984, 41.613655, -86.92082, 6.528436e-06, 2.6539164, 2.2907264, -20.860363)
+mesh = ExtResource("19_qwtqu")
+
+[node name="Cylinder_042" type="MeshInstance3D" parent="AZSModel" unique_id=760597276]
+transform = Transform3D(173.62018, -126.29077, -77.32444, 92.83852, -8.160845e-05, 208.4548, -115.36653, -190.06061, 51.380177, -4.064074, 3.4112453, -21.421204)
+mesh = ExtResource("20_dg0of")
+
+[node name="Cylinder_043" type="MeshInstance3D" parent="AZSModel" unique_id=635073358]
+transform = Transform3D(31.451368, 0, 0, 0, -6.097053e-06, 21.414812, 0, -25.572891, -5.1056895e-06, -2.414793, 2.0949743, -21.191822)
+mesh = ExtResource("21_21umf")
+
+[node name="Cylinder_044" type="MeshInstance3D" parent="AZSModel" unique_id=430526802]
+transform = Transform3D(22.353598, -2.7654865, 1.6781699e-07, 0, 2.6850719e-06, 22.524015, -2.7654865, -22.3536, 2.6850719e-06, 4.598786, 5.3889008, -21.70627)
+mesh = ExtResource("22_bugl6")
+
+[node name="Gas_Pumps_001" type="MeshInstance3D" parent="AZSModel" unique_id=1311863260]
+transform = Transform3D(1, 0, 0, 0, 1, 7.5497894e-08, 0, -7.5497894e-08, 1, -10.692655, 1.9996463, 1.7430305)
+mesh = ExtResource("23_leckd")
+
+[node name="Gas_Pumps_003" type="MeshInstance3D" parent="AZSModel" unique_id=715354285]
+transform = Transform3D(1, 0, 0, 0, 1, 7.5497894e-08, 0, -7.5497894e-08, 1, 9.590739, 1.9996463, 1.7430305)
+mesh = ExtResource("24_tg78l")
+
+[node name="Plane" type="MeshInstance3D" parent="AZSModel" unique_id=460797235]
+transform = Transform3D(5000, 0, 0, 0, -0.0011920929, 4999.9995, 0, -4999.9995, -0.0011920929, 0, 0, 0)
+mesh = ExtResource("25_055ta")
+
+[node name="Plane_002" type="MeshInstance3D" parent="AZSModel" unique_id=1349148730]
+transform = Transform3D(100, 0, 0, 0, 100, 7.54979e-06, 0, -7.54979e-06, 100, -4.41401, 2.7457392, -21.188679)
+mesh = ExtResource("26_6jp1x")
+
+[node name="Plane_012" type="MeshInstance3D" parent="AZSModel" unique_id=878766968]
+transform = Transform3D(5.9604645e-06, -100, -2.9802322e-06, 2.9802322e-06, 0, 100, -100, -2.9802322e-06, 5.9604645e-06, 1.6384946, 4.5474734e-15, 22.195345)
+mesh = ExtResource("27_dslam")
+
+[node name="key" type="MeshInstance3D" parent="AZSModel" unique_id=1657515354]
+transform = Transform3D(-23.309544, -21.190277, -2.816479e-06, 9.388264e-07, -3.7553057e-06, 31.501785, -21.190277, 23.30954, 3.7553054e-06, 3.8365285, 2.0849876, -21.203558)
+mesh = ExtResource("28_moj2y")
+
+[node name="mon" type="MeshInstance3D" parent="AZSModel" unique_id=1907969350]
+transform = Transform3D(-22.708069, -24.566132, 9.969984e-07, -9.969986e-07, 1.993997e-06, 33.453716, -24.566132, 22.70807, -3.9879938e-06, 3.709859, 2.0716126, -21.25166)
+mesh = ExtResource("29_al2sc")
+
+[node name="mous" type="MeshInstance3D" parent="AZSModel" unique_id=1029262303]
+transform = Transform3D(28.447025, 13.532531, 3.2858923e-06, -9.388265e-07, -3.755306e-06, 31.501783, 13.53253, -28.447025, -3.7553054e-06, 0.69494104, 2.0849876, -20.873127)
+mesh = ExtResource("30_ygt0d")
+
+[node name="Label3D" type="Label3D" parent="AZSModel" unique_id=405689709]
+transform = Transform3D(-0.72537446, 0, -0.6883545, 0, 1, 0, 0.6883545, 0, -0.72537446, 3.5564072, 2.9454715, -21.78095)
+pixel_size = 0.0013
+text = "Почитать об этом человеке"
+font_size = 40
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=727671551]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.03702569, 1.0806606, -1.4133594)
+script = ExtResource("31_a04p5")
+
+[node name="CameraHoldPoints" type="Node3D" parent="." unique_id=1852181148]
+
+[node name="HoldPont1" type="Node3D" parent="CameraHoldPoints" unique_id=710480278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03702569, 1.0806606, -1.4133594)
+
+[node name="HoldPoint2" type="Node3D" parent="CameraHoldPoints" unique_id=444900456]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.03702569, 0.99140334, -2.2254038)
 
 [connection signal="pressed" from="Buttons/Play" to="Buttons" method="play"]
 [connection signal="pressed" from="Buttons/Play2" to="Buttons" method="settings"]
