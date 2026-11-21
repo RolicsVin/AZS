@@ -43,11 +43,13 @@ func start_dialog(target_character: Character) -> void:
 	character = target_character
 	_build_resource_indexes()
 
+	# Активируем диалог до _play_dialog(), поскольку он сразу выводит первую реплику.
+	is_active = true
 	if character.start_dialog.is_empty() or not _play_dialog(character.start_dialog):
+		is_active = false
 		character = null
 		return
 
-	is_active = true
 	character.dialog_end = true
 
 	show()
@@ -103,6 +105,9 @@ func _play_dialog(dialog_name: String) -> bool:
 
 	replica_index = -1
 	current_dialog = dialog
+
+	# Не ждём следующего нажатия: первая реплика появляется сразу при переходе.
+	next_replica()
 	return true
 
 
