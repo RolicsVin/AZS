@@ -176,6 +176,50 @@ _data = {
 }
 
 [sub_resource type="BoxMesh" id="BoxMesh_w1h7m"]
+size = Vector3(1, 0.049072266, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pr1ej"]
+size = Vector3(0.048858643, 0.39956665, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h3rex"]
+transparency = 4
+albedo_color = Color(0.2901961, 0.72156864, 0.84313726, 0.39215687)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oaba0"]
+material = SubResource("StandardMaterial3D_h3rex")
+size = Vector3(0.033203125, 0.4189453, 0.9091797)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fedci"]
+material = SubResource("StandardMaterial3D_h3rex")
+size = Vector3(0.033203125, 0.4189453, 0.4194336)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8ool0"]
+size = Vector3(2.3701172, 0.049072266, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0sl42"]
+size = Vector3(0.5975342, 0.049072266, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_458eo"]
+size = Vector3(0.7879944, 0.049072266, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_05nbr"]
+size = Vector3(2.2861328, 0.44458008, 0.020507813)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h3rex"]
+size = Vector3(0.07342529, 0.4354248, 0.020507813)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oq1mk"]
+albedo_color = Color(0.61818177, 0.50116557, 0.21711189, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a1aj3"]
+material = SubResource("StandardMaterial3D_oq1mk")
+size = Vector3(0.18359375, 0.45703125, 0.34765625)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7025r"]
+albedo_color = Color(0.8332363, 0.75295025, 0.5369804, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hf7dp"]
+material = SubResource("StandardMaterial3D_7025r")
 
 [sub_resource type="Resource" id="Resource_u5sy4"]
 script = ExtResource("3_p57ef")
@@ -188,11 +232,11 @@ script = ExtResource("3_p57ef")
 social_networks = Array[String](["Пост: 1 Отдыхаю на пляэе", "Пост 2: На меня напали аборигены"])
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7025r"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05nbr"]
 albedo_color = Color(0.61981034, 0.68230593, 0.42204976, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hf7dp"]
-material = SubResource("StandardMaterial3D_7025r")
+material = SubResource("StandardMaterial3D_05nbr")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4url"]
 albedo_color = Color(0.44235373, 0.27548793, 0.08068857, 1)
@@ -255,7 +299,6 @@ shadow_enabled = true
 
 [node name="Car" type="Node3D" parent="Cars" unique_id=463594966 node_paths=PackedStringArray("anim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006052017, 0, -5.583511)
-visible = false
 script = ExtResource("3_lnu2h")
 character = SubResource("Resource_iywne")
 anim = NodePath("AnimationPlayer")
@@ -269,8 +312,84 @@ autoplay = &"ready"
 gizmo_extents = 3.66
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cars/Car" unique_id=435432154]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4518559, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075660616, 0.95606875, 0)
 mesh = SubResource("BoxMesh_w1h7m")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cars/Car" unique_id=1498878297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1344452, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Cars/Car" unique_id=2087910846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5462557, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Cars/Car" unique_id=93877729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38807476, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Cars/Car" unique_id=1425971684]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.07971232, 0.72605115, -0.47261524)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Cars/Car" unique_id=1225997075]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.32458532, 0.72605115, 0.47214937)
+mesh = SubResource("BoxMesh_fedci")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cars/Car" unique_id=2145978317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1364126, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cars/Car" unique_id=421420453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104602516, 0)
+mesh = SubResource("BoxMesh_8ool0")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Cars/Car" unique_id=1921331157]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8501587, 0.49783748, 0)
+mesh = SubResource("BoxMesh_0sl42")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Cars/Car" unique_id=814676179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73331547, 0.49783748, 0)
+mesh = SubResource("BoxMesh_458eo")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Cars/Car" unique_id=1136878538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, 0.4897461)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Cars/Car" unique_id=884637517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Cars/Car" unique_id=1289785766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Cars/Car" unique_id=193706521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Cars/Car" unique_id=776527053]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Cars/Car" unique_id=462128935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Cars/Car" unique_id=469712042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Cars/Car" unique_id=564518889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, -0.4887414)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Cars/Car" unique_id=845120235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09871488, 0.3551934, 0.20237589)
+mesh = SubResource("BoxMesh_a1aj3")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Cars/Car" unique_id=339023943]
+transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.09625243, 0.70653903, 0.20237923)
+mesh = SubResource("SphereMesh_hf7dp")
 
 [node name="Car2" type="Node3D" parent="Cars" unique_id=2064079001 node_paths=PackedStringArray("anim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
