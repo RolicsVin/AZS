@@ -110,7 +110,7 @@ func _process(delta: float) -> void:
 	var target_rotation := target_point.global_rotation
 
 	if position_mode:
-		global_rotation = global_rotation.slerp(
+		global_rotation = global_rotation.lerp(
 			target_rotation,
 			clampf(position_mouse_speed * delta, 0.0, 1.0)
 		)
@@ -122,7 +122,7 @@ func _process(delta: float) -> void:
 				0.0
 			)
 
-		global_rotation = global_rotation.slerp(
+		global_rotation = global_rotation.lerp(
 			target_rotation,
 			clampf(speed * delta, 0.0, 1.0)
 		)
