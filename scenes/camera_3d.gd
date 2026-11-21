@@ -68,7 +68,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	if is_instance_valid(button_manager) and not button_manager.camera_enabled:
+	if not _camera_input_enabled():
 		return
 
 	var viewport_size := get_viewport().get_visible_rect().size
@@ -139,4 +139,4 @@ func _camera_input_enabled() -> bool:
 	if not is_instance_valid(button_manager):
 		return true
 
-	return bool(button_manager.get("camera_enabled"))
+	return button_manager.get("camera_enabled") == true
