@@ -32,6 +32,7 @@
 [ext_resource type="ArrayMesh" uid="uid://blhi0s41apwjr" path="res://assets/models/azs/Cylinder_046.res" id="30_ms3bu"]
 [ext_resource type="ArrayMesh" uid="uid://bhtcwekl1l44v" path="res://assets/models/azs/Cylinder_047.res" id="31_7ixpq"]
 [ext_resource type="ArrayMesh" uid="uid://c3iawew5bkkqg" path="res://assets/models/azs/Cube_002.res" id="32_bk1p3"]
+[ext_resource type="Script" uid="uid://rf4y2a53wgjk" path="res://scenes/accert.gd" id="33_m4url"]
 [ext_resource type="ArrayMesh" uid="uid://d3ef1xvcx7144" path="res://assets/models/azs/Cube_003.res" id="33_n8ral"]
 [ext_resource type="ArrayMesh" uid="uid://3jb04cq84mcc" path="res://assets/models/azs/Plane.res" id="34_yd4ix"]
 [ext_resource type="ArrayMesh" uid="uid://lpwdsdmiqiyt" path="res://assets/models/azs/Plane_006.res" id="35_66xif"]
@@ -897,7 +898,7 @@ font_size = 40
 
 [node name="Accert" type="Area3D" parent="Buttons" unique_id=203084752]
 transform = Transform3D(0.275, 0, 0, 0, 0.275, 0, 0, 0, 0.275, 0.19224489, 0.50322795, -2.4659562)
-script = ExtResource("4_u5sy4")
+script = ExtResource("33_m4url")
 active = false
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
@@ -915,7 +916,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_pr1ej")
 
 [node name="Deny" type="Area3D" parent="Buttons" unique_id=1626958929]
 transform = Transform3D(0.275, 0, 0, 0, 0.275, 0, 0, 0, 0.275, -0.06026247, 0.50364286, -2.4631846)
-script = ExtResource("4_u5sy4")
+script = ExtResource("33_m4url")
 active = false
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
@@ -1101,14 +1102,8 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="UI" unique_id=1068076007]
 visible = false
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 17.0
-offset_top = -104.0
-offset_right = 227.0
-offset_bottom = -18.0
-grow_vertical = 0
+offset_right = 210.0
+offset_bottom = 86.0
 text = "Назад"
 
 [connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
