@@ -28,6 +28,15 @@ var position_mouse_offset: Vector2 = Vector2.ZERO
 
 var position_mode: bool = false
 
+## Разрешает автоматическое переключение между режимами камеры.
+var mode_switching_enabled: bool = true
+
+
+## Принудительно переводит камеру в верхний (Rotation) режим.
+func force_rotation_mode() -> void:
+	position_mode = false
+	position_mouse_offset = Vector2.ZERO
+
 
 
 func _ready() -> void:
@@ -67,17 +76,18 @@ func _process(delta: float) -> void:
 	var mouse_y := get_viewport().get_mouse_position().y
 	var mouse_ratio := mouse_y / viewport_size.y
 
-	# Переключение режимов.
-	if position_mode:
-		# Из Position выходим только через верхнюю зону.
-		if mouse_ratio <= dead_zone:
-			position_mode = false
-			position_mouse_offset = Vector2.ZERO
-	else:
-		# В Position переходим только через нижнюю зону.
-		if mouse_ratio >= 1.0 - dead_zone:
-			position_mode = true
-			position_mouse_offset = Vector2.ZERO
+	# Переключение режимов можно временно отключить извне.
+	if mode_switching_enabled:
+		if position_mode:
+			# Из Position выходим только через верхнюю зону.
+			if mouse_ratio <= dead_zone:
+				position_mode = false
+				position_mouse_offset = Vector2.ZERO
+		else:
+			# В Position переходим только через нижнюю зону.
+			if mouse_ratio >= 1.0 - dead_zone:
+				position_mode = true
+				position_mouse_offset = Vector2.ZERO
 
 	var target_point: Node3D
 
