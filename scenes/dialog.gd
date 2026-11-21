@@ -32,9 +32,6 @@ func _ready() -> void:
 	choice_visual.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	if not choice_visual.choice_changed.is_connected(_on_choice_changed):
-		choice_visual.choice_changed.connect(_on_choice_changed)
-
 	if not choice_visual.choice_confirmed.is_connected(_on_choice_confirmed):
 		choice_visual.choice_confirmed.connect(_on_choice_confirmed)
 
@@ -135,11 +132,6 @@ func _show_choices(choice_name: String) -> void:
 
 	choice_visual.display_choices(answers)
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-
-
-func _on_choice_changed(choice_index: int) -> void:
-	if not is_active:
-		return
 
 
 func _on_choice_confirmed(choice_index: int) -> void:
