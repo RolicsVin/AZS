@@ -6,19 +6,21 @@ extends Panel
 
 func set_text(texts: Array[String]) -> void: ## Установить текст социальных сетей
 	show()
-	for i in container.get_children(): # Очищаем все предыдущие записи
-		i.queue_free()
-	
-	for i in texts:
-		# Создаём панель
-		var panel = Panel.new()
-		panel.custom_minimum_size.y = 50
-		
-		# Создаём текст
-		var text = Label.new()
-		text.set_anchors_preset(Control.PRESET_FULL_RECT)
-		text.text = i
-		
-		# Заканчиваем настройку
-		panel.add_child(text)
+
+	for child in container.get_children():
+		child.queue_free()
+
+	for post in texts:
+		# PanelContainer подстраивает минимальную высоту под содержимое.
+		var panel := PanelContainer.new()
+		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		panel.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+
+		var label := Label.new()
+		label.text = post
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		label.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+
+		panel.add_child(label)
 		container.add_child(panel)
