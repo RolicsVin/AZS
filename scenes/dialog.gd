@@ -6,6 +6,7 @@ signal dialog_finished
 
 @export var container: CircularContainer
 @export var choice_visual: ChoiceVisual
+@export var camera: Camera3D
 
 @export_category("Настройки выбора")
 @export var choice_font_size: int = 8
@@ -54,6 +55,11 @@ func start_dialog(target_character: Character) -> void:
 	dialog_started.emit()
 
 	character.dialog_end = true
+
+	# На время диалога фиксируем камеру в верхнем режиме.
+	if is_instance_valid(camera):
+		camera.mode_switching_enabled = false
+		camera.force_rotation_mode()
 
 	show()
 	get_parent().show()
@@ -168,6 +174,11 @@ func _finish_dialog() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	is_active = false
+
+	# После диалога возвращаем обычное переключение режимов камеры.
+	if is_instance_valid(camera):
+		camera.mode_switching_enabled = true
+
 	dialog_finished.emit()
 
 
