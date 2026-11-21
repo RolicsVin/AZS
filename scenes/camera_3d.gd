@@ -28,8 +28,6 @@ var position_mouse_offset: Vector2 = Vector2.ZERO
 
 var position_mode: bool = false
 
-# Если скрипт используется вне меню, узел Buttons может отсутствовать.
-@onready var button_manager: Node = get_node_or_null("../Buttons")
 
 
 func _ready() -> void:
@@ -37,9 +35,6 @@ func _ready() -> void:
 	
 
 func _input(event: InputEvent) -> void:
-	if not _camera_input_enabled():
-		return
-
 	if event is InputEventMouseMotion:
 
 		if not position_mode:
@@ -68,9 +63,6 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	if not _camera_input_enabled():
-		return
-
 	var viewport_size := get_viewport().get_visible_rect().size
 	var mouse_y := get_viewport().get_mouse_position().y
 	var mouse_ratio := mouse_y / viewport_size.y
@@ -135,8 +127,3 @@ func _process(delta: float) -> void:
 			clampf(speed * delta, 0.0, 1.0)
 		)
 
-func _camera_input_enabled() -> bool:
-	if not is_instance_valid(button_manager):
-		return true
-
-	return button_manager.get("camera_enabled") == true
