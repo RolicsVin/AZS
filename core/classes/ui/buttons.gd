@@ -40,4 +40,11 @@ func _on_back_pressed() -> void:
 	settings_tween.set_trans(Tween.TRANS_LINEAR)
 	settings_tween.tween_property(ui, "modulate:a", 0.0, 0.2)
 	settings_tween.tween_callback(ui.hide)
-	settings_tween.tween_callback(func(): camera_enabled = true)
+	settings_tween.tween_callback(_resume_camera_without_bounce)
+
+
+func _resume_camera_without_bounce() -> void:
+	var camera = get_node_or_null("../Camera3D")
+	if is_instance_valid(camera) and camera.has_method("snap_to_rotation_point"):
+		camera.snap_to_rotation_point()
+	camera_enabled = true
