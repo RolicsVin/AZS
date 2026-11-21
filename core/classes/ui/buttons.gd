@@ -3,14 +3,6 @@ class_name Button_manager extends Node3D
 var camera_enabled = true
 
 
-func _ready() -> void:
-	pass
-
-
-func _process(delta: float) -> void:
-	pass
-
-
 func play() -> void:
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 

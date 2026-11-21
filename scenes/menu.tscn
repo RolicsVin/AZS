@@ -196,4 +196,7 @@ offset_bottom = -23.0
 text = "назад"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="pressed" from="Buttons/Play" to="Buttons" method="play"]
+[connection signal="pressed" from="Buttons/Play2" to="Buttons" method="settings"]
+[connection signal="pressed" from="Buttons/Play3" to="Buttons" method="quit"]
 [connection signal="pressed" from="UI/settings/back" to="Buttons" method="_on_back_pressed"]
