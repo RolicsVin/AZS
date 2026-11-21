@@ -134,9 +134,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v86rl")
 [node name="Play2" type="Area3D" parent="Buttons" unique_id=2103994248]
 transform = Transform3D(-3.6060047e-08, -0.7071065, -0.7071069, -5.489811e-08, 0.7071069, -0.7071065, 0.99999976, 1.3320524e-08, -6.431711e-08, 0.2895956, 3.568369, -0.26561344)
 script = ExtResource("2_con2f")
-input_ray_pickable = true
-collision_layer = 1
-collision_mask = 1
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/Play2" unique_id=1840560941]
