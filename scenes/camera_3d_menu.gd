@@ -147,3 +147,20 @@ func _camera_input_enabled() -> bool:
 			return button_manager.get("camera_enabled") == true
 
 	return true
+
+func snap_to_rotation_point() -> void:
+	if not is_instance_valid(rotation_point):
+		return
+
+	position_mode = false
+	position_mouse_offset = Vector2.ZERO
+	global_position = rotation_point.global_position
+
+	var target_rotation := rotation_point.global_rotation
+	if LookPoint:
+		target_rotation += Vector3(
+			deg_to_rad(mouse_rotation.x),
+			deg_to_rad(mouse_rotation.y),
+			0.0
+		)
+	global_rotation = target_rotation
