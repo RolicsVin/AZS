@@ -11,6 +11,8 @@ extends Node3D
 @export var back_button: Button
 
 @export var anim: AnimationPlayer
+@export var transition_overlay: ColorRect
+@export_range(0.0, 3.0, 0.1) var transition_duration: float = 0.5
 @onready var accert_button: AreaButon = $Buttons/Accert
 @onready var deny_button: AreaButon = $Buttons/Deny
 
@@ -22,6 +24,9 @@ var waiting_for_event: bool = false
 
 func _ready() -> void:
 	_set_decision_buttons_enabled(false)
+	if is_instance_valid(transition_overlay):
+		transition_overlay.modulate.a = 0.0
+		transition_overlay.hide()
 
 	if dialog != null and dialog.has_signal("dialog_finished"):
 		var finished_callback := Callable(self, "_on_dialog_finished")
@@ -36,6 +41,7 @@ func _ready() -> void:
 func next() -> void:
 	_set_decision_buttons_enabled(false)
 	current_car = null
+	var is_transitioning: bool = false
 	
 	event_panel.hide()
 
@@ -44,6 +50,9 @@ func next() -> void:
 		anim.play(work.anim_name)
 
 		if item_index >= work.sequence.size():
+			if work_index + 1 < works.size():
+				await _fade_to_black()
+				is_transitioning = true
 			work_index += 1
 			item_index = 0
 			continue
@@ -55,16 +64,42 @@ func next() -> void:
 			current_car = item as Car
 			current_car.start()
 			setup(current_car)
+			if is_transitioning:
+				await _fade_from_black()
 			return
 
 		if item is Event:
 			anim.play(item.anim_name)
 			_show_event(item as Event)
+			if is_transitioning:
+				await _fade_from_black()
 			return
 
 		push_warning("Неизвестный элемент в рабочей смене: %s" % [item])
 	
+	if is_transitioning:
+		await _fade_from_black()
 	end_game()
+
+
+func _fade_to_black() -> void:
+	if not is_instance_valid(transition_overlay):
+		return
+	transition_overlay.show()
+	transition_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	var tween := create_tween()
+	tween.tween_property(transition_overlay, "modulate:a", 1.0, transition_duration)
+	await tween.finished
+
+
+func _fade_from_black() -> void:
+	if not is_instance_valid(transition_overlay):
+		return
+	var tween := create_tween()
+	tween.tween_property(transition_overlay, "modulate:a", 0.0, transition_duration)
+	await tween.finished
+	transition_overlay.hide()
+	transition_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
 func _show_event(event: Event) -> void:
