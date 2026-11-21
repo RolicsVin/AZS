@@ -6,6 +6,7 @@ signal choice_changed(index: int)
 signal choice_confirmed(index: int)
 
 @export var chooser: Control
+@export_range(1, 128, 1) var choice_font_size: int = 8
 
 var current_choice: int = -1
 var locked: bool = false
@@ -22,8 +23,9 @@ func _ready() -> void:
 
 
 ## Один раз связывает визуальный компонент с контейнером вариантов.
-func setup(container: Control) -> void:
+func setup(container: Control, font_size: int = 8) -> void:
 	_container = container
+	choice_font_size = font_size
 
 
 ## Создаёт и отображает варианты ответа.
@@ -38,6 +40,7 @@ func display_choices(answers: Array[String]) -> void:
 	for answer in answers:
 		var label := Label.new()
 		label.text = answer
+		label.add_theme_font_size_override("font_size", choice_font_size)
 		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		_container.add_child(label)
 		_labels.append(label)
@@ -51,6 +54,8 @@ func clear() -> void:
 	_kill_tween()
 	for label in _labels:
 		if is_instance_valid(label):
+			if label.get_parent() != null:
+				label.get_parent().remove_child(label)
 			label.queue_free()
 	_labels.clear()
 	current_choice = -1
