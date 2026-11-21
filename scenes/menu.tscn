@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://dg03p4ulwdij3"]
 
-[ext_resource type="Script" path="res://core/classes/menu/buttons.gd" id="1_mhnvy"]
-[ext_resource type="Script" path="res://core/classes/menu/accert.gd" id="2_4ytvr"]
-[ext_resource type="Script" path="res://core/classes/menu/camera_3d.gd" id="3_g3eks"]
-[ext_resource type="Shader" path="res://core/classes/menu/MainMenuShaders/menu.gdshader" id="4_mhnvy"]
+[ext_resource type="Script" uid="uid://dx8dioudnth1k" path="res://core/classes/ui/buttons.gd" id="1_vjb58"]
+[ext_resource type="Script" uid="uid://bkvkwqkc8smpp" path="res://scenes/camera_3d_menu.gd" id="1_yqeox"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ouk20"]
 size = Vector3(0.3828125, 0.10449219, 0.36523438)
@@ -36,18 +34,16 @@ font_size = 29
 bg_color = Color(0, 0, 0, 0.34901962)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4hy44"]
-shader = ExtResource("4_mhnvy")
-shader_parameter/lod = 2.0
 
 [node name="Menu" type="Node3D" unique_id=923132435]
 
-[node name="Buttons" type="Node3D" parent="." unique_id=612334993]
+[node name="Buttons" type="Node3D" parent="." unique_id=1736474227]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.27692842, 0.18896395, 0.403512)
-script = ExtResource("1_mhnvy")
+script = ExtResource("1_vjb58")
+metadata/_custom_type_script = "uid://dx8dioudnth1k"
 
 [node name="Play" type="Area3D" parent="Buttons" unique_id=2073527633]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 1.6939555, -0.5023145)
-script = ExtResource("2_4ytvr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons/Play" unique_id=174860856]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
@@ -65,7 +61,6 @@ font_size = 82
 
 [node name="Play2" type="Area3D" parent="Buttons" unique_id=410961904]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 1.2177023, -0.5023145)
-script = ExtResource("2_4ytvr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons/Play2" unique_id=1367294535]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.025116444, 0)
@@ -83,7 +78,6 @@ font_size = 59
 
 [node name="Play3" type="Area3D" parent="Buttons" unique_id=2124881303]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 0.7182912, -0.50231457)
-script = ExtResource("2_4ytvr")
 
 [node name="Label3D2" type="Label3D" parent="Buttons/Play3" unique_id=1862326084]
 transform = Transform3D(-9.8550075e-09, 0.22545618, 4.3711385e-08, -0.2254563, -9.855002e-09, -4.3711385e-08, -9.8550075e-09, -9.855002e-09, 0.99999994, 0, -0.0022403002, 0.057163447)
@@ -115,7 +109,7 @@ environment = SubResource("Environment_g4v7s")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1668227767]
 transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 1, -0.7912086)
 fov = 39.8
-script = ExtResource("3_g3eks")
+script = ExtResource("1_yqeox")
 
 [node name="UI" type="Control" parent="." unique_id=1415142118]
 layout_mode = 3
@@ -197,11 +191,8 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="mouse_entered" from="Buttons/Play" to="Buttons/Play" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Buttons/Play" to="Buttons/Play" method="_on_mouse_exited"]
-[connection signal="pressed" from="Buttons/Play" to="Buttons" method="play"]
 [connection signal="mouse_entered" from="Buttons/Play2" to="Buttons/Play2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Buttons/Play2" to="Buttons/Play2" method="_on_mouse_exited"]
-[connection signal="pressed" from="Buttons/Play2" to="Buttons" method="settings"]
 [connection signal="mouse_entered" from="Buttons/Play3" to="Buttons/Play3" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Buttons/Play3" to="Buttons/Play3" method="_on_mouse_exited"]
-[connection signal="pressed" from="Buttons/Play3" to="Buttons" method="quit"]
 [connection signal="pressed" from="UI/settings/back" to="Buttons" method="_on_back_pressed"]
