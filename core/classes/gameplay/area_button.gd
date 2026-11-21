@@ -51,4 +51,3 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	inarea = false
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
