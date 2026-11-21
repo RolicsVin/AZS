@@ -15,6 +15,7 @@ extends Node3D
 var work_index: int = 0
 var item_index: int = 0
 var current_car: Car
+var waiting_for_event: bool = false
 
 
 func _ready() -> void:
@@ -62,11 +63,10 @@ func next() -> void:
 
 func _show_event(event: Event) -> void:
 	# События не требуют решения игрока — показываем только текст.
+	waiting_for_event = true
 	resume.set_text(event.event_text)
-	player_continue()
-	# После отображения события игрок может перейти дальше кнопкой UI/Button.
-	$UI/Button.show()
 	ui.show()
+	$UI/Button.show()
 
 
 func setup(car: Car) -> void:
@@ -129,6 +129,10 @@ func player_continue() -> void:
 	web.hide()
 	dialog.hide()
 	ui.hide()
+
+	if waiting_for_event:
+		waiting_for_event = false
+		next()
 
 
 func end_game() -> void:
