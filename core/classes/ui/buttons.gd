@@ -30,5 +30,6 @@ func quit() -> void:
 
 
 func _on_back_pressed() -> void:
+	camera_enabled = true
 	var ui = $"../UI/settings"
 	ui.hide()
