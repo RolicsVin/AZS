@@ -33,6 +33,8 @@ func _process(_delta: float) -> void:
 
 
 func _on_mouse_entered() -> void: 
+	if not active:
+		return
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	inarea = true
 

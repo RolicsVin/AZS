@@ -299,6 +299,7 @@ shadow_enabled = true
 
 [node name="Car" type="Node3D" parent="Cars" unique_id=463594966 node_paths=PackedStringArray("anim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006052017, 0, -5.583511)
+visible = false
 script = ExtResource("3_lnu2h")
 character = SubResource("Resource_iywne")
 anim = NodePath("AnimationPlayer")
@@ -406,9 +407,85 @@ autoplay = &"ready"
 [node name="Marker3D" type="Marker3D" parent="Cars/Car2" unique_id=1523358079]
 gizmo_extents = 3.66
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Cars/Car2" unique_id=1959582512]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4518559, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cars/Car2" unique_id=1984693889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075660616, 0.95606875, 0)
 mesh = SubResource("BoxMesh_w1h7m")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cars/Car2" unique_id=2001044893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1344452, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Cars/Car2" unique_id=1448333954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5462557, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Cars/Car2" unique_id=1100886502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38807476, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Cars/Car2" unique_id=1278220183]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.07971232, 0.72605115, -0.47261524)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Cars/Car2" unique_id=783634582]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.32458532, 0.72605115, 0.47214937)
+mesh = SubResource("BoxMesh_fedci")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cars/Car2" unique_id=1570532955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1364126, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cars/Car2" unique_id=2063175320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104602516, 0)
+mesh = SubResource("BoxMesh_8ool0")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Cars/Car2" unique_id=809090816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8501587, 0.49783748, 0)
+mesh = SubResource("BoxMesh_0sl42")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Cars/Car2" unique_id=50369921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73331547, 0.49783748, 0)
+mesh = SubResource("BoxMesh_458eo")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Cars/Car2" unique_id=684655647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, 0.4897461)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Cars/Car2" unique_id=1457917365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Cars/Car2" unique_id=472506923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Cars/Car2" unique_id=2116006897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Cars/Car2" unique_id=1266052925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Cars/Car2" unique_id=1007832536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Cars/Car2" unique_id=395251707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Cars/Car2" unique_id=637891991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, -0.4887414)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Cars/Car2" unique_id=1163612883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09871488, 0.3551934, 0.20237589)
+mesh = SubResource("BoxMesh_a1aj3")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Cars/Car2" unique_id=230532365]
+transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.09625243, 0.70653903, 0.20237923)
+mesh = SubResource("SphereMesh_hf7dp")
 
 [node name="Car3" type="Node3D" parent="Cars" unique_id=110951563 node_paths=PackedStringArray("anim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
@@ -425,9 +502,85 @@ autoplay = &"ready"
 [node name="Marker3D" type="Marker3D" parent="Cars/Car3" unique_id=542462686]
 gizmo_extents = 3.66
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Cars/Car3" unique_id=1644909720]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4518559, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cars/Car3" unique_id=382870137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075660616, 0.95606875, 0)
 mesh = SubResource("BoxMesh_w1h7m")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cars/Car3" unique_id=1538785173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1344452, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Cars/Car3" unique_id=1185070984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5462557, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Cars/Car3" unique_id=111607390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38807476, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Cars/Car3" unique_id=671026425]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.07971232, 0.72605115, -0.47261524)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Cars/Car3" unique_id=67182442]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.32458532, 0.72605115, 0.47214937)
+mesh = SubResource("BoxMesh_fedci")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cars/Car3" unique_id=1312292624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1364126, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cars/Car3" unique_id=76114812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104602516, 0)
+mesh = SubResource("BoxMesh_8ool0")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Cars/Car3" unique_id=1908524793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8501587, 0.49783748, 0)
+mesh = SubResource("BoxMesh_0sl42")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Cars/Car3" unique_id=1770571383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73331547, 0.49783748, 0)
+mesh = SubResource("BoxMesh_458eo")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Cars/Car3" unique_id=622857384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, 0.4897461)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Cars/Car3" unique_id=932519534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Cars/Car3" unique_id=1777519063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Cars/Car3" unique_id=1826356683]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Cars/Car3" unique_id=1197685450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Cars/Car3" unique_id=1863096852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Cars/Car3" unique_id=1229318861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Cars/Car3" unique_id=907093188]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, -0.4887414)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Cars/Car3" unique_id=30021695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09871488, 0.3551934, 0.20237589)
+mesh = SubResource("BoxMesh_a1aj3")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Cars/Car3" unique_id=1682726245]
+transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.09625243, 0.70653903, 0.20237923)
+mesh = SubResource("SphereMesh_hf7dp")
 
 [node name="Map" type="Node3D" parent="." unique_id=190119825]
 
@@ -735,7 +888,7 @@ transform = Transform3D(28.447025, 13.532531, 3.2858923e-06, -9.388265e-07, -3.7
 mesh = ExtResource("39_3x28f")
 
 [node name="Label3D" type="Label3D" parent="AZSModel" unique_id=1963109522]
-transform = Transform3D(-0.72537446, 0, -0.6883545, 0, 1, 0, 0.6883545, 0, -0.72537446, 3.353323, 3.053819, -22.05907)
+transform = Transform3D(-0.72537446, 0, -0.6883545, 0, 1, 0, 0.6883545, 0, -0.72537446, 3.5564072, 2.9454715, -21.78095)
 pixel_size = 0.0013
 text = "Почитать об этом человеке"
 font_size = 40
@@ -745,6 +898,7 @@ font_size = 40
 [node name="Accert" type="Area3D" parent="Buttons" unique_id=203084752]
 transform = Transform3D(0.275, 0, 0, 0, 0.275, 0, 0, 0, 0.275, 0.19224489, 0.50322795, -2.4659562)
 script = ExtResource("4_u5sy4")
+active = false
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/Accert" unique_id=1170353067]
@@ -762,6 +916,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_pr1ej")
 [node name="Deny" type="Area3D" parent="Buttons" unique_id=1626958929]
 transform = Transform3D(0.275, 0, 0, 0, 0.275, 0, 0, 0, 0.275, -0.06026247, 0.50364286, -2.4631846)
 script = ExtResource("4_u5sy4")
+active = false
 metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/Deny" unique_id=177382067]
@@ -960,4 +1115,8 @@ text = "Назад"
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
 [connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]
 [connection signal="pressed" from="Dialog" to="." method="start_dialog"]
+[connection signal="dialog_finished" from="UI/Dialog" to="Buttons/Accert" method="on"]
+[connection signal="dialog_finished" from="UI/Dialog" to="Buttons/Deny" method="on"]
+[connection signal="dialog_started" from="UI/Dialog" to="Buttons/Accert" method="off"]
+[connection signal="dialog_started" from="UI/Dialog" to="Buttons/Deny" method="off"]
 [connection signal="pressed" from="UI/Button" to="." method="player_continue"]

@@ -1,6 +1,7 @@
 ## Управляет состоянием диалога и переходами между его узлами.
 extends Control
 
+signal dialog_started
 signal dialog_finished
 
 @export var container: CircularContainer
@@ -49,6 +50,8 @@ func start_dialog(target_character: Character) -> void:
 		is_active = false
 		character = null
 		return
+	
+	dialog_started.emit()
 
 	character.dialog_end = true
 
