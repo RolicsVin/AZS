@@ -31,6 +31,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bm7a2fwvpu1ml" path="res://assets/models/azs/Cube_102.res" id="29_al2sc"]
 [ext_resource type="ArrayMesh" uid="uid://dy5t6o4ol0qy6" path="res://assets/models/azs/Cube_099.res" id="30_ygt0d"]
 [ext_resource type="Script" uid="uid://sod803kv4dsw" path="res://scenes/camera_3d.gd" id="31_a04p5"]
+[ext_resource type="Script" path="res://scenes/play2.gd" id="32_play2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mhnvy"]
 size = Vector3(0.39093018, 0.10107422, 0.38110352)
@@ -137,8 +138,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v86rl")
 
 [node name="Play2" type="Area3D" parent="Buttons" unique_id=2103994248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 1.2177023, -0.5023145)
-script = ExtResource("2_mhnvy")
-metadata/_custom_type_script = "uid://bgmdgnweoav8o"
+script = ExtResource("32_play2")
 
 [node name="Label3D2" type="Label3D" parent="Buttons/Play2" unique_id=1068359963]
 transform = Transform3D(-9.8550075e-09, 0.22545618, 4.3711385e-08, -0.2254563, -9.855002e-09, -4.3711385e-08, -9.8550075e-09, -9.855002e-09, 0.99999994, -0.0058214366, -0.013288736, 0.078398466)
@@ -148,16 +148,6 @@ font_size = 54
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/Play2" unique_id=1840560941]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.009124041, 0.009124041)
 shape = SubResource("BoxShape3D_mhnvy")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Buttons/Play2" unique_id=1560053598]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.009124041, 0.009124041)
-mesh = SubResource("BoxMesh_4ytvr")
-surface_material_override/0 = SubResource("StandardMaterial3D_mhnvy")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Buttons/Play2" unique_id=1506516963]
-transform = Transform3D(1.06, 0, 0, 0, -4.633407e-08, -1.06, 0, 1.06, -4.633407e-08, 0, -0.009124041, -0.01824832)
-mesh = SubResource("BoxMesh_4ytvr")
-surface_material_override/0 = SubResource("StandardMaterial3D_v86rl")
 
 [node name="Play3" type="Area3D" parent="Buttons" unique_id=1761434353]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28959584, 0.7182912, -0.50231457)
