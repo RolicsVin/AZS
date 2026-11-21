@@ -14,15 +14,18 @@ var dialog: bool = false
 func start() -> void:
 	show()
 	anim.play("start")
+	
 
 
 func to_accept() -> void:
 	anim.play("accept")
-	
+	Data.money += randi_range(given_money_min, given_money_max)
+	Data.respect += randi_range(given_respect_min, given_respect_min)
 
 
 func deny() -> void:
 	anim.play("deny")
+	Data.respect -= randi_range(given_respect_min, given_respect_min)
 
 
 func get_resume() -> String:
