@@ -7,9 +7,12 @@ signal choice_confirmed(index: int)
 
 @export var chooser: Control
 @export_range(1, 128, 1) var choice_font_size: int = 8
+@export_range(0.0, 3.0, 0.1) var confirmation_delay: float = 0.5
 
 var current_choice: int = -1
 var locked: bool = false
+var input_locked: bool = false
+var _display_generation: int = 0
 
 var _container: Control
 var _labels: Array[Label] = []
@@ -35,7 +38,11 @@ func display_choices(answers: Array[String]) -> void:
 		return
 
 	locked = false
+	input_locked = true
 	current_choice = -1
+	_display_generation += 1
+	var generation := _display_generation
+	_release_input_after_delay(generation)
 
 	for answer in answers:
 		var label := Label.new()
@@ -51,6 +58,8 @@ func display_choices(answers: Array[String]) -> void:
 
 ## Удаляет варианты и сбрасывает состояние компонента.
 func clear() -> void:
+	_display_generation += 1
+	input_locked = false
 	_kill_tween()
 	for label in _labels:
 		if is_instance_valid(label):
@@ -76,7 +85,7 @@ func set_selected(index: int) -> void:
 
 ## Запускает анимацию подтверждения текущего варианта.
 func confirm() -> void:
-	if locked or current_choice < 0 or current_choice >= _labels.size():
+	if input_locked or locked or current_choice < 0 or current_choice >= _labels.size():
 		return
 
 	locked = true
@@ -104,7 +113,7 @@ func confirm() -> void:
 
 
 func _process(_delta: float) -> void:
-	if not visible or locked or _labels.is_empty():
+	if not visible or locked or input_locked or _labels.is_empty():
 		return
 
 	var mouse_position := get_viewport().get_mouse_position()
@@ -122,6 +131,19 @@ func _process(_delta: float) -> void:
 	var angle := fposmod(direction.angle(), TAU)
 	var selected_index := int(floor((angle + sector_size * 0.5) / sector_size)) % _labels.size()
 	set_selected(selected_index)
+
+
+## Разблокирует управление после небольшой задержки появления вариантов.
+func _release_input_after_delay(generation: int) -> void:
+	if confirmation_delay <= 0.0:
+		input_locked = false
+		return
+
+	await get_tree().create_timer(confirmation_delay).timeout
+
+	# Не снимаем блокировку, если за это время варианты уже сменились или закрылись.
+	if generation == _display_generation and visible and not _labels.is_empty():
+		input_locked = false
 
 
 func _add_underline(label: Label) -> void:
