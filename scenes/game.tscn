@@ -269,11 +269,6 @@ resume = "У меня нет резюме)"
 social_networks = Array[String](["Пост1:Я ест ьв ТГ", "Пост2:И ВК)"])
 metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
-[sub_resource type="Resource" id="Resource_gee14"]
-script = ExtResource("3_p57ef")
-social_networks = Array[String](["Пост: 1 Отдыхаю на пляэе", "Пост 2: На меня напали аборигены"])
-metadata/_custom_type_script = "uid://tic1p5mu7nxj"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4url"]
 albedo_color = Color(0.61981034, 0.68230593, 0.42204976, 1)
 
@@ -293,6 +288,14 @@ albedo_color = Color(0.4412696, 0.61115396, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_m4url"]
 material = SubResource("StandardMaterial3D_05nbr")
 size = Vector3(1.4316406, 3.5540466, 1.4567871)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fqxyq"]
+albedo_color = Color(0.8067549, 0.64078087, 0, 1)
+metallic = 1.0
+roughness = 0.67
+
+[sub_resource type="BoxMesh" id="BoxMesh_hf7dp"]
+material = SubResource("StandardMaterial3D_fqxyq")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1h7m"]
 size = Vector3(0.29003906, 0.055664063, 0.24609375)
@@ -332,15 +335,84 @@ func _process(delta: float) -> void:
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("works", "ui", "resume", "web", "event_panel", "dialog", "back_button")]
+[sub_resource type="Animation" id="Animation_pr1ej"]
+resource_name = "day"
+
+[sub_resource type="Animation" id="Animation_05nbr"]
+resource_name = "evening"
+
+[sub_resource type="Animation" id="Animation_0sl42"]
+resource_name = "gold_cube"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AZSModel/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.2301283, 2.3885627, -22.464577)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AZSModel/MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.3298065, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AZSModel/MeshInstance3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6750001, 0.675, 0.6750001)]
+}
+
+[sub_resource type="Animation" id="Animation_oaba0"]
+resource_name = "ready"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AZSModel/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.2301283, -0.31428838, -22.464577)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oaba0"]
+_data = {
+&"day": SubResource("Animation_pr1ej"),
+&"evening": SubResource("Animation_05nbr"),
+&"gold_cube": SubResource("Animation_0sl42"),
+&"ready": SubResource("Animation_oaba0")
+}
+
+[node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("works", "ui", "resume", "web", "event_panel", "dialog", "back_button", "anim")]
 script = ExtResource("1_uwrxv")
-works = [NodePath("Work")]
+works = [NodePath("Work"), NodePath("Work2")]
 ui = NodePath("UI")
 resume = NodePath("Resume")
 web = NodePath("UI/Control/Panel")
 event_panel = NodePath("UI/Panel")
 dialog = NodePath("UI/Dialog")
 back_button = NodePath("UI/Button")
+anim = NodePath("AnimationPlayer")
 
 [node name="Light" type="Node3D" parent="." unique_id=653589676]
 
@@ -554,98 +626,199 @@ mesh = SubResource("BoxMesh_a1aj3")
 transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.09625243, 0.70653903, 0.20237923)
 mesh = SubResource("SphereMesh_hf7dp")
 
-[node name="Car3" type="Node3D" parent="Work" unique_id=110951563 node_paths=PackedStringArray("anim")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
+[node name="Work2" type="Node3D" parent="." unique_id=1595405582]
+script = ExtResource("work_script")
+anim_name = "day"
+sequence = [NodePath("../Work/Car"), NodePath("../Work/Car2")]
+metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
+
+[node name="Car" type="Node3D" parent="Work2" unique_id=337705866 node_paths=PackedStringArray("anim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006052017, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
-character = SubResource("Resource_gee14")
+character = SubResource("Resource_iywne")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Work/Car3" unique_id=2057430586]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Work2/Car" unique_id=415010152]
 libraries/ = SubResource("AnimationLibrary_iywne")
 autoplay = &"ready"
 
-[node name="Marker3D" type="Marker3D" parent="Work/Car3" unique_id=542462686]
+[node name="Marker3D" type="Marker3D" parent="Work2/Car" unique_id=1239320395]
 gizmo_extents = 3.66
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Work/Car3" unique_id=382870137]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Work2/Car" unique_id=1321940629]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075660616, 0.95606875, 0)
 mesh = SubResource("BoxMesh_w1h7m")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Work/Car3" unique_id=1538785173]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Work2/Car" unique_id=140513978]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1344452, 0.32382083, 0)
 mesh = SubResource("BoxMesh_pr1ej")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Work/Car3" unique_id=1185070984]
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Work2/Car" unique_id=1370282363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5462557, 0.72605115, 0)
 mesh = SubResource("BoxMesh_oaba0")
 
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="Work/Car3" unique_id=111607390]
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Work2/Car" unique_id=1397525637]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38807476, 0.72605115, 0)
 mesh = SubResource("BoxMesh_oaba0")
 
-[node name="MeshInstance3D17" type="MeshInstance3D" parent="Work/Car3" unique_id=671026425]
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Work2/Car" unique_id=696127539]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.07971232, 0.72605115, -0.47261524)
 mesh = SubResource("BoxMesh_oaba0")
 
-[node name="MeshInstance3D18" type="MeshInstance3D" parent="Work/Car3" unique_id=67182442]
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Work2/Car" unique_id=1292523208]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.32458532, 0.72605115, 0.47214937)
 mesh = SubResource("BoxMesh_fedci")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Work/Car3" unique_id=1312292624]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Work2/Car" unique_id=171466045]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1364126, 0.32382083, 0)
 mesh = SubResource("BoxMesh_pr1ej")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Work/Car3" unique_id=76114812]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Work2/Car" unique_id=939075691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104602516, 0)
 mesh = SubResource("BoxMesh_8ool0")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Work/Car3" unique_id=1908524793]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Work2/Car" unique_id=776072755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8501587, 0.49783748, 0)
 mesh = SubResource("BoxMesh_0sl42")
 
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="Work/Car3" unique_id=1770571383]
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Work2/Car" unique_id=1500493786]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73331547, 0.49783748, 0)
 mesh = SubResource("BoxMesh_458eo")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Work/Car3" unique_id=622857384]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Work2/Car" unique_id=1903870570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, 0.4897461)
 mesh = SubResource("BoxMesh_05nbr")
 
-[node name="MeshInstance3D11" type="MeshInstance3D" parent="Work/Car3" unique_id=932519534]
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Work2/Car" unique_id=189909184]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, 0.4897461)
 mesh = SubResource("BoxMesh_h3rex")
 
-[node name="MeshInstance3D12" type="MeshInstance3D" parent="Work/Car3" unique_id=1777519063]
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Work2/Car" unique_id=43343145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, -0.48771286)
 mesh = SubResource("BoxMesh_h3rex")
 
-[node name="MeshInstance3D13" type="MeshInstance3D" parent="Work/Car3" unique_id=1826356683]
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Work2/Car" unique_id=1728461870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, 0.4897461)
 mesh = SubResource("BoxMesh_h3rex")
 
-[node name="MeshInstance3D14" type="MeshInstance3D" parent="Work/Car3" unique_id=1197685450]
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Work2/Car" unique_id=383145038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, -0.48771286)
 mesh = SubResource("BoxMesh_h3rex")
 
-[node name="MeshInstance3D15" type="MeshInstance3D" parent="Work/Car3" unique_id=1863096852]
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Work2/Car" unique_id=315066964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, 0.4897461)
 mesh = SubResource("BoxMesh_h3rex")
 
-[node name="MeshInstance3D16" type="MeshInstance3D" parent="Work/Car3" unique_id=1229318861]
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Work2/Car" unique_id=262475069]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, -0.48771286)
 mesh = SubResource("BoxMesh_h3rex")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Work/Car3" unique_id=907093188]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Work2/Car" unique_id=588286548]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, -0.4887414)
 mesh = SubResource("BoxMesh_05nbr")
 
-[node name="MeshInstance3D19" type="MeshInstance3D" parent="Work/Car3" unique_id=30021695]
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Work2/Car" unique_id=27446210]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09871488, 0.3551934, 0.20237589)
 mesh = SubResource("BoxMesh_a1aj3")
 
-[node name="MeshInstance3D20" type="MeshInstance3D" parent="Work/Car3" unique_id=1682726245]
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Work2/Car" unique_id=1257524746]
+transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.09625243, 0.70653903, 0.20237923)
+mesh = SubResource("SphereMesh_hf7dp")
+
+[node name="Car2" type="Node3D" parent="Work2" unique_id=2041986311 node_paths=PackedStringArray("anim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
+visible = false
+script = ExtResource("3_lnu2h")
+character = SubResource("Resource_u5sy4")
+anim = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://gcg38oqbhffp"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Work2/Car2" unique_id=841473101]
+libraries/ = SubResource("AnimationLibrary_iywne")
+autoplay = &"ready"
+
+[node name="Marker3D" type="Marker3D" parent="Work2/Car2" unique_id=2094338003]
+gizmo_extents = 3.66
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Work2/Car2" unique_id=1739664766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075660616, 0.95606875, 0)
+mesh = SubResource("BoxMesh_w1h7m")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Work2/Car2" unique_id=2058385801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1344452, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Work2/Car2" unique_id=672200131]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5462557, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Work2/Car2" unique_id=1353149210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38807476, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Work2/Car2" unique_id=1926141272]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.07971232, 0.72605115, -0.47261524)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Work2/Car2" unique_id=264579861]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.32458532, 0.72605115, 0.47214937)
+mesh = SubResource("BoxMesh_fedci")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Work2/Car2" unique_id=331259779]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1364126, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Work2/Car2" unique_id=1637634101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104602516, 0)
+mesh = SubResource("BoxMesh_8ool0")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Work2/Car2" unique_id=68034521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8501587, 0.49783748, 0)
+mesh = SubResource("BoxMesh_0sl42")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Work2/Car2" unique_id=2123159963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73331547, 0.49783748, 0)
+mesh = SubResource("BoxMesh_458eo")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Work2/Car2" unique_id=1544458931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, 0.4897461)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Work2/Car2" unique_id=1203772830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Work2/Car2" unique_id=1399823616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Work2/Car2" unique_id=2034624187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Work2/Car2" unique_id=2002316899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Work2/Car2" unique_id=1165598695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Work2/Car2" unique_id=32391467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Work2/Car2" unique_id=1728888123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, -0.4887414)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Work2/Car2" unique_id=413065994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09871488, 0.3551934, 0.20237589)
+mesh = SubResource("BoxMesh_a1aj3")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Work2/Car2" unique_id=1633782904]
 transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.09625243, 0.70653903, 0.20237923)
 mesh = SubResource("SphereMesh_hf7dp")
 
@@ -960,6 +1133,10 @@ pixel_size = 0.0013
 text = "Почитать об этом человеке"
 font_size = 40
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AZSModel" unique_id=1907153043]
+transform = Transform3D(0.638621, 0, 0.2186055, 0, 0.675, 0, -0.2186055, 0, 0.638621, -3.2301283, -0.31428838, -22.464577)
+mesh = SubResource("BoxMesh_hf7dp")
+
 [node name="Buttons" type="Node3D" parent="." unique_id=1700726276]
 
 [node name="Accert" type="Area3D" parent="Buttons" unique_id=203084752]
@@ -1229,6 +1406,10 @@ offset_top = 25.0
 offset_right = 94.0
 offset_bottom = 42.0
 show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2055209024]
+libraries/ = SubResource("AnimationLibrary_oaba0")
+autoplay = &"ready"
 
 [connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
