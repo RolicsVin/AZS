@@ -15,16 +15,20 @@ var current_car: Car ## Текущая машина
 
 
 func _ready() -> void:
+	if dialog != null and dialog.has_signal("dialog_finished"):
+		var finished_callback := Callable(self, "player_continue")
+		if not dialog.is_connected("dialog_finished", finished_callback):
+			dialog.connect("dialog_finished", finished_callback)
 	next()
 
 
 func next() -> void:
 	index += 1
-	
+
 	if index > cars.size() - 1:
 		end_game()
 		return
-	
+
 	var car: Car = cars[index]
 	current_car = car
 	car.start()
@@ -55,7 +59,6 @@ func open_web() -> void:
 	ui.show()
 	back_button.show()
 	web.set_text(current_car.get_social_networks())
-	
 
 
 func start_dialog() -> void:

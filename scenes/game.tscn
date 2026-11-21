@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://sod803kv4dsw" path="res://scenes/camera_3d.gd" id="8_dinhu"]
 [ext_resource type="Script" uid="uid://cuomswlv4mlrx" path="res://scenes/dialog.gd" id="8_gee14"]
 [ext_resource type="Script" uid="uid://ob2eebenxy77" path="res://core/classes/ui/circular_container.gd" id="11_kvpfn"]
-[ext_resource type="Script" uid="uid://dop7dgt2nf2ls" path="res://scenes/choise_visual.gd" id="12_dinhu"]
+[ext_resource type="Script" uid="uid://dnj1dhrdae4tj" path="res://core/classes/ui/choise_visual.gd" id="12_dinhu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -463,12 +463,13 @@ grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="choise_visual" type="Control" parent="UI/Dialog" unique_id=878848836]
+[node name="choise_visual" type="Control" parent="UI/Dialog" unique_id=456860733]
 anchors_preset = 0
 anchor_right = 1.0008681
 anchor_bottom = 1.005
 mouse_filter = 1
 script = ExtResource("12_dinhu")
+metadata/_custom_type_script = "uid://dnj1dhrdae4tj"
 metadata/_edit_use_anchors_ = true
 
 [node name="Chooser" type="Control" parent="UI/Dialog/choise_visual" unique_id=1664152534]
