@@ -8,7 +8,7 @@ var inarea: bool = false
 
 
 func _ready() -> void:
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	
 	# Сигналы mouse_entered/mouse_exited у CollisionObject3D
 	# работают только при включённом physics object picking у Viewport.
 	get_viewport().physics_object_picking = true
@@ -26,7 +26,7 @@ func off() -> void:
 	active = false
 	if inarea:
 		inarea = false
-		DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
+		
 
 
 func press() -> void:

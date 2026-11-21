@@ -19,7 +19,7 @@ func _on_mouse_entered() -> void:
 
 	super._on_mouse_entered()
 	# Используем новый способ смены формы системного курсора.
-	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_POINTING_HAND)
+	
 
 
 func _on_mouse_exited() -> void:
