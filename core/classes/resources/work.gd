@@ -15,3 +15,18 @@ func get_sequence_item(index: int) -> Variant:
 		return get_node_or_null(item)
 
 	return item
+
+
+## Вставляет событие сразу после указанного узла в последовательности.
+## Это позволяет показать реакцию на решение игрока до следующих машин и событий.
+func add_event_after(node: Node, event: Event) -> void:
+	if event == null:
+		return
+
+	var node_path: NodePath = get_path_to(node)
+	var index: int = sequence.find(node_path)
+
+	if index == -1:
+		sequence.append(event)
+	else:
+		sequence.insert(index + 1, event)
