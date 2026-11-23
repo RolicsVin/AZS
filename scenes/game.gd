@@ -71,8 +71,11 @@ func next() -> void:
 			return
 
 		if item is Event:
-			anim.play(item.anim_name)
-			_show_event(item as Event)
+			var event: Event = item as Event
+			Data.money += event.money
+			Data.respect += event.respect
+			anim.play(event.anim_name)
+			_show_event(event)
 			if is_transitioning:
 				await _fade_from_black()
 			return
