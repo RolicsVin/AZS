@@ -223,6 +223,7 @@ func setup(car: Car) -> void:
 
 ## Обрабатывает согласие игрока, если диалог не блокирует решение и активна соответствующая кнопка.
 func accert() -> void:
+	$Dialog/CollisionShape3D.disabled = true
 	if _dialog_blocks_decisions() or current_car == null or not accert_button.active:
 		return
 	if decision_service.apply_decision(current_car, true, game_state):
@@ -231,6 +232,7 @@ func accert() -> void:
 
 ## Обрабатывает отказ игрока, если диалог не блокирует решение и активна соответствующая кнопка.
 func deny() -> void:
+	$Dialog/CollisionShape3D.disabled = true
 	if _dialog_blocks_decisions() or current_car == null or not deny_button.active:
 		return
 	if decision_service.apply_decision(current_car, false, game_state):
