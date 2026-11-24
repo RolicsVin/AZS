@@ -4,22 +4,35 @@ extends Control
 signal dialog_started
 signal dialog_finished
 
+## Контейнер, в котором ChoiceVisual размещает варианты ответа.
 @export var container: CircularContainer
+## Компонент отображения и подтверждения вариантов ответа.
 @export var choice_visual: ChoiceVisual
+## Камера, переключение режимов которой блокируется на время диалога.
 @export var camera: Camera3D
 
 @export_category("Настройки выбора")
+## Размер шрифта текста вариантов ответа.
 @export var choice_font_size: int = 8
 
+## Персонаж, чьи реплики и варианты ответа воспроизводятся.
 var character: Character
+## Текущий линейный фрагмент диалога.
 var current_dialog: LinearDialog
+## Индекс последней показанной реплики текущего диалога.
 var replica_index: int = -1
+## Выполняется ли сейчас диалоговая цепочка.
 var is_active: bool = false
+## Ожидает ли система выбора варианта ответа.
 var is_waiting_for_choice: bool = false
 
+## Индекс линейных диалогов персонажа по имени.
 var _dialog_by_name: Dictionary[String, LinearDialog] = {}
+## Индекс ресурсов Choise персонажа по имени.
 var _choice_by_name: Dictionary[String, Choise] = {}
+## Имена диалогов, соответствующие вариантам текущего выбора.
 var _choice_dialog_names: Array[String] = []
+## Идентификаторы персонажей, чьи диалоги уже завершены этим экземпляром Dialog.
 var _finished_characters: Dictionary = {}
 
 
@@ -40,6 +53,7 @@ func _ready() -> void:
 		choice_visual.choice_confirmed.connect(_on_choice_confirmed)
 
 
+## Начинает диалог персонажа, если он корректен, ещё не завершён и другая цепочка не активна.
 func start_dialog(target_character: Character) -> bool:
 	if is_active or target_character == null:
 		return false
@@ -72,6 +86,7 @@ func start_dialog(target_character: Character) -> bool:
 	return true
 
 
+## Обрабатывает нажатие мыши: показывает следующую реплику или подтверждает вариант.
 func _process(_delta: float) -> void:
 	if not is_active or not Input.is_action_just_pressed("left_mouse"):
 		return
@@ -107,6 +122,7 @@ func confirm_choice() -> void:
 	choice_visual.confirm()
 
 
+## Находит линейный диалог по имени, сбрасывает выбор и начинает показ реплик.
 func _play_dialog(dialog_name: String) -> bool:
 	var dialog := _dialog_by_name.get(dialog_name) as LinearDialog
 
@@ -127,6 +143,7 @@ func _play_dialog(dialog_name: String) -> bool:
 	return true
 
 
+## Показывает варианты ответа и переводит систему в состояние ожидания выбора.
 func _show_choices(choice_name: String) -> void:
 	_clear_choices()
 	# Переход к Choise — часть того же диалога, а не его завершение.
@@ -162,6 +179,7 @@ func _show_choices(choice_name: String) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
+## Переходит к диалогу, связанному с подтверждённым вариантом ответа.
 func _on_choice_confirmed(choice_index: int) -> void:
 	if not is_active or not is_waiting_for_choice or choice_index < 0 or choice_index >= _choice_dialog_names.size():
 		return
@@ -175,6 +193,7 @@ func _on_choice_confirmed(choice_index: int) -> void:
 		_finish_dialog()
 
 
+## Сбрасывает состояние цепочки, запоминает завершённого персонажа и отправляет dialog_finished.
 func _finish_dialog() -> void:
 	if not is_active:
 		return
@@ -200,6 +219,7 @@ func _finish_dialog() -> void:
 	dialog_finished.emit()
 
 
+## Строит словари диалогов и вариантов ответа для быстрого поиска по имени.
 func _build_resource_indexes() -> void:
 	_dialog_by_name.clear()
 	_choice_by_name.clear()
@@ -221,6 +241,7 @@ func _build_resource_indexes() -> void:
 		_choice_by_name[choice.name] = choice
 
 
+## Очищает список переходов и визуальные варианты ответа.
 func _clear_choices() -> void:
 	_choice_dialog_names.clear()
 	if choice_visual != null:
