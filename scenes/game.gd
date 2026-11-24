@@ -2,6 +2,7 @@
 extends Node3D
 
 @export var works: Array[Work]
+@export_file('*.json') var content_path: String = 'res://content/content.json' ## Файл контента
 @export var ui: Control
 @export var resume: Node3D
 @export var web: Panel
@@ -15,9 +16,6 @@ extends Node3D
 @onready var accert_button: AreaButon = $Buttons/Accert
 @onready var deny_button: AreaButon = $Buttons/Deny
 
-# Оставлены для совместимости с существующими обращениями к Game.
-var work_index: int = 0
-var item_index: int = 0
 var current_car: Car
 var waiting_for_event: bool = false
 var dialog_session_active: bool = false
@@ -27,15 +25,31 @@ var ui_controller: UIController
 var decision_service: DecisionService
 var event_service: EventService
 var event_controller: EventController
+var content_applier: ContentApplier
+var game_state: GameState ## Единственное хранилище денег и репутации (автозагрузка Data)
+var content_report: ContentBundle ## Итог загрузки внешнего контента
 var transition_pending: bool = false
 
 
 func _ready() -> void:
+	# Контент загружается до запуска систем: вставки должны попасть в смены заранее
+	content_report = ContentLoader.new().load_file(content_path)
+	_log_content_report(content_report)
+
+	game_state = Data
+	game_state.reset(content_report.start_money, content_report.start_respect)
+	if content_report.transition_duration >= 0.0:
+		transition_duration = content_report.transition_duration
+
+	content_applier = ContentApplier.new()
+	for message in content_applier.apply(content_report, works):
+		push_warning('Контент: %s' % message)
+
 	sequence_controller = SequenceController.new()
 	sequence_controller.setup(works)
 	
 	ui_controller = UIController.new()
-	ui_controller.setup(self)
+	ui_controller.setup(_build_ui_bindings())
 	
 	decision_service = DecisionService.new()
 	event_service = EventService.new()
@@ -62,6 +76,36 @@ func _ready() -> void:
 	next()
 
 
+## Собирает ссылки на узлы интерфейса: единственное место, знающее пути в сцене
+func _build_ui_bindings() -> UIBindings:
+	var bindings: UIBindings = UIBindings.new() ## Привязки для UIController
+	bindings.main_ui = ui
+	bindings.resume = resume
+	bindings.web = web
+	bindings.event_panel = event_panel
+	bindings.dialog = dialog
+	bindings.back_button = back_button
+	bindings.event_card = get_node_or_null('UI/Panel') as Control
+	bindings.event_label = get_node_or_null('UI/Panel/Label') as Label
+	bindings.event_continue_button = get_node_or_null('UI/Button') as Control
+	bindings.end_label = get_node_or_null('UI/Label') as Control
+	if accert_button != null:
+		bindings.decision_buttons.append(accert_button)
+	if deny_button != null:
+		bindings.decision_buttons.append(deny_button)
+	return bindings
+
+
+## Выводит в журнал итог загрузки контента и все найденные проблемы
+func _log_content_report(bundle: ContentBundle) -> void:
+	for message in bundle.errors:
+		push_warning('Контент: %s' % message)
+	print(
+		'Контент: загружен=%s, событий=%d, вставок=%d, проблем=%d'
+		% [bundle.is_loaded, bundle.events.size(), bundle.insertions.size(), bundle.errors.size()]
+	)
+
+
 ## Запрашивает следующий элемент у SequenceController и передаёт его нужной системе.
 func next() -> void:
 	ui_controller.set_decision_buttons_enabled(false)
@@ -69,10 +113,8 @@ func next() -> void:
 	waiting_for_event = false
 
 	while true:
-		var entry: Dictionary = sequence_controller.take_next()
+		var entry: SequenceEntry = sequence_controller.take_next()
 		event_panel.hide()
-		work_index = sequence_controller.work_index
-		item_index = sequence_controller.item_index
 		
 		if entry.finished:
 			if transition_pending:
@@ -104,7 +146,7 @@ func next() -> void:
 		
 		if item is Event:
 			var event := item as Event
-			if event_controller.process_event(event, Data):
+			if event_controller.process_event(event, game_state):
 				if is_instance_valid(anim) and anim.has_animation(event.anim_name):
 					anim.play(event.anim_name)
 				waiting_for_event = true
@@ -147,14 +189,14 @@ func setup(car: Car) -> void:
 func accert() -> void:
 	if _dialog_blocks_decisions() or current_car == null or not accert_button.active:
 		return
-	if decision_service.apply_decision(current_car, true, Data):
+	if decision_service.apply_decision(current_car, true, game_state):
 		next()
 
 
 func deny() -> void:
 	if _dialog_blocks_decisions() or current_car == null or not deny_button.active:
 		return
-	if decision_service.apply_decision(current_car, false, Data):
+	if decision_service.apply_decision(current_car, false, game_state):
 		next()
 
 

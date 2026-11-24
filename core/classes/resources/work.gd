@@ -1,11 +1,17 @@
 ## Рабочая смена: последовательность NodePath машин и ресурсов Event.
 class_name Work extends Node3D
 
-@export var anim_name: String
-@export var sequence: Array[Variant] = []
+@export var anim_name: String ## Имя анимации смены
+@export var sequence: Array[Variant] = [] ## Последовательность: NodePath машин и ресурсы Event
+
+var event_gap_min: int = 2 ## Минимум машин до вставки события после решения
+var event_gap_max: int = 3 ## Максимум машин до вставки события после решения
 
 
 func _ready() -> void:
+	# Копируем последовательность: вставки не должны менять общий ресурс сцены
+	sequence = sequence.duplicate()
+
 	# Work подписывается на запросы событий, не заставляя Car знать о родителе.
 	for child in get_children():
 		if child is Car and not child.event_requested.is_connected(_on_car_event_requested):
@@ -47,7 +53,21 @@ func validate_sequence() -> bool:
 	return valid
 
 
-## Вставляет событие после двух или трёх следующих машин.
+## Вставляет событие в последовательность по индексу; -1 или индекс за концом — в конец
+func insert_event_at(index: int, event: Event) -> bool:
+	if event == null or not event.validate_configuration():
+		return false
+	if index < -1:
+		push_warning('Work «%s»: недопустимый индекс вставки %d.' % [name, index])
+		return false
+	if index == -1 or index >= sequence.size():
+		sequence.append(event)
+	else:
+		sequence.insert(index, event)
+	return true
+
+
+## Вставляет событие после нескольких следующих машин (диапазон задаётся event_gap_min/max).
 func add_event_after(node: Node, event: Event) -> bool:
 	if node == null or event == null or not event.validate_configuration():
 		return false
@@ -55,7 +75,7 @@ func add_event_after(node: Node, event: Event) -> bool:
 	if start_index == -1:
 		push_warning("Work '%s': машина '%s' отсутствует в sequence." % [name, node.name])
 		return false
-	var cars_to_skip: int = randi_range(2, 3)
+	var cars_to_skip: int = randi_range(event_gap_min, maxi(event_gap_min, event_gap_max))
 	var cars_found: int = 0
 	var insert_index: int = start_index
 	for index in range(start_index + 1, sequence.size()):

@@ -80,22 +80,35 @@ AZS/
 │   ├── data.gd          # Глобальные игровые показатели
 │   └── classes/
 │       ├── gameplay/    # Автомобили, игрок и интерактивные объекты
+│       ├── model/       # Типизированные модели данных и чтение JSON
 │       ├── resources/   # Work, Event, Character и данные диалогов
 │       └── ui/          # Компоненты интерфейса
 ├── scenes/              # Игровые сцены и управляющие скрипты
+├── content/             # Внешний контент в JSON (события, вставки, настройки)
+├── docs/                # Архитектура, инструкция и примеры данных
+├── tests/               # Автотесты без запуска сцены
 ├── main_menu.tscn       # Сцена главного меню
 └── project.godot        # Настройки проекта
 ```
 
 ## Архитектура и расширение контента
 
-Игровые правила решений и событий вынесены в независимые сервисы:
-- DecisionService — применяет решения посетителя;
-- EventService — обрабатывает эффекты событий;
-- Data — единая точка атомарного изменения денег и репутации;
-- Character, Event и Work — данные контента и последовательности.
+Игровые правила вынесены в независимые модули, а контент — в данные:
 
-Документация архитектуры, потоков данных, проверок и инструкции по добавлению событий находится в [core/systems/README.md](core/systems/README.md) and [docs/architecture.md](docs/architecture.md). Пример нового события, добавляемого без изменения GDScript: [content/events/donation.tres](content/events/donation.tres).
+- `ContentLoader` и `ContentApplier` читают `content/content.json`, проверяют его и вставляют события в смены;
+- `DecisionService` и `EventService` применяют решения и события, `Data` (`GameState`) — единая точка атомарного изменения денег и репутации;
+- `SequenceController` выдаёт элементы смен, `UIController` показывает экраны через `UIBindings`;
+- `Character`, `Event` и `Work` — данные контента и последовательности.
+
+Схемы, форматы данных и обработка ошибок: [docs/architecture.md](docs/architecture.md).
+Как добавить событие без изменения GDScript: [docs/content_guide.md](docs/content_guide.md).
+
+### Проверка
+
+```bash
+godot --headless --path . --import
+godot --headless --path . --script res://tests/test_runner.gd
+```
 
 ## Текущий статус
 

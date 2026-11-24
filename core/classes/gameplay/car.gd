@@ -28,13 +28,16 @@ func validate_configuration() -> bool:
 		return false
 	return true
 
-## Возвращает эффект без изменения состояния.
-func calculate_decision(accepted: bool) -> Dictionary:
+## Возвращает эффект без изменения состояния; null — данные машины некорректны
+func calculate_decision(accepted: bool) -> DecisionEffect:
 	if not validate_configuration():
-		return {}
+		return null
 	if accepted:
-		return {"money": randi_range(given_money_min, given_money_max), "respect": randi_range(given_respect_min, given_respect_max)}
-	return {"money": 0, "respect": -randi_range(given_respect_min, given_respect_max)}
+		return DecisionEffect.new(
+			randi_range(given_money_min, given_money_max),
+			randi_range(given_respect_min, given_respect_max)
+		)
+	return DecisionEffect.new(0, -randi_range(given_respect_min, given_respect_max))
 
 ## Вызывается после успешного применения эффекта системой решений.
 func play_decision(accepted: bool) -> void:
