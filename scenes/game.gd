@@ -33,32 +33,32 @@ var transition_pending: bool = false
 func _ready() -> void:
 	sequence_controller = SequenceController.new()
 	sequence_controller.setup(works)
-
+	
 	ui_controller = UIController.new()
 	ui_controller.setup(self)
-
+	
 	decision_service = DecisionService.new()
 	event_service = EventService.new()
 	event_controller = EventController.new()
 	event_controller.setup(event_service, ui_controller)
-
+	
 	ui_controller.set_decision_buttons_enabled(false)
-
+	
 	if is_instance_valid(transition_overlay):
 		transition_overlay.modulate.a = 0.0
 		transition_overlay.hide()
-
+	
 	if dialog != null and dialog.has_signal("dialog_finished"):
 		var callback := Callable(self, "_on_dialog_finished")
 		if not dialog.is_connected("dialog_finished", callback):
 			dialog.connect("dialog_finished", callback)
-
+	
 	for work in works:
 		if work == null:
 			push_warning("Game: обнаружен пустой Work.")
 		else:
 			work.validate_sequence()
-
+	
 	next()
 
 
@@ -70,24 +70,25 @@ func next() -> void:
 
 	while true:
 		var entry: Dictionary = sequence_controller.take_next()
+		event_panel.hide()
 		work_index = sequence_controller.work_index
 		item_index = sequence_controller.item_index
-
+		
 		if entry.finished:
 			if transition_pending:
 				await _fade_from_black()
 				transition_pending = false
 			end_game()
 			return
-
+		
 		var work: Work = entry.work
 		if entry.changed_work:
 			await _fade_to_black()
 			transition_pending = true
-
+		
 		if entry.entered_work and is_instance_valid(anim) and not work.anim_name.is_empty():
 			anim.play(work.anim_name)
-
+		
 		var item: Variant = entry.item
 		if item is Car:
 			current_car = item as Car
@@ -100,7 +101,7 @@ func next() -> void:
 				await _fade_from_black()
 				transition_pending = false
 			return
-
+		
 		if item is Event:
 			var event := item as Event
 			if event_controller.process_event(event, Data):
@@ -112,7 +113,7 @@ func next() -> void:
 					transition_pending = false
 				return
 			continue
-
+		
 		push_warning(
 			"Game: пропущен некорректный элемент #%d смены '%s'." %
 			[int(entry.item_index), work.name]
