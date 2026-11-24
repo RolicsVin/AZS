@@ -42,13 +42,15 @@ func next() -> void:
 	_set_decision_buttons_enabled(false)
 	current_car = null
 	var is_transitioning: bool = false
-	
+
 	event_panel.hide()
 
 	while work_index < works.size():
 		var work: Work = works[work_index]
 		anim.play(work.anim_name)
 
+		# Используем while и проверяем актуальный размер sequence на каждой итерации.
+		# Car может вставить событие прямо во время игрового цикла; оно не потеряется.
 		if item_index >= work.sequence.size():
 			if work_index + 1 < works.size():
 				await _fade_to_black()
@@ -69,14 +71,17 @@ func next() -> void:
 			return
 
 		if item is Event:
-			anim.play(item.anim_name)
-			_show_event(item as Event)
+			var event: Event = item as Event
+			Data.money += event.money
+			Data.respect += event.respect
+			anim.play(event.anim_name)
+			_show_event(event)
 			if is_transitioning:
 				await _fade_from_black()
 			return
 
 		push_warning("Неизвестный элемент в рабочей смене: %s" % [item])
-	
+
 	if is_transitioning:
 		await _fade_from_black()
 	end_game()
@@ -106,7 +111,7 @@ func _show_event(event: Event) -> void:
 	# События не требуют решения игрока — показываем только текст.
 	waiting_for_event = true
 	event_panel.show()
-	
+
 	$UI/Panel/Label.text = event.event_text
 	$UI/Button.hide()
 	ui.show()

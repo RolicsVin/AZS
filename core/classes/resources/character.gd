@@ -10,4 +10,8 @@ class_name Character extends Resource
 @export var dialogs: Array[LinearDialog] ## Диалоги персонажа
 @export var choises: Array[Choise] ## Выборы персонажа
 
+@export_group("События")
+@export var deny_events: Array[Event] = [] ## События при отказе персонажу
+@export var accert_events: Array[Event] = [] ## События при согласии помочь персонажу
+
 var dialog_end: bool = false ## Был ли уже диалог

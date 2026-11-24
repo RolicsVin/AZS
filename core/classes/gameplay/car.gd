@@ -14,18 +14,32 @@ var dialog: bool = false
 func start() -> void:
 	show()
 	anim.play("start")
-	
 
 
 func to_accept() -> void:
 	anim.play("accept")
 	Data.money += randi_range(given_money_min, given_money_max)
 	Data.respect += randi_range(given_respect_min, given_respect_min)
+	_add_random_event(character.accert_events)
 
 
 func deny() -> void:
 	anim.play("deny")
 	Data.respect -= randi_range(given_respect_min, given_respect_min)
+	_add_random_event(character.deny_events)
+
+
+## Выбирает случайное событие персонажа и добавляет его в текущую рабочую смену.
+func _add_random_event(events: Array[Event]) -> void:
+	if events.is_empty():
+		return
+
+	var work := get_parent() as Work
+	if work == null:
+		push_warning("Car должен быть дочерним узлом Work, чтобы добавлять события.")
+		return
+
+	work.add_event_after(self, events.pick_random())
 
 
 func get_resume() -> String:
