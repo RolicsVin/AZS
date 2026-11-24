@@ -1,4 +1,4 @@
-## Координатор игрового цикла. Правила решений и событий вынесены в сервисы.
+## Главный координатор: связывает системы и реагирует на игровые события.
 extends Node3D
 
 @export var works: Array[Work]
@@ -15,63 +15,75 @@ extends Node3D
 @onready var accert_button: AreaButon = $Buttons/Accert
 @onready var deny_button: AreaButon = $Buttons/Deny
 
+# Оставлены для совместимости с существующими обращениями к Game.
 var work_index: int = 0
 var item_index: int = 0
 var current_car: Car
 var waiting_for_event: bool = false
 var dialog_session_active: bool = false
+
+var sequence_controller: SequenceController
+var ui_controller: UIController
 var decision_service: DecisionService
 var event_service: EventService
+var event_controller: EventController
 
 
 func _ready() -> void:
+	sequence_controller = SequenceController.new()
+	sequence_controller.setup(works)
+
+	ui_controller = UIController.new()
+	ui_controller.setup(self)
+
 	decision_service = DecisionService.new()
 	event_service = EventService.new()
-	_set_decision_buttons_enabled(false)
+	event_controller = EventController.new()
+	event_controller.setup(event_service, ui_controller)
+
+	ui_controller.set_decision_buttons_enabled(false)
+
 	if is_instance_valid(transition_overlay):
 		transition_overlay.modulate.a = 0.0
 		transition_overlay.hide()
+
 	if dialog != null and dialog.has_signal("dialog_finished"):
 		var callback := Callable(self, "_on_dialog_finished")
 		if not dialog.is_connected("dialog_finished", callback):
 			dialog.connect("dialog_finished", callback)
+
 	for work in works:
 		if work == null:
 			push_warning("Game: обнаружен пустой Work.")
 		else:
 			work.validate_sequence()
+
 	next()
 
 
-## Берёт следующий элемент и делегирует его обработку профильному компоненту.
+## Запрашивает следующий элемент у SequenceController и передаёт его нужной системе.
 func next() -> void:
-	_set_decision_buttons_enabled(false)
+	ui_controller.set_decision_buttons_enabled(false)
 	current_car = null
-	var is_transitioning := false
-	if is_instance_valid(event_panel):
-		event_panel.hide()
+	waiting_for_event = false
 
-	while work_index < works.size():
-		var work: Work = works[work_index]
-		if work == null:
-			work_index += 1
-			item_index = 0
-			continue
-		if is_instance_valid(anim) and not work.anim_name.is_empty():
+	while true:
+		var entry: Dictionary = sequence_controller.take_next()
+		work_index = sequence_controller.work_index
+		item_index = sequence_controller.item_index
+
+		if entry.finished:
+			end_game()
+			return
+
+		var work: Work = entry.work
+		if entry.changed_work:
+			await _fade_to_black()
+
+		if entry.entered_work and is_instance_valid(anim) and not work.anim_name.is_empty():
 			anim.play(work.anim_name)
 
-		# Размер проверяется при каждом проходе: Car может динамически вставить Event.
-		if item_index >= work.sequence.size():
-			if work_index + 1 < works.size():
-				await _fade_to_black()
-				is_transitioning = true
-				work_index += 1
-				item_index = 0
-				continue
-			break
-
-		var item: Variant = work.get_sequence_item(item_index)
-		item_index += 1
+		var item: Variant = entry.item
 		if item is Car:
 			current_car = item as Car
 			if not current_car.validate_configuration():
@@ -79,24 +91,25 @@ func next() -> void:
 				continue
 			current_car.start()
 			setup(current_car)
-			if is_transitioning:
+			if entry.changed_work:
 				await _fade_from_black()
 			return
+
 		if item is Event:
 			var event := item as Event
-			if event_service.apply_event(event, Data):
+			if event_controller.process_event(event, Data):
 				if is_instance_valid(anim) and anim.has_animation(event.anim_name):
 					anim.play(event.anim_name)
-				_show_event(event)
-				if is_transitioning:
+				waiting_for_event = true
+				if entry.changed_work:
 					await _fade_from_black()
 				return
 			continue
-		push_warning("Game: пропущен некорректный элемент #%d смены '%s'." % [item_index - 1, work.name])
 
-	if is_transitioning:
-		await _fade_from_black()
-	end_game()
+		push_warning(
+			"Game: пропущен некорректный элемент #%d смены '%s'." %
+			[int(entry.item_index), work.name]
+		)
 
 
 func _fade_to_black() -> void:
@@ -119,17 +132,8 @@ func _fade_from_black() -> void:
 	transition_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-func _show_event(event: Event) -> void:
-	waiting_for_event = true
-	event_panel.show()
-	$UI/Panel/Label.text = event.event_text
-	$UI/Button.hide()
-	ui.show()
-	$UI/Panel.show()
-
-
 func setup(car: Car) -> void:
-	resume.set_text(car.get_resume())
+	ui_controller.show_car_resume(car)
 
 
 func accert() -> void:
@@ -149,9 +153,7 @@ func deny() -> void:
 func open_web() -> void:
 	if current_car == null:
 		return
-	ui.show()
-	back_button.show()
-	web.set_text(current_car.get_social_networks())
+	ui_controller.open_social_networks(current_car)
 
 
 func start_dialog() -> void:
@@ -162,48 +164,34 @@ func start_dialog() -> void:
 
 	# Блокировка действует на всю цепочку: LinearDialog -> Choise -> LinearDialog.
 	dialog_session_active = true
-	_set_decision_buttons_enabled(false)
-	ui.show()
-	back_button.hide()
+	ui_controller.set_decision_buttons_enabled(false)
+	ui_controller.prepare_dialog()
 
 	if not dialog.start_dialog(current_car.get_character()):
 		# Не разблокируем кнопки, если Dialog уже выполняет другую цепочку.
 		if dialog.get("is_active") != true:
 			dialog_session_active = false
-			_set_decision_buttons_enabled(true)
+			ui_controller.set_decision_buttons_enabled(true)
 
 
 func _on_dialog_finished() -> void:
 	if not dialog_session_active:
 		return
 
-	# Сигнал приходит только после завершения всей цепочки диалога.
 	dialog_session_active = false
 	player_continue()
-	_set_decision_buttons_enabled(current_car != null and not waiting_for_event)
+	ui_controller.set_decision_buttons_enabled(current_car != null and not waiting_for_event)
 
 
 func _dialog_blocks_decisions() -> bool:
-	return dialog_session_active or (is_instance_valid(dialog) and (dialog.get("is_active") == true or dialog.get("is_waiting_for_choice") == true))
-
-
-func _set_decision_buttons_enabled(enabled: bool) -> void:
-	if is_instance_valid(accert_button):
-		if enabled:
-			accert_button.on()
-		else:
-			accert_button.off()
-	if is_instance_valid(deny_button):
-		if enabled:
-			deny_button.on()
-		else:
-			deny_button.off()
+	return dialog_session_active or (
+		is_instance_valid(dialog) and
+		(dialog.get("is_active") == true or dialog.get("is_waiting_for_choice") == true)
+	)
 
 
 func player_continue() -> void:
-	web.hide()
-	dialog.hide()
-	ui.hide()
+	ui_controller.hide_for_continue()
 	if waiting_for_event:
 		waiting_for_event = false
 		next()
@@ -211,6 +199,4 @@ func player_continue() -> void:
 
 func end_game() -> void:
 	current_car = null
-	ui.show()
-	$UI/Label.show()
-	$UI/Button.hide()
+	ui_controller.show_end_screen()

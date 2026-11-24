@@ -1,161 +1,81 @@
 # Архитектура игрового цикла
 
-## Архитектурный граф
+## Архитектура верхнего уровня
 
 ```mermaid
 flowchart TD
-    G[Game: координатор]
-    SC[Work sequence]
-    CAR[Car: посетитель]
-    EV[Event: ресурс события]
-    DS[DecisionService]
-    ES[EventService]
-    STATE[Data / GameState]
-    UI[UI и Dialog]
+    G[Game<br/>координатор]
+    SC[SequenceController<br/>рабочие смены и порядок]
+    UI[UIController<br/>интерфейс и отображение]
+    DS[DecisionService<br/>решения игрока]
+    EC[EventController<br/>игровые события]
+    ES[EventService<br/>проверка и применение эффекта]
+    GS[GameState / Data<br/>деньги и репутация]
+    W[Work]
+    C[Car]
+    E[Event]
+    D[Character · Dialog · Choise]
+
     G --> SC
-    SC --> CAR
-    SC --> EV
     G --> UI
     G --> DS
-    G --> ES
-    DS --> CAR
-    DS --> STATE
-    ES --> EV
-    ES --> STATE
+    G --> EC
+    SC --> W
+    W --> C
+    W --> E
+    C --> D
+    DS --> C
+    DS --> GS
+    EC --> ES
+    ES --> E
+    ES --> GS
 ```
 
-## Блок-схема решения
+## Ответственность компонентов
 
-```mermaid
-flowchart TD
-    A[Игрок выбирает действие] --> B{Car корректна?}
-    B -- нет --> X[Предупреждение, состояние без изменений]
-    B -- да --> C[Car рассчитывает эффект]
-    C --> D{GameState принимает дельту?}
-    D -- нет --> X
-    D -- да --> E[Анимация и постановка Event]
-    E --> F[Следующий элемент Work]
-```
-
-## Схема данных
-
-```mermaid
-classDiagram
-    class Work {
-      anim_name
-      sequence: Variant[]
-    }
-    class Car {
-      given_money_min
-      given_money_max
-      given_respect_min
-      given_respect_max
-      character: Character
-    }
-    class Character {
-      resume
-      social_networks
-      start_dialog
-      dialogs
-      choises
-      deny_events
-      accert_events
-    }
-    class Event {
-      event_text
-      anim_name
-      money
-      respect
-    }
-    class LinearDialog {
-      name
-      replicas
-      next_choise
-    }
-    class Choise {
-      name
-      choises: Dictionary
-    }
-    Work --> Car : NodePath in sequence
-    Car ..> Work : event_requested signal
-    Work --> Event : Resource in sequence
-    Car --> Character
-    Character --> LinearDialog
-    Character --> Choise
-    Character --> Event
-```
-
-## Контракты модулей
-
-| Модуль | Вход | Выход / эффект |
-|---|---|---|
-| Game | Сигналы UI, Work[] | Выбор следующего элемента и вызов сервиса |
-| Work | Индекс последовательности | Car или Event; проверка и вставка события |
-| Car | Принятое решение | Словарь дельт; визуальная анимация после успешного применения |
-| DecisionService | Car, решение, GameState | Атомарное применение дельт |
-| EventService | Event, GameState | Атомарное применение эффекта события |
-| Data | money_delta, respect_delta | Новые значения или отказ без частичного обновления |
-| Character | Данные персонажа | Валидация структуры диалогов и выборов |
-
-## Точки настройки
-
-- Награды за согласие: экспортируемые диапазоны в узле Car.
-- Содержимое персонажа: Resource Character и вложенные LinearDialog / Choise.
-- Текст и эффект события: Resource Event.
-- Порядок посетителей и событий: массив sequence у Work.
-- Порядок рабочих смен: массив works у Game.
-
-## Пример расширения
-
-Исходного кода обработчиков менять не требуется. Создайте ресурс Event, задайте текст/анимацию/изменения состояния и добавьте ресурс в sequence существующего Work. Пример заполненного ресурса — content/events/donation.tres.
-
-## Контролируемые ошибки
-
-| Вход | Реакция |
+| Компонент | Ответственность |
 |---|---|
-| Car без Character | Машина пропускается |
-| Неверный диапазон награды | Решение отклоняется |
-| Event без текста | EventService отклоняет событие |
-| Несуществующий NodePath | Work выдаёт предупреждение, Game пропускает элемент |
-| Отрицательный итоговый баланс | Data отклоняет оба изменения |
-| Несуществующая ссылка на диалог/выбор | Character не проходит валидацию, диалог не запускается |
+| Game | Composition root: создаёт системы, передаёт им зависимости, связывает сигналы и запускает игровой цикл |
+| SequenceController | Хранит индексы смены и элемента, выдаёт следующий элемент с учётом динамической вставки событий |
+| UIController | Показывает резюме, социальные сети, события и финальный экран; управляет отображением UI и доступностью кнопок |
+| DecisionService | Рассчитывает и атомарно применяет последствия решения игрока |
+| EventController | Координирует применение эффекта события и его показ через UIController |
+| EventService | Валидирует Event и применяет его числовые эффекты |
+| GameState (autoload Data) | Хранит деньги и репутацию; изменяет их только через apply_delta() |
+| Work | Содержит последовательность Car и Event, валидирует её и вставляет запрошенные события |
+| Car | Проверяет собственные данные, рассчитывает эффект решения и запускает анимацию после успешного применения |
+| Character, LinearDialog, Choise, Event | Конфигурационные ресурсы игрового контента |
 
-Отказ от операции не должен менять деньги и репутацию частично.
+## Поток принятия решения
 
-## Исходный и расширенный вариант данных
+1. Игрок нажимает одну из кнопок, обработчик вызывает Game.
+2. Game передаёт Car и выбранное действие в DecisionService.
+3. DecisionService получает расчёт от Car.calculate_decision().
+4. GameState.apply_delta() атомарно изменяет деньги и репутацию.
+5. После успешного применения DecisionService запускает Car.play_decision().
+6. Game запрашивает следующий элемент у SequenceController.
 
-До расширения в смене использовались только уже подготовленные события и машины. Тип ресурса Event уже существовал, поэтому новый тип и новый обработчик не понадобились.
+## Поток события
 
-Условный исходный ресурс того же типа:
+1. SequenceController получает Event из текущего Work.
+2. Game передаёт событие в EventController.
+3. EventController вызывает EventService для проверки и применения эффекта.
+4. После успешного применения EventController поручает UIController показать событие.
+5. Game ожидает продолжения игрока и затем запрашивает следующий элемент.
 
-```ini
-[resource]
-script = ExtResource("event_script")
-event_text = "Поставки топлива задерживаются."
-anim_name = "default"
-money = 0
-respect = -5
-```
+## Данные и конфигурации
 
-Новый ресурс content/events/donation.tres:
+Существующие ресурсы Character, Car, Event, Work, LinearDialog и Choise сохранены. Их экспортируемые поля и ссылки в сценах не требуют переноса в контроллеры. Work остаётся Node3D и по-прежнему хранит NodePath на Car и Resource Event.
 
-```ini
-[resource]
-script = ExtResource("1_event")
-event_text = "Местные жители собрали деньги на помощь станции."
-anim_name = "default"
-money = 500
-respect = 15
-```
+## Настройка контента
 
-Новый ресурс подключён к sequence узла Work2 в scenes/game.tscn. Таким образом, новый элемент уже присутствует в игровом сценарии и появляется после двух машин этой смены. Изменения GDScript для добавления этого конкретного события не потребовались.
+- Награды за согласие/отказ: экспортируемые диапазоны в Car.
+- Диалоги и реплики: ресурсы Character и LinearDialog.
+- Варианты ответов: ресурс Choise.
+- Текст и эффекты события: ресурс Event.
+- Порядок машин и событий: массив sequence у Work.
+- Порядок смен: массив works у Game.
 
-## Автоматическая проверка состояния
+## Границы зависимостей
 
-Из корня проекта выполните:
-
-```bash
-godot --headless --path . --script res://tests/test_game_state.gd
-```
-
-Тест проверяет успешное применение дельты, отказ при отрицательном балансе, применение валидного Event и отсутствие частичного изменения состояния при невалидном Event.
+Системы получают зависимости через setup() или аргументы методов. Они не ищут Autoload самостоятельно. Game является единственной точкой сборки (composition root), передаёт Data как GameState и связывает контроллеры между собой.
