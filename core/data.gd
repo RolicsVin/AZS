@@ -16,7 +16,7 @@ func apply_delta(money_delta: int, respect_delta: int, fuel_delta: int = 0) -> b
 	if absi(money_delta) > MAX_DELTA or absi(respect_delta) > MAX_DELTA or absi(fuel_delta) > MAX_DELTA:
 		push_warning('GameState: операция отклонена — изменение превышает допустимый предел.')
 		return false
-
+	
 	var next_money: int = money + money_delta ## Деньги после операции
 	var next_respect: int = respect + respect_delta ## Репутация после операции
 	var next_fuel: int = fuel + fuel_delta ## Запас топлива после операции

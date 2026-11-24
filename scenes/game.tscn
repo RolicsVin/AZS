@@ -41,6 +41,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cypgn0atb8dui" path="res://assets/models/azs/Cube_100.res" id="37_0rmfi"]
 [ext_resource type="ArrayMesh" uid="uid://bm7a2fwvpu1ml" path="res://assets/models/azs/Cube_102.res" id="38_xbak0"]
 [ext_resource type="ArrayMesh" uid="uid://dy5t6o4ol0qy6" path="res://assets/models/azs/Cube_099.res" id="39_3x28f"]
+[ext_resource type="Script" uid="uid://mjs7w2yxouse" path="res://scenes/ui_2.gd" id="44_0sl42"]
 [ext_resource type="Resource" path="res://assets/events/donation.tres" id="donation_event"]
 [ext_resource type="Script" uid="uid://rfq1ncy2ix6k" path="res://core/classes/resources/work.gd" id="work_script"]
 
@@ -469,13 +470,6 @@ size = Vector3(1.4253235, 0.6828613, 0.20532227)
 
 [sub_resource type="GDScript" id="GDScript_pr1ej"]
 resource_name = "UI"
-script/source = "extends Control
-
-
-func _process(_delta: float) -> void:
-	$\"../ProgressBar\".value = Data.money
-	$\"../ProgressBar2\".value = Data.respect
-"
 
 [sub_resource type="LabelSettings" id="LabelSettings_pr1ej"]
 outline_size = 3
@@ -752,6 +746,9 @@ _data = {
 &"gold_cube": SubResource("Animation_0sl42"),
 &"ready": SubResource("Animation_oaba0")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_0sl42"]
+font_size = 20
 
 [node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("works", "ui", "resume", "web", "event_panel", "dialog", "back_button", "anim", "transition_overlay")]
 script = ExtResource("1_uwrxv")
@@ -1746,22 +1743,6 @@ offset_right = 210.0
 offset_bottom = 86.0
 text = "Назад"
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1940274801]
-modulate = Color(1, 1, 0, 1)
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 94.0
-offset_bottom = 20.0
-show_percentage = false
-
-[node name="ProgressBar2" type="ProgressBar" parent="." unique_id=910233065]
-modulate = Color(0, 1, 0, 1)
-offset_left = 3.0
-offset_top = 25.0
-offset_right = 94.0
-offset_bottom = 42.0
-show_percentage = false
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2055209024]
 libraries/ = SubResource("AnimationLibrary_oaba0")
 autoplay = &"ready"
@@ -1777,6 +1758,43 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="UI2" type="Control" parent="." unique_id=264580989]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("44_0sl42")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI2" unique_id=516904182]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="respect" type="Label" parent="UI2/VBoxContainer" unique_id=1754398849]
+layout_mode = 2
+text = "s"
+label_settings = SubResource("LabelSettings_0sl42")
+vertical_alignment = 1
+
+[node name="money" type="Label" parent="UI2/VBoxContainer" unique_id=862029156]
+layout_mode = 2
+text = "s"
+label_settings = SubResource("LabelSettings_0sl42")
+vertical_alignment = 1
+
+[node name="fuel" type="Label" parent="UI2/VBoxContainer" unique_id=1769218288]
+layout_mode = 2
+text = "s"
+label_settings = SubResource("LabelSettings_0sl42")
+vertical_alignment = 1
 
 [connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
