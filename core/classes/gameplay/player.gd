@@ -21,11 +21,11 @@ func _ready() -> void:
 		push_warning("Player: Camera3D не назначена в свойстве camera.")
 	else:
 		camera.make_current()
-
+	
 	if ray_cast != null:
 		ray_cast.enabled = true
 		ray_cast.collide_with_areas = true
-
+	
 	_capture_mouse()
 
 
@@ -35,17 +35,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			_release_mouse()
 			get_viewport().set_input_as_handled()
 			return
-
+	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 				_try_press_area_button()
 			else:
 				_capture_mouse()
-
+			
 			get_viewport().set_input_as_handled()
 			return
-
+	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_rotate_camera(event.relative)
 
@@ -75,10 +75,10 @@ func _try_press_area_button() -> void:
 ## Поворачивает персонажа по горизонтали, а камеру — по вертикали.
 func _rotate_camera(mouse_delta: Vector2) -> void:
 	rotate_y(deg_to_rad(-mouse_delta.x * mouse_sensitivity))
-
+	
 	if camera == null:
 		return
-
+	
 	var pitch := camera.rotation.x - deg_to_rad(mouse_delta.y * mouse_sensitivity)
 	var max_pitch := deg_to_rad(max_look_angle)
 	camera.rotation.x = clampf(pitch, -max_pitch, max_pitch)
@@ -93,7 +93,7 @@ func _handle_movement() -> void:
 		"ui_down"
 	)
 	var direction := (global_basis * Vector3(input_direction.x, 0.0, input_direction.y)).normalized()
-
+	
 	velocity.x = direction.x * move_speed
 	velocity.z = direction.z * move_speed
 

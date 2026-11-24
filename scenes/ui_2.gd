@@ -9,6 +9,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	$VBoxContainer/fuel.text = str(Data.fuel)
-	$VBoxContainer/money.text = str(Data.money)
-	$VBoxContainer/respect.text = str(Data.respect)
+	$VBoxContainer/fuel.text = 'Топливо: ' + str(Data.fuel)
+	$VBoxContainer/money.text = 'Деньги: ' + str(Data.money)
+	$VBoxContainer/respect.text = 'Репутация: ' + str(Data.respect)

@@ -3,15 +3,17 @@ class_name Car extends Node3D
 
 signal event_requested(event: Event)
 
-@export_group("Награда за согласие")
-@export var given_money_min: int = 10
-@export var given_money_max: int = 15
-@export var given_respect_min: int = 10
-@export var given_respect_max: int = 15
-@export_group("Расход топлива")
-@export_range(0, 1000000, 1) var fuel_cost: int = 10 ## Количество бензина, расходуемое при согласии
 @export var character: Character
 @export var anim: AnimationPlayer
+
+@export_group("Монеты и репутация")
+@export var given_money: int = 10
+@export var given_respect_min: int = 10
+@export var given_respect_max: int = 15
+
+@export_group("Топливо")
+@export_range(0, 1000000, 1) var fuel_cost: int = 10 ## Количество бензина, расходуемое при согласии
+
 
 func start() -> void:
 	show()
@@ -19,13 +21,13 @@ func start() -> void:
 		anim.play("start")
 		await get_tree().create_timer(3).timeout 
 		$"../../Dialog/CollisionShape3D".disabled = false
-		
+
 
 func validate_configuration() -> bool:
 	if character == null:
 		push_warning("Car '%s': не назначен Character." % name)
 		return false
-	if given_money_min < 0 or given_money_max < given_money_min:
+	if not given_money or given_money < 0:
 		push_warning("Car '%s': некорректный диапазон денег." % name)
 		return false
 	if given_respect_min < 0 or given_respect_max < given_respect_min:
@@ -36,16 +38,18 @@ func validate_configuration() -> bool:
 		return false
 	return true
 
+
 ## Возвращает эффект без изменения состояния; null — данные машины некорректны
 func calculate_decision(accepted: bool) -> DecisionEffect:
 	if not validate_configuration():
 		return null
 	if accepted:
 		return DecisionEffect.new(
-			randi_range(given_money_min, given_money_max),
+			given_money,
 			randi_range(given_respect_min, given_respect_max)
 		)
 	return DecisionEffect.new(0, -randi_range(given_respect_min, given_respect_max))
+
 
 ## Вызывается после успешного применения эффекта системой решений.
 func play_decision(accepted: bool) -> void:
@@ -56,6 +60,7 @@ func play_decision(accepted: bool) -> void:
 	var events: Array[Event] = character.accert_events if accepted else character.deny_events
 	_add_random_event(events)
 
+
 func _add_random_event(events: Array[Event]) -> void:
 	if events.is_empty():
 		return
@@ -64,11 +69,14 @@ func _add_random_event(events: Array[Event]) -> void:
 		return
 	event_requested.emit(event)
 
+
 func get_resume() -> String:
 	return character.resume if character != null else ""
 
+
 func get_social_networks() -> Array[String]:
 	return character.social_networks if character != null else []
+
 
 func get_character() -> Character:
 	return character
