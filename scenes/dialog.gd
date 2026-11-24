@@ -19,6 +19,7 @@ var is_active: bool = false
 var _dialog_by_name: Dictionary[String, LinearDialog] = {}
 var _choice_by_name: Dictionary[String, Choise] = {}
 var _choice_dialog_names: Array[String] = []
+var _finished_characters: Dictionary = {}
 
 
 func _ready() -> void:
@@ -38,9 +39,14 @@ func _ready() -> void:
 		choice_visual.choice_confirmed.connect(_on_choice_confirmed)
 
 
-func start_dialog(target_character: Character) -> void:
-	if is_active or target_character == null or target_character.dialog_end:
-		return
+func start_dialog(target_character: Character) -> bool:
+	if is_active or target_character == null:
+		return false
+	var character_id: int = target_character.get_instance_id()
+	if _finished_characters.has(character_id):
+		return false
+	if not target_character.validate_configuration():
+		return false
 
 	character = target_character
 	_build_resource_indexes()
@@ -50,11 +56,9 @@ func start_dialog(target_character: Character) -> void:
 	if character.start_dialog.is_empty() or not _play_dialog(character.start_dialog):
 		is_active = false
 		character = null
-		return
-	
-	dialog_started.emit()
+		return false
 
-	character.dialog_end = true
+	dialog_started.emit()
 
 	# На время диалога фиксируем камеру в верхнем режиме.
 	if is_instance_valid(camera):
@@ -64,6 +68,7 @@ func start_dialog(target_character: Character) -> void:
 	show()
 	get_parent().show()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	return true
 
 
 func _process(_delta: float) -> void:
@@ -174,6 +179,8 @@ func _finish_dialog() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	is_active = false
+	if character != null:
+		_finished_characters[character.get_instance_id()] = true
 
 	# После диалога возвращаем обычное переключение режимов камеры.
 	if is_instance_valid(camera):

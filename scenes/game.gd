@@ -1,18 +1,17 @@
-## В этом скрипте хранится основной игровой цикл
+## Координатор игрового цикла. Правила решений и событий вынесены в сервисы.
 extends Node3D
 
-@export var works: Array[Work] ## Рабочие смены по очереди
-
+@export var works: Array[Work]
 @export var ui: Control
 @export var resume: Node3D
 @export var web: Panel
 @export var event_panel: Control
 @export var dialog: Control
 @export var back_button: Button
-
 @export var anim: AnimationPlayer
 @export var transition_overlay: ColorRect
 @export_range(0.0, 3.0, 0.1) var transition_duration: float = 0.5
+
 @onready var accert_button: AreaButon = $Buttons/Accert
 @onready var deny_button: AreaButon = $Buttons/Deny
 
@@ -20,67 +19,79 @@ var work_index: int = 0
 var item_index: int = 0
 var current_car: Car
 var waiting_for_event: bool = false
+var decision_service: DecisionService
+var event_service: EventService
 
 
 func _ready() -> void:
+	decision_service = DecisionService.new()
+	event_service = EventService.new()
 	_set_decision_buttons_enabled(false)
 	if is_instance_valid(transition_overlay):
 		transition_overlay.modulate.a = 0.0
 		transition_overlay.hide()
-
 	if dialog != null and dialog.has_signal("dialog_finished"):
-		var finished_callback := Callable(self, "_on_dialog_finished")
-		if not dialog.is_connected("dialog_finished", finished_callback):
-			dialog.connect("dialog_finished", finished_callback)
-
+		var callback := Callable(self, "_on_dialog_finished")
+		if not dialog.is_connected("dialog_finished", callback):
+			dialog.connect("dialog_finished", callback)
+	for work in works:
+		if work == null:
+			push_warning("Game: обнаружен пустой Work.")
+		else:
+			work.validate_sequence()
 	next()
 
 
-## Переходит к следующему элементу текущей смены.
-## Элементом может быть машина или текстовое событие.
+## Берёт следующий элемент и делегирует его обработку профильному компоненту.
 func next() -> void:
 	_set_decision_buttons_enabled(false)
 	current_car = null
-	var is_transitioning: bool = false
-
-	event_panel.hide()
+	var is_transitioning := false
+	if is_instance_valid(event_panel):
+		event_panel.hide()
 
 	while work_index < works.size():
 		var work: Work = works[work_index]
-		anim.play(work.anim_name)
+		if work == null:
+			work_index += 1
+			item_index = 0
+			continue
+		if is_instance_valid(anim) and not work.anim_name.is_empty():
+			anim.play(work.anim_name)
 
-		# Используем while и проверяем актуальный размер sequence на каждой итерации.
-		# Car может вставить событие прямо во время игрового цикла; оно не потеряется.
+		# Размер проверяется при каждом проходе: Car может динамически вставить Event.
 		if item_index >= work.sequence.size():
 			if work_index + 1 < works.size():
 				await _fade_to_black()
 				is_transitioning = true
-			work_index += 1
-			item_index = 0
-			continue
+				work_index += 1
+				item_index = 0
+				continue
+			break
 
 		var item: Variant = work.get_sequence_item(item_index)
 		item_index += 1
-
 		if item is Car:
 			current_car = item as Car
+			if not current_car.validate_configuration():
+				current_car = null
+				continue
 			current_car.start()
 			setup(current_car)
 			if is_transitioning:
 				await _fade_from_black()
 			return
-
 		if item is Event:
-			var event: Event = item as Event
-			Data.money += event.money
-			Data.respect += event.respect
-			anim.play(event.anim_name)
-			_show_event(event)
-			if is_transitioning:
-				await _fade_from_black()
-			return
-
-		push_warning("Неизвестный элемент в рабочей смене: %s" % [item])
+			var event := item as Event
+			if event_service.apply_event(event, Data):
+				if is_instance_valid(anim) and anim.has_animation(event.anim_name):
+					anim.play(event.anim_name)
+				_show_event(event)
+				if is_transitioning:
+					await _fade_from_black()
+				return
+			continue
+		push_warning("Game: пропущен некорректный элемент #%d смены '%s'." % [item_index - 1, work.name])
 
 	if is_transitioning:
 		await _fade_from_black()
@@ -108,10 +119,8 @@ func _fade_from_black() -> void:
 
 
 func _show_event(event: Event) -> void:
-	# События не требуют решения игрока — показываем только текст.
 	waiting_for_event = true
 	event_panel.show()
-
 	$UI/Panel/Label.text = event.event_text
 	$UI/Button.hide()
 	ui.show()
@@ -123,21 +132,21 @@ func setup(car: Car) -> void:
 
 
 func accert() -> void:
-	if not current_car or not accert_button.active:
+	if current_car == null or not accert_button.active:
 		return
-	current_car.to_accept()
-	next()
+	if decision_service.apply_decision(current_car, true, Data):
+		next()
 
 
 func deny() -> void:
-	if not current_car or not deny_button.active:
+	if current_car == null or not deny_button.active:
 		return
-	current_car.deny()
-	next()
+	if decision_service.apply_decision(current_car, false, Data):
+		next()
 
 
 func open_web() -> void:
-	if not current_car:
+	if current_car == null:
 		return
 	ui.show()
 	back_button.show()
@@ -145,14 +154,14 @@ func open_web() -> void:
 
 
 func start_dialog() -> void:
-	if not current_car or not current_car.character:
+	if current_car == null or current_car.character == null:
 		return
-	if current_car.character.start_dialog.is_empty():
-		push_error("У персонажа не задано имя стартового диалога.")
+	if not current_car.character.validate_configuration():
 		return
 	ui.show()
 	back_button.hide()
-	dialog.start_dialog(current_car.get_character())
+	if not dialog.start_dialog(current_car.get_character()):
+		_set_decision_buttons_enabled(true)
 
 
 func _on_dialog_finished() -> void:
@@ -166,7 +175,6 @@ func _set_decision_buttons_enabled(enabled: bool) -> void:
 			accert_button.on()
 		else:
 			accert_button.off()
-
 	if is_instance_valid(deny_button):
 		if enabled:
 			deny_button.on()
@@ -178,7 +186,6 @@ func player_continue() -> void:
 	web.hide()
 	dialog.hide()
 	ui.hide()
-
 	if waiting_for_event:
 		waiting_for_event = false
 		next()

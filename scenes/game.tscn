@@ -42,6 +42,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bm7a2fwvpu1ml" path="res://assets/models/azs/Cube_102.res" id="38_xbak0"]
 [ext_resource type="ArrayMesh" uid="uid://dy5t6o4ol0qy6" path="res://assets/models/azs/Cube_099.res" id="39_3x28f"]
 [ext_resource type="Script" uid="uid://rfq1ncy2ix6k" path="res://core/classes/resources/work.gd" id="work_script"]
+[ext_resource type="Resource" path="res://content/events/donation.tres" id="donation_event"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_top_color = Color(0.4296553, 0.6243575, 0.8699786, 1)
@@ -979,7 +980,7 @@ mesh = SubResource("SphereMesh_hf7dp")
 [node name="Work2" type="Node3D" parent="." unique_id=1595405582]
 script = ExtResource("work_script")
 anim_name = "evening"
-sequence = [SubResource("Resource_mmvbu"), NodePath("Car"), NodePath("Car2")]
+sequence = [SubResource("Resource_mmvbu"), NodePath("Car"), NodePath("Car2"), ExtResource("donation_event")]
 metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 
 [node name="Car" type="Node3D" parent="Work2" unique_id=337705866 node_paths=PackedStringArray("anim")]
