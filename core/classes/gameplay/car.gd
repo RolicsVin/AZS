@@ -17,6 +17,9 @@ func start() -> void:
 	show()
 	if is_instance_valid(anim) and anim.has_animation("start"):
 		anim.play("start")
+		await get_tree().create_timer(3).timeout 
+		$"../../Dialog/CollisionShape3D".disabled = false
+		
 
 func validate_configuration() -> bool:
 	if character == null:
