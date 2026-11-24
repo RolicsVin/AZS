@@ -137,6 +137,7 @@ func next() -> void:
 			anim.play(work.anim_name)
 		
 		var item: Variant = entry.item
+		
 		if item is Car:
 			current_car = item as Car
 			if not current_car.validate_configuration():
