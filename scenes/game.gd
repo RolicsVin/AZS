@@ -19,6 +19,7 @@ var work_index: int = 0
 var item_index: int = 0
 var current_car: Car
 var waiting_for_event: bool = false
+var dialog_session_active: bool = false
 var decision_service: DecisionService
 var event_service: EventService
 
@@ -154,29 +155,36 @@ func open_web() -> void:
 
 
 func start_dialog() -> void:
-	if current_car == null or current_car.character == null:
+	if dialog_session_active or current_car == null or current_car.character == null:
 		return
 	if not current_car.character.validate_configuration():
 		return
+
+	# Блокировка действует на всю цепочку: LinearDialog -> Choise -> LinearDialog.
+	dialog_session_active = true
 	_set_decision_buttons_enabled(false)
 	ui.show()
 	back_button.hide()
+
 	if not dialog.start_dialog(current_car.get_character()):
-		_set_decision_buttons_enabled(true)
+		# Не разблокируем кнопки, если Dialog уже выполняет другую цепочку.
+		if dialog.get("is_active") != true:
+			dialog_session_active = false
+			_set_decision_buttons_enabled(true)
 
 
 func _on_dialog_finished() -> void:
-	# Разблокировка разрешена только после полного завершения цепочки диалога.
-	if _dialog_blocks_decisions():
+	if not dialog_session_active:
 		return
-	_set_decision_buttons_enabled(true)
+
+	# Сигнал приходит только после завершения всей цепочки диалога.
+	dialog_session_active = false
 	player_continue()
+	_set_decision_buttons_enabled(current_car != null and not waiting_for_event)
 
 
 func _dialog_blocks_decisions() -> bool:
-	if not is_instance_valid(dialog):
-		return false
-	return dialog.visible or dialog.get("is_active") == true or dialog.get("is_waiting_for_choice") == true
+	return dialog_session_active or (is_instance_valid(dialog) and (dialog.get("is_active") == true or dialog.get("is_waiting_for_choice") == true))
 
 
 func _set_decision_buttons_enabled(enabled: bool) -> void:
