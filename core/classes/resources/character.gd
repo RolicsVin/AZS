@@ -11,6 +11,7 @@ class_name Character extends Resource
 @export var deny_events: Array[Event] = []
 @export var accert_events: Array[Event] = []
 
+
 func validate_configuration() -> bool:
 	if start_dialog.strip_edges().is_empty():
 		push_warning("Character: не задан стартовый диалог.")

@@ -14,6 +14,7 @@ var event_continue_button: Control
 var end_label: Control
 var end_button: Control
 
+
 func setup(game_node: Node) -> void:
 	game = game_node
 	main_ui = game.get("ui") as Control
@@ -22,18 +23,19 @@ func setup(game_node: Node) -> void:
 	event_panel = game.get("event_panel") as Control
 	dialog = game.get("dialog") as Control
 	back_button = game.get("back_button") as Button
-
+	
 	var accept_button := game.get_node_or_null("Buttons/Accert") as AreaButon
 	var deny_button := game.get_node_or_null("Buttons/Deny") as AreaButon
 	if accept_button != null:
 		decision_buttons.append(accept_button)
 	if deny_button != null:
 		decision_buttons.append(deny_button)
-
+	
 	event_label = game.get_node_or_null("UI/Panel/Label") as Label
 	event_continue_button = game.get_node_or_null("UI/Button") as Control
 	end_label = game.get_node_or_null("UI/Label") as Control
 	end_button = event_continue_button
+
 
 func set_decision_buttons_enabled(enabled: bool) -> void:
 	for button in decision_buttons:
@@ -44,9 +46,11 @@ func set_decision_buttons_enabled(enabled: bool) -> void:
 		else:
 			button.off()
 
+
 func show_car_resume(car: Car) -> void:
 	if is_instance_valid(resume):
 		resume.call("set_text", car.get_resume())
+
 
 func show_event(event: Event) -> void:
 	if is_instance_valid(event_label):
@@ -61,6 +65,7 @@ func show_event(event: Event) -> void:
 	if is_instance_valid(panel):
 		panel.show()
 
+
 func open_social_networks(car: Car) -> void:
 	if not is_instance_valid(main_ui) or not is_instance_valid(web) or not is_instance_valid(back_button):
 		return
@@ -68,11 +73,13 @@ func open_social_networks(car: Car) -> void:
 	back_button.show()
 	web.call("set_text", car.get_social_networks())
 
+
 func prepare_dialog() -> void:
 	if is_instance_valid(main_ui):
 		main_ui.show()
 	if is_instance_valid(back_button):
 		back_button.hide()
+
 
 func hide_for_continue() -> void:
 	if is_instance_valid(web):
@@ -81,6 +88,7 @@ func hide_for_continue() -> void:
 		dialog.hide()
 	if is_instance_valid(main_ui):
 		main_ui.hide()
+
 
 func show_end_screen() -> void:
 	if is_instance_valid(main_ui):

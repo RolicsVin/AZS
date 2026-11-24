@@ -4,31 +4,31 @@
 
 ```mermaid
 flowchart TD
-    G[Game<br/>координатор]
-    SC[SequenceController<br/>рабочие смены и порядок]
-    UI[UIController<br/>интерфейс и отображение]
-    DS[DecisionService<br/>решения игрока]
-    EC[EventController<br/>игровые события]
-    ES[EventService<br/>проверка и применение эффекта]
-    GS[GameState / Data<br/>деньги и репутация]
-    W[Work]
-    C[Car]
-    E[Event]
-    D[Character · Dialog · Choise]
+	G[Game<br/>координатор]
+	SC[SequenceController<br/>рабочие смены и порядок]
+	UI[UIController<br/>интерфейс и отображение]
+	DS[DecisionService<br/>решения игрока]
+	EC[EventController<br/>игровые события]
+	ES[EventService<br/>проверка и применение эффекта]
+	GS[GameState / Data<br/>деньги и репутация]
+	W[Work]
+	C[Car]
+	E[Event]
+	D[Character · Dialog · Choise]
 
-    G --> SC
-    G --> UI
-    G --> DS
-    G --> EC
-    SC --> W
-    W --> C
-    W --> E
-    C --> D
-    DS --> C
-    DS --> GS
-    EC --> ES
-    ES --> E
-    ES --> GS
+	G --> SC
+	G --> UI
+	G --> DS
+	G --> EC
+	SC --> W
+	W --> C
+	W --> E
+	C --> D
+	DS --> C
+	DS --> GS
+	EC --> ES
+	ES --> E
+	ES --> GS
 ```
 
 ## Ответственность компонентов

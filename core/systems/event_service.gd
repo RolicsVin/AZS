@@ -1,6 +1,7 @@
 ## Проверяет событие и применяет его эффект, не управляя интерфейсом.
 class_name EventService extends RefCounted
 
+
 func apply_event(event: Event, game_state: Node) -> bool:
 	if event == null or not is_instance_valid(event):
 		push_warning("EventService: событие отсутствует.")

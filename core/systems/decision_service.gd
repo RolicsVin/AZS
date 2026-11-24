@@ -1,6 +1,7 @@
 ## Применяет решения игрока, не связывая Car с глобальным состоянием.
 class_name DecisionService extends RefCounted
 
+
 func apply_decision(car: Car, accepted: bool, game_state: Node) -> bool:
 	if car == null or not is_instance_valid(car):
 		push_warning("DecisionService: машина отсутствует.")

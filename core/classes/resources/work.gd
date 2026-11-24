@@ -4,6 +4,7 @@ class_name Work extends Node3D
 @export var anim_name: String
 @export var sequence: Array[Variant] = []
 
+
 func _ready() -> void:
 	# Work подписывается на запросы событий, не заставляя Car знать о родителе.
 	for child in get_children():
@@ -25,6 +26,7 @@ func get_sequence_item(index: int) -> Variant:
 		return get_node_or_null(item)
 	return item
 
+
 ## Проверяет последовательность до запуска смены.
 func validate_sequence() -> bool:
 	var valid := true
@@ -43,6 +45,7 @@ func validate_sequence() -> bool:
 			push_warning("Work '%s': неподдерживаемый элемент #%d." % [name, index])
 			valid = false
 	return valid
+
 
 ## Вставляет событие после двух или трёх следующих машин.
 func add_event_after(node: Node, event: Event) -> bool:

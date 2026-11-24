@@ -6,6 +6,7 @@ class_name Event extends Resource
 @export var money: int = 0
 @export var respect: int = 0
 
+
 func validate_configuration() -> bool:
 	if event_text.strip_edges().is_empty():
 		push_warning("Event: текст события пуст.")
