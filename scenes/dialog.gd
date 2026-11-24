@@ -129,6 +129,8 @@ func _play_dialog(dialog_name: String) -> bool:
 
 func _show_choices(choice_name: String) -> void:
 	_clear_choices()
+	# Переход к Choise — часть того же диалога, а не его завершение.
+	is_active = true
 	is_waiting_for_choice = true
 
 	if choice_name.is_empty():
@@ -161,10 +163,11 @@ func _show_choices(choice_name: String) -> void:
 
 
 func _on_choice_confirmed(choice_index: int) -> void:
-	if not is_active or choice_index < 0 or choice_index >= _choice_dialog_names.size():
+	if not is_active or not is_waiting_for_choice or choice_index < 0 or choice_index >= _choice_dialog_names.size():
 		return
 
 	var next_dialog_name := _choice_dialog_names[choice_index]
+	is_waiting_for_choice = false
 	choice_visual.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
