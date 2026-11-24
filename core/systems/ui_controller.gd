@@ -2,6 +2,7 @@
 ## Не знает о структуре сцены: все узлы приходят через UIBindings. 
 class_name UIController extends RefCounted
 
+## Набор ссылок на UI-узлы, переданный Game через UIBindings.
 var _view: UIBindings ## Узлы интерфейса, переданные из Game
 
 
