@@ -158,6 +158,7 @@ func start_dialog() -> void:
 		return
 	if not current_car.character.validate_configuration():
 		return
+	_set_decision_buttons_enabled(false)
 	ui.show()
 	back_button.hide()
 	if not dialog.start_dialog(current_car.get_character()):
