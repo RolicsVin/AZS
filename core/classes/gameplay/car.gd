@@ -8,6 +8,7 @@ signal event_requested(event: Event)
 @export var given_money_max: int = 15
 @export var given_respect_min: int = 10
 @export var given_respect_max: int = 15
+@export_range(0, 1000000, 1) var fuel_cost: int = 10 ## Количество бензина, расходуемое при согласии
 @export var character: Character
 @export var anim: AnimationPlayer
 
@@ -25,6 +26,9 @@ func validate_configuration() -> bool:
 		return false
 	if given_respect_min < 0 or given_respect_max < given_respect_min:
 		push_warning("Car '%s': некорректный диапазон репутации." % name)
+		return false
+	if fuel_cost < 0:
+		push_warning("Car '%s': расход топлива не может быть отрицательным." % name)
 		return false
 	return true
 
