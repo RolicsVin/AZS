@@ -41,8 +41,8 @@
 [ext_resource type="ArrayMesh" uid="uid://cypgn0atb8dui" path="res://assets/models/azs/Cube_100.res" id="37_0rmfi"]
 [ext_resource type="ArrayMesh" uid="uid://bm7a2fwvpu1ml" path="res://assets/models/azs/Cube_102.res" id="38_xbak0"]
 [ext_resource type="ArrayMesh" uid="uid://dy5t6o4ol0qy6" path="res://assets/models/azs/Cube_099.res" id="39_3x28f"]
-[ext_resource type="Script" uid="uid://rfq1ncy2ix6k" path="res://core/classes/resources/work.gd" id="work_script"]
 [ext_resource type="Resource" path="res://content/events/donation.tres" id="donation_event"]
+[ext_resource type="Script" uid="uid://rfq1ncy2ix6k" path="res://core/classes/resources/work.gd" id="work_script"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_top_color = Color(0.4296553, 0.6243575, 0.8699786, 1)
