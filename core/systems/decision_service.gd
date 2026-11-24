@@ -13,7 +13,7 @@ func apply_decision(car: Car, accepted: bool, game_state: GameState) -> bool:
 	var effect: DecisionEffect = car.calculate_decision(accepted) ## Рассчитанные изменения
 	if effect == null:
 		return false
-	var fuel_delta: int = -car.fuel_cost if accepted else 0 ## Расход топлива при выдаче бензина
+	var fuel_delta: int = -mini(car.fuel_cost, game_state.fuel) if accepted else 0 ## Расход топлива при выдаче бензина
 	if not game_state.apply_delta(effect.money, effect.respect, fuel_delta):
 		return false
 	car.play_decision(accepted)
