@@ -15,6 +15,7 @@ var character: Character
 var current_dialog: LinearDialog
 var replica_index: int = -1
 var is_active: bool = false
+var is_waiting_for_choice: bool = false
 
 var _dialog_by_name: Dictionary[String, LinearDialog] = {}
 var _choice_by_name: Dictionary[String, Choise] = {}
@@ -115,6 +116,7 @@ func _play_dialog(dialog_name: String) -> bool:
 
 	_clear_choices()
 	choice_visual.hide()
+	is_waiting_for_choice = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	replica_index = -1
@@ -127,6 +129,7 @@ func _play_dialog(dialog_name: String) -> bool:
 
 func _show_choices(choice_name: String) -> void:
 	_clear_choices()
+	is_waiting_for_choice = true
 
 	if choice_name.is_empty():
 		_finish_dialog()
@@ -150,6 +153,10 @@ func _show_choices(choice_name: String) -> void:
 		_choice_dialog_names.append(choice.choises[answer_text])
 
 	choice_visual.display_choices(answers)
+	if not choice_visual.visible:
+		push_error("Dialog: не удалось отобразить варианты выбора '%s'." % choice_name)
+		_finish_dialog()
+		return
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
@@ -171,6 +178,7 @@ func _finish_dialog() -> void:
 
 	current_dialog = null
 	replica_index = -1
+	is_waiting_for_choice = false
 	_choice_dialog_names.clear()
 	_clear_choices()
 	$Label.text = ""
