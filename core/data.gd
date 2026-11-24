@@ -2,7 +2,7 @@
 class_name GameState extends Node
 
 signal state_changed(money_delta: int, respect_delta: int)
-signal fuel_changed(fuel_delta: int)
+signal fuel_changed(new_fuel: int)
 
 const MAX_DELTA: int = 1000000 ## Максимальное по модулю изменение за одну операцию
 const MAX_VALUE: int = 100000000 ## Предел значений денег, репутации и топлива
@@ -32,7 +32,7 @@ func apply_delta(money_delta: int, respect_delta: int, fuel_delta: int = 0) -> b
 	fuel = next_fuel
 	state_changed.emit(money_delta, respect_delta)
 	if fuel_delta != 0:
-		fuel_changed.emit(fuel_delta)
+		fuel_changed.emit(fuel)
 	return true
 
 
