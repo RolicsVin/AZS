@@ -165,6 +165,10 @@ func start_dialog() -> void:
 
 
 func _on_dialog_finished() -> void:
+	# Сигнал завершения не должен разблокировать кнопки, пока цепочка диалога
+	# находится на экране выбора или ожидает следующую линейную реплику.
+	if dialog != null and (dialog.get("is_active") == true or dialog.get("is_waiting_for_choice") == true):
+		return
 	_set_decision_buttons_enabled(true)
 	player_continue()
 
