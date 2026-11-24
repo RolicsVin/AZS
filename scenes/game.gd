@@ -1,6 +1,10 @@
 ## Главный координатор: связывает системы и реагирует на игровые события.
 extends Node3D
 
+const ENDING_FUEL_SCENE: String = "res://scenes/endings/ending_fuel.tscn"
+const ENDING_MONEY_SCENE: String = "res://scenes/endings/ending_money.tscn"
+const ENDING_REPUTATION_SCENE: String = "res://scenes/endings/ending_reputation.tscn"
+
 ## Рабочие смены в порядке их прохождения.
 @export var works: Array[Work]
 ## Путь к JSON-файлу внешнего игрового контента.
@@ -178,7 +182,12 @@ func next() -> void:
 		
 		if item is Event:
 			var event := item as Event
+			var previous_fuel: int = game_state.fuel
+			var previous_money: int = game_state.money
+			var previous_respect: int = game_state.respect
 			if event_controller.process_event(event, game_state):
+				if _check_game_over(previous_fuel, previous_money, previous_respect):
+					return
 				if is_instance_valid(anim) and anim.has_animation(event.anim_name):
 					anim.play(event.anim_name)
 				waiting_for_event = true
@@ -226,7 +235,12 @@ func accert() -> void:
 	$Dialog/CollisionShape3D.disabled = true
 	if _dialog_blocks_decisions() or current_car == null or not accert_button.active:
 		return
+	var previous_fuel: int = game_state.fuel
+	var previous_money: int = game_state.money
+	var previous_respect: int = game_state.respect
 	if decision_service.apply_decision(current_car, true, game_state):
+		if _check_game_over(previous_fuel, previous_money, previous_respect):
+			return
 		next()
 
 
@@ -235,7 +249,12 @@ func deny() -> void:
 	$Dialog/CollisionShape3D.disabled = true
 	if _dialog_blocks_decisions() or current_car == null or not deny_button.active:
 		return
+	var previous_fuel: int = game_state.fuel
+	var previous_money: int = game_state.money
+	var previous_respect: int = game_state.respect
 	if decision_service.apply_decision(current_car, false, game_state):
+		if _check_game_over(previous_fuel, previous_money, previous_respect):
+			return
 		next()
 
 
@@ -295,3 +314,23 @@ func player_continue() -> void:
 func end_game() -> void:
 	current_car = null
 	ui_controller.show_end_screen()
+
+
+## Проверяет, какой ресурс закончился после последней операции, и открывает соответствующую концовку.
+func _check_game_over(previous_fuel: int, previous_money: int, previous_respect: int) -> bool:
+	if previous_fuel > 0 and game_state.fuel <= 0:
+		return _open_ending(ENDING_FUEL_SCENE)
+	if previous_money > 0 and game_state.money <= 0:
+		return _open_ending(ENDING_MONEY_SCENE)
+	if previous_respect > 0 and game_state.respect <= 0:
+		return _open_ending(ENDING_REPUTATION_SCENE)
+	return false
+
+
+## Загружает отдельную сцену концовки; false возвращается при ошибке загрузки.
+func _open_ending(scene_path: String) -> bool:
+	var error: Error = get_tree().change_scene_to_file(scene_path)
+	if error != OK:
+		push_error("Game: не удалось открыть концовку '%s'. Код ошибки: %d" % [scene_path, error])
+		return false
+	return true
