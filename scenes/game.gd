@@ -58,6 +58,8 @@ var game_state: GameState ## Единственное хранилище ден�
 var content_report: ContentBundle ## Итог загрузки внешнего контента
 ## Ожидает ли завершения перехода снятие слоя затемнения.
 var transition_pending: bool = false
+## Защищает переход к концовке от повторного запуска.
+var ending_started: bool = false
 
 
 ## Инициализирует игровые системы, связывает интерфейс и диалоги, проверяет смены и запускает последовательность.
@@ -318,6 +320,8 @@ func end_game() -> void:
 
 ## Проверяет, какой ресурс закончился после последней операции, и открывает соответствующую концовку.
 func _check_game_over(previous_fuel: int, previous_money: int, previous_respect: int) -> bool:
+	if ending_started:
+		return true
 	if previous_fuel > 0 and game_state.fuel <= 0:
 		return _open_ending(ENDING_FUEL_SCENE)
 	if previous_money > 0 and game_state.money <= 0:
@@ -329,8 +333,13 @@ func _check_game_over(previous_fuel: int, previous_money: int, previous_respect:
 
 ## Загружает отдельную сцену концовки; false возвращается при ошибке загрузки.
 func _open_ending(scene_path: String) -> bool:
+	if ending_started:
+		return true
+
+	ending_started = true
 	var error: Error = get_tree().change_scene_to_file(scene_path)
 	if error != OK:
+		ending_started = false
 		push_error("Game: не удалось открыть концовку '%s'. Код ошибки: %d" % [scene_path, error])
 		return false
 	return true
