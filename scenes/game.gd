@@ -56,6 +56,7 @@ var content_report: ContentBundle ## Итог загрузки внешнего 
 var transition_pending: bool = false
 
 
+## Инициализирует игровые системы, связывает интерфейс и диалоги, проверяет смены и запускает последовательность.
 func _ready() -> void:
 	# Отключил ContentLoader
 	# Раскоментировать, чтобы вернуть загрузку
@@ -193,6 +194,7 @@ func next() -> void:
 		)
 
 
+## Плавно закрывает сцену чёрным слоем перед переходом между сменами.
 func _fade_to_black() -> void:
 	if not is_instance_valid(transition_overlay):
 		return
@@ -203,6 +205,7 @@ func _fade_to_black() -> void:
 	await tween.finished
 
 
+## Плавно убирает чёрный слой после завершения перехода.
 func _fade_from_black() -> void:
 	if not is_instance_valid(transition_overlay):
 		return
@@ -213,10 +216,12 @@ func _fade_from_black() -> void:
 	transition_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
+## Передаёт данные посетителя в UIController для отображения резюме.
 func setup(car: Car) -> void:
 	ui_controller.show_car_resume(car)
 
 
+## Обрабатывает согласие игрока, если диалог не блокирует решение и активна соответствующая кнопка.
 func accert() -> void:
 	if _dialog_blocks_decisions() or current_car == null or not accert_button.active:
 		return
@@ -224,6 +229,7 @@ func accert() -> void:
 		next()
 
 
+## Обрабатывает отказ игрока, если диалог не блокирует решение и активна соответствующая кнопка.
 func deny() -> void:
 	if _dialog_blocks_decisions() or current_car == null or not deny_button.active:
 		return
@@ -231,12 +237,14 @@ func deny() -> void:
 		next()
 
 
+## Открывает публикации текущего посетителя через UIController.
 func open_web() -> void:
 	if current_car == null:
 		return
 	ui_controller.open_social_networks(current_car)
 
 
+## Запускает диалог текущего посетителя и блокирует решения на всю цепочку реплик и выборов.
 func start_dialog() -> void:
 	if dialog_session_active or current_car == null or current_car.character == null:
 		return
@@ -255,6 +263,7 @@ func start_dialog() -> void:
 			ui_controller.set_decision_buttons_enabled(true)
 
 
+## Обрабатывает завершение диалоговой цепочки и возвращает доступность решений.
 func _on_dialog_finished() -> void:
 	if not dialog_session_active:
 		return
@@ -264,6 +273,7 @@ func _on_dialog_finished() -> void:
 	ui_controller.set_decision_buttons_enabled(current_car != null and not waiting_for_event)
 
 
+## Проверяет признаки активного диалога, при которых решения должны быть заблокированы.
 func _dialog_blocks_decisions() -> bool:
 	return dialog_session_active or (
 		is_instance_valid(dialog) and
@@ -271,6 +281,7 @@ func _dialog_blocks_decisions() -> bool:
 	)
 
 
+## Закрывает экран события или дополнительную панель и продолжает последовательность.
 func player_continue() -> void:
 	ui_controller.hide_for_continue()
 	if waiting_for_event:
@@ -278,6 +289,7 @@ func player_continue() -> void:
 		next()
 
 
+## Завершает игровой цикл и передаёт UIController управление финальным экраном.
 func end_game() -> void:
 	current_car = null
 	ui_controller.show_end_screen()
