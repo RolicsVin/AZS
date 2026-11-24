@@ -132,14 +132,14 @@ func setup(car: Car) -> void:
 
 
 func accert() -> void:
-	if current_car == null or not accert_button.active:
+	if _dialog_blocks_decisions() or current_car == null or not accert_button.active:
 		return
 	if decision_service.apply_decision(current_car, true, Data):
 		next()
 
 
 func deny() -> void:
-	if current_car == null or not deny_button.active:
+	if _dialog_blocks_decisions() or current_car == null or not deny_button.active:
 		return
 	if decision_service.apply_decision(current_car, false, Data):
 		next()
@@ -166,12 +166,17 @@ func start_dialog() -> void:
 
 
 func _on_dialog_finished() -> void:
-	# Сигнал завершения не должен разблокировать кнопки, пока цепочка диалога
-	# находится на экране выбора или ожидает следующую линейную реплику.
-	if dialog != null and (dialog.get("is_active") == true or dialog.get("is_waiting_for_choice") == true):
+	# Разблокировка разрешена только после полного завершения цепочки диалога.
+	if _dialog_blocks_decisions():
 		return
 	_set_decision_buttons_enabled(true)
 	player_continue()
+
+
+func _dialog_blocks_decisions() -> bool:
+	if not is_instance_valid(dialog):
+		return false
+	return dialog.visible or dialog.get("is_active") == true or dialog.get("is_waiting_for_choice") == true
 
 
 func _set_decision_buttons_enabled(enabled: bool) -> void:
