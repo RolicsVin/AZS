@@ -36,6 +36,7 @@ var _choice_dialog_names: Array[String] = []
 var _finished_characters: Dictionary = {}
 
 
+## Проверяет обязательные UI-ссылки, настраивает визуализацию вариантов и подключает сигнал подтверждения.
 func _ready() -> void:
 	if container == null:
 		push_error("Dialog: не назначен контейнер вариантов ответа.")
