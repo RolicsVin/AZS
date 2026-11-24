@@ -7,9 +7,9 @@ signal fuel_changed(new_fuel: int)
 const MAX_DELTA: int = 1000000 ## Максимальное по модулю изменение за одну операцию
 const MAX_VALUE: int = 100000000 ## Предел значений денег, репутации и топлива
 
-var money: int = 0 ## Текущее количество денег
-var respect: int = 0 ## Текущая репутация
-var fuel: int = 100 ## Текущий запас бензина
+var money: int = 10 ## Текущее количество денег
+var respect: int = 10 ## Текущая репутация
+var fuel: int = 45 ## Текущий запас бензина
 
 ## Применяет изменения атомарно: либо все показатели обновляются, либо ни один.
 func apply_delta(money_delta: int, respect_delta: int, fuel_delta: int = 0) -> bool:
