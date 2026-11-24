@@ -27,6 +27,7 @@ var ui_controller: UIController
 var decision_service: DecisionService
 var event_service: EventService
 var event_controller: EventController
+var transition_pending: bool = false
 
 
 func _ready() -> void:
@@ -73,12 +74,16 @@ func next() -> void:
 		item_index = sequence_controller.item_index
 
 		if entry.finished:
+			if transition_pending:
+				await _fade_from_black()
+				transition_pending = false
 			end_game()
 			return
 
 		var work: Work = entry.work
 		if entry.changed_work:
 			await _fade_to_black()
+			transition_pending = true
 
 		if entry.entered_work and is_instance_valid(anim) and not work.anim_name.is_empty():
 			anim.play(work.anim_name)
@@ -91,8 +96,9 @@ func next() -> void:
 				continue
 			current_car.start()
 			setup(current_car)
-			if entry.changed_work:
+			if transition_pending:
 				await _fade_from_black()
+				transition_pending = false
 			return
 
 		if item is Event:
@@ -101,8 +107,9 @@ func next() -> void:
 				if is_instance_valid(anim) and anim.has_animation(event.anim_name):
 					anim.play(event.anim_name)
 				waiting_for_event = true
-				if entry.changed_work:
+				if transition_pending:
 					await _fade_from_black()
+					transition_pending = false
 				return
 			continue
 
