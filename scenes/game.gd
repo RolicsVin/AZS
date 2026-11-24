@@ -33,17 +33,17 @@ var transition_pending: bool = false
 
 func _ready() -> void:
 	# Контент загружается до запуска систем: вставки должны попасть в смены заранее
-	content_report = ContentLoader.new().load_file(content_path)
-	_log_content_report(content_report)
+	#content_report = ContentLoader.new().load_file(content_path)
+	#_log_content_report(content_report)
 
 	game_state = Data
-	game_state.reset(content_report.start_money, content_report.start_respect)
-	if content_report.transition_duration >= 0.0:
-		transition_duration = content_report.transition_duration
+	#game_state.reset(content_report.start_money, content_report.start_respect)
+	#if content_report.transition_duration >= 0.0:
+		#transition_duration = content_report.transition_duration
 
-	content_applier = ContentApplier.new()
-	for message in content_applier.apply(content_report, works):
-		push_warning('Контент: %s' % message)
+	#content_applier = ContentApplier.new()
+	#for message in content_applier.apply(content_report, works):
+		#push_warning('Контент: %s' % message)
 
 	sequence_controller = SequenceController.new()
 	sequence_controller.setup(works)
