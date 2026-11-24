@@ -41,6 +41,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cypgn0atb8dui" path="res://assets/models/azs/Cube_100.res" id="37_0rmfi"]
 [ext_resource type="ArrayMesh" uid="uid://bm7a2fwvpu1ml" path="res://assets/models/azs/Cube_102.res" id="38_xbak0"]
 [ext_resource type="ArrayMesh" uid="uid://dy5t6o4ol0qy6" path="res://assets/models/azs/Cube_099.res" id="39_3x28f"]
+[ext_resource type="Resource" path="res://assets/events/donation.tres" id="donation_event"]
 [ext_resource type="Script" uid="uid://rfq1ncy2ix6k" path="res://core/classes/resources/work.gd" id="work_script"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
@@ -471,7 +472,7 @@ resource_name = "UI"
 script/source = "extends Control
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$\"../ProgressBar\".value = Data.money
 	$\"../ProgressBar2\".value = Data.respect
 "
@@ -979,7 +980,7 @@ mesh = SubResource("SphereMesh_hf7dp")
 [node name="Work2" type="Node3D" parent="." unique_id=1595405582]
 script = ExtResource("work_script")
 anim_name = "evening"
-sequence = [SubResource("Resource_mmvbu"), NodePath("Car"), NodePath("Car2")]
+sequence = [SubResource("Resource_mmvbu"), NodePath("Car"), NodePath("Car2"), ExtResource("donation_event")]
 metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 
 [node name="Car" type="Node3D" parent="Work2" unique_id=337705866 node_paths=PackedStringArray("anim")]
@@ -1779,9 +1780,5 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
 [connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]
 [connection signal="pressed" from="Dialog" to="." method="start_dialog"]
-[connection signal="dialog_finished" from="UI/Dialog" to="Buttons/Accert" method="on"]
-[connection signal="dialog_finished" from="UI/Dialog" to="Buttons/Deny" method="on"]
-[connection signal="dialog_started" from="UI/Dialog" to="Buttons/Accert" method="off"]
-[connection signal="dialog_started" from="UI/Dialog" to="Buttons/Deny" method="off"]
 [connection signal="pressed" from="UI/Panel/Button" to="." method="player_continue"]
 [connection signal="pressed" from="UI/Button" to="." method="player_continue"]
