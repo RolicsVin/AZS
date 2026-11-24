@@ -32,11 +32,16 @@ var transition_pending: bool = false
 
 
 func _ready() -> void:
+	# Отключил ContentLoader
+	# Раскоментировать, чтобы вернуть загрузку
 	# Контент загружается до запуска систем: вставки должны попасть в смены заранее
 	#content_report = ContentLoader.new().load_file(content_path)
 	#_log_content_report(content_report)
 
 	game_state = Data
+	
+	# Отключил ContentLoader
+	# Раскоментировать, чтобы вернуть загрузку
 	#game_state.reset(content_report.start_money, content_report.start_respect)
 	#if content_report.transition_duration >= 0.0:
 		#transition_duration = content_report.transition_duration
