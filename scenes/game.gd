@@ -1,33 +1,58 @@
 ## Главный координатор: связывает системы и реагирует на игровые события.
 extends Node3D
 
+## Рабочие смены в порядке их прохождения.
 @export var works: Array[Work]
+## Путь к JSON-файлу внешнего игрового контента.
 @export_file('*.json') var content_path: String = 'res://content/content.json' ## Файл контента
+## Основная панель игрового интерфейса.
 @export var ui: Control
+## Узел отображения резюме текущего посетителя.
 @export var resume: Node3D
+## Панель публикаций посетителя в социальных сетях.
 @export var web: Panel
+## Панель отображения текста игрового события.
 @export var event_panel: Control
+## Узел диалоговой системы.
 @export var dialog: Control
+## Кнопка возврата из дополнительной панели.
 @export var back_button: Button
+## Проигрыватель анимаций смен и событий.
 @export var anim: AnimationPlayer
+## Полноэкранный слой затемнения при переходе между сменами.
 @export var transition_overlay: ColorRect
+## Продолжительность затемнения и появления сцены в секундах.
 @export_range(0.0, 3.0, 0.1) var transition_duration: float = 0.5
 
+## Кнопка согласия на запрос посетителя.
 @onready var accert_button: AreaButon = $Buttons/Accert
+## Кнопка отказа на запрос посетителя.
 @onready var deny_button: AreaButon = $Buttons/Deny
 
+## Посетитель, с которым игрок взаимодействует в данный момент.
 var current_car: Car
+## Ожидает ли игра продолжения после показа события.
 var waiting_for_event: bool = false
+## Флаг всей цепочки диалога; блокирует решения до dialog_finished.
 var dialog_session_active: bool = false
 
+## Контроллер порядка смен и элементов.
 var sequence_controller: SequenceController
+## Контроллер отображения интерфейса.
 var ui_controller: UIController
+## Сервис обработки решений игрока.
 var decision_service: DecisionService
+## Сервис проверки и применения эффекта события.
 var event_service: EventService
+## Контроллер обработки и отображения событий.
 var event_controller: EventController
+## Компонент применения внешнего контента к сменам.
 var content_applier: ContentApplier
+## Единое хранилище денег и репутации; Autoload Data.
 var game_state: GameState ## Единственное хранилище денег и репутации (автозагрузка Data)
+## Результат загрузки и проверки внешнего контента.
 var content_report: ContentBundle ## Итог загрузки внешнего контента
+## Ожидает ли завершения перехода снятие слоя затемнения.
 var transition_pending: bool = false
 
 
