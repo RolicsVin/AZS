@@ -19,7 +19,7 @@ func start() -> void:
 	show()
 	if is_instance_valid(anim) and anim.has_animation("start"):
 		anim.play("start")
-		await get_tree().create_timer(3).timeout 
+		await get_tree().create_timer(3).timeout
 		$"../../Dialog/CollisionShape3D".disabled = false
 
 
@@ -51,7 +51,7 @@ func calculate_decision(accepted: bool) -> DecisionEffect:
 	return DecisionEffect.new(0, -randi_range(given_respect_min, given_respect_max))
 
 
-## Вызывается после успешного применения эффекта системой решений.
+## Вызывается после успешного применения эффекта системы решений.
 func play_decision(accepted: bool) -> void:
 	if is_instance_valid(anim):
 		var animation_name := "accept" if accepted else "deny"
@@ -80,3 +80,8 @@ func get_social_networks() -> Array[String]:
 
 func get_character() -> Character:
 	return character
+
+
+## Возвращает стартовый диалог персонажа с учётом истории решений.
+func get_start_dialog(game_state: GameState) -> String:
+	return character.get_start_dialog(game_state) if character != null else ""
