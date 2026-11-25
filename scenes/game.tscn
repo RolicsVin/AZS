@@ -108,6 +108,10 @@ choises = Dictionary[String, String]({
 "Агрессивно: Мне плевать, кто у тебя там голодный. Бензин не раздают бесплатно.": "agro",
 "С сочувствием: Тяжело тебе, наверное... Давно ничего не ловил?": "good"
 })
+respect_rewards = Dictionary[String, int]({
+"agro": -5,
+"good": 5
+})
 metadata/_custom_type_script = "uid://xy3l37ktt48x"
 
 [sub_resource type="Resource" id="Resource_7ixpq"]
