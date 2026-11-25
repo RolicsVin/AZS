@@ -1533,7 +1533,6 @@ metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/SocialNetworks" unique_id=889832585]
 transform = Transform3D(1.0000019, 2.9802322e-08, 7.8231096e-08, -1.1920929e-07, 1.0000005, -7.4505806e-07, 8.568168e-08, 3.7252903e-09, 1.0000114, -1.7881393e-07, 0.022949457, 0)
 shape = SubResource("BoxShape3D_w1h7m")
-disabled = true
 
 [node name="Resume" type="Node3D" parent="." unique_id=777495571]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.453, -2.205)
