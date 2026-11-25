@@ -6,12 +6,12 @@ signal event_requested(event: Event)
 @export var character: Character
 @export var anim: AnimationPlayer
 
-@export_group("Монеты и репутация")
+@export_group("Money and respect")
 @export var given_money: int = 10
 @export var given_respect_min: int = 10
 @export var given_respect_max: int = 15
 
-@export_group("Топливо")
+@export_group("Fuel")
 @export_range(0, 1000000, 1) var fuel_cost: int = 10 ## Количество бензина, расходуемое при согласии
 
 

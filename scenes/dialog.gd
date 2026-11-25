@@ -3,6 +3,8 @@ extends Control
 
 signal dialog_started
 signal dialog_finished
+## Запрашивает применение изменения репутации; само состояние изменяет Game.
+signal respect_reward_requested(delta: int)
 
 ## Контейнер, в котором ChoiceVisual размещает варианты ответа.
 @export var container: CircularContainer
@@ -32,6 +34,8 @@ var _dialog_by_name: Dictionary[String, LinearDialog] = {}
 var _choice_by_name: Dictionary[String, Choise] = {}
 ## Имена диалогов, соответствующие вариантам текущего выбора.
 var _choice_dialog_names: Array[String] = []
+## Изменения репутации, соответствующие вариантам текущего выбора.
+var _choice_respect_rewards: Array[int] = []
 ## Идентификаторы персонажей, чьи диалоги уже завершены этим экземпляром Dialog.
 var _finished_characters: Dictionary = {}
 
@@ -165,12 +169,13 @@ func _show_choices(choice_name: String) -> void:
 		_finish_dialog()
 		return
 
-	_choice_dialog_names.clear()
 	var answers: Array[String] = []
-
 	for answer_text in choice.choises:
+		var target_dialog: String = choice.choises[answer_text]
 		answers.append(str(answer_text))
-		_choice_dialog_names.append(choice.choises[answer_text])
+		_choice_dialog_names.append(target_dialog)
+		# Награда индексируется именем диалога назначения (например, "agro"), а не текстом ответа.
+		_choice_respect_rewards.append(choice.respect_rewards.get(target_dialog, 0))
 
 	choice_visual.display_choices(answers)
 	if not choice_visual.visible:
@@ -186,9 +191,13 @@ func _on_choice_confirmed(choice_index: int) -> void:
 		return
 
 	var next_dialog_name := _choice_dialog_names[choice_index]
+	var respect_delta: int = _choice_respect_rewards[choice_index]
 	is_waiting_for_choice = false
 	choice_visual.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	if respect_delta != 0:
+		respect_reward_requested.emit(respect_delta)
 
 	if not _play_dialog(next_dialog_name):
 		_finish_dialog()
@@ -203,6 +212,7 @@ func _finish_dialog() -> void:
 	replica_index = -1
 	is_waiting_for_choice = false
 	_choice_dialog_names.clear()
+	_choice_respect_rewards.clear()
 	_clear_choices()
 	$Label.text = ""
 
@@ -242,8 +252,9 @@ func _build_resource_indexes() -> void:
 		_choice_by_name[choice.name] = choice
 
 
-## Очищает список переходов и визуальные варианты ответа.
+## Очищает список переходов, наград и визуальные варианты ответа.
 func _clear_choices() -> void:
 	_choice_dialog_names.clear()
+	_choice_respect_rewards.clear()
 	if choice_visual != null:
 		choice_visual.clear()

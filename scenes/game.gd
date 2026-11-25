@@ -103,6 +103,10 @@ func _ready() -> void:
 		var callback := Callable(self, "_on_dialog_finished")
 		if not dialog.is_connected("dialog_finished", callback):
 			dialog.connect("dialog_finished", callback)
+	if dialog != null and dialog.has_signal("respect_reward_requested"):
+		var reward_callback := Callable(self, "_on_dialog_respect_reward_requested")
+		if not dialog.is_connected("respect_reward_requested", reward_callback):
+			dialog.connect("respect_reward_requested", reward_callback)
 	
 	for work in works:
 		if work == null:
@@ -284,6 +288,14 @@ func start_dialog() -> void:
 		if dialog.get("is_active") != true:
 			dialog_session_active = false
 			ui_controller.set_decision_buttons_enabled(true)
+
+
+## Применяет награду выбранного варианта через единое хранилище игрового состояния.
+func _on_dialog_respect_reward_requested(respect_delta: int) -> void:
+	if game_state == null:
+		push_warning("Game: не задано хранилище игрового состояния.")
+		return
+	game_state.apply_delta(0, respect_delta)
 
 
 ## Обрабатывает завершение диалоговой цепочки и возвращает доступность решений.

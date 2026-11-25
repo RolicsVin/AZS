@@ -30,6 +30,8 @@ func validate_configuration() -> bool:
 		if choice == null or choice.name.strip_edges().is_empty() or choice_names.has(choice.name):
 			push_warning("Character: пустой ресурс или повторяющееся имя выбора.")
 			return false
+		if not choice.validate_configuration():
+			return false
 		choice_names[choice.name] = true
 
 	for dialog in dialogs:
