@@ -5,6 +5,8 @@ signal dialog_started
 signal dialog_finished
 ## Запрашивает применение изменения репутации; само состояние изменяет Game.
 signal respect_reward_requested(delta: int)
+## Запрашивает запись выбранного игроком флага; состояние изменяет Game.
+signal world_flag_requested(flag_name: String, value: bool)
 
 ## Контейнер, в котором ChoiceVisual размещает варианты ответа.
 @export var container: CircularContainer
@@ -36,6 +38,8 @@ var _choice_by_name: Dictionary[String, Choise] = {}
 var _choice_dialog_names: Array[String] = []
 ## Изменения репутации, соответствующие вариантам текущего выбора.
 var _choice_respect_rewards: Array[int] = []
+## Имена флагов, соответствующие вариантам текущего выбора.
+var _choice_world_flags: Array[String] = []
 ## Идентификаторы персонажей, чьи диалоги уже завершены этим экземпляром Dialog.
 var _finished_characters: Dictionary = {}
 
@@ -58,8 +62,8 @@ func _ready() -> void:
 		choice_visual.choice_confirmed.connect(_on_choice_confirmed)
 
 
-## Начинает диалог персонажа, если он корректен, ещё не завершён и другая цепочка не активна.
-func start_dialog(target_character: Character) -> bool:
+## Начинает диалог персонажа с указанного стартового фрагмента.
+func start_dialog(target_character: Character, start_dialog_name: String = "") -> bool:
 	if is_active or target_character == null:
 		return false
 	var character_id: int = target_character.get_instance_id()
@@ -71,9 +75,9 @@ func start_dialog(target_character: Character) -> bool:
 	character = target_character
 	_build_resource_indexes()
 
-	# Активируем диалог до _play_dialog(), поскольку он сразу выводит первую реплику.
+	var initial_dialog := start_dialog_name if not start_dialog_name.is_empty() else character.start_dialog
 	is_active = true
-	if character.start_dialog.is_empty() or not _play_dialog(character.start_dialog):
+	if not _play_dialog(initial_dialog):
 		is_active = false
 		character = null
 		return false
@@ -174,8 +178,8 @@ func _show_choices(choice_name: String) -> void:
 		var target_dialog: String = choice.choises[answer_text]
 		answers.append(str(answer_text))
 		_choice_dialog_names.append(target_dialog)
-		# Награда индексируется именем диалога назначения (например, "agro"), а не текстом ответа.
 		_choice_respect_rewards.append(choice.respect_rewards.get(target_dialog, 0))
+		_choice_world_flags.append(choice.decision_flags.get(target_dialog, ""))
 
 	choice_visual.display_choices(answers)
 	if not choice_visual.visible:
@@ -192,10 +196,13 @@ func _on_choice_confirmed(choice_index: int) -> void:
 
 	var next_dialog_name := _choice_dialog_names[choice_index]
 	var respect_delta: int = _choice_respect_rewards[choice_index]
+	var flag_name: String = _choice_world_flags[choice_index]
 	is_waiting_for_choice = false
 	choice_visual.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+	if not flag_name.is_empty():
+		world_flag_requested.emit(flag_name, true)
 	if respect_delta != 0:
 		respect_reward_requested.emit(respect_delta)
 
@@ -213,6 +220,7 @@ func _finish_dialog() -> void:
 	is_waiting_for_choice = false
 	_choice_dialog_names.clear()
 	_choice_respect_rewards.clear()
+	_choice_world_flags.clear()
 	_clear_choices()
 	$Label.text = ""
 
@@ -256,5 +264,6 @@ func _build_resource_indexes() -> void:
 func _clear_choices() -> void:
 	_choice_dialog_names.clear()
 	_choice_respect_rewards.clear()
+	_choice_world_flags.clear()
 	if choice_visual != null:
 		choice_visual.clear()

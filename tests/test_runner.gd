@@ -13,6 +13,7 @@ var _failed: int = 0 ## Число проваленных проверок
 
 func _init() -> void:
 	_test_game_state()
+	_test_world_flags_and_start_dialog_rules()
 	_test_loader_valid_file()
 	_test_loader_broken_text()
 	_test_loader_invalid_file()
@@ -199,3 +200,36 @@ func _test_extension_through_data() -> void:
 	_check(added != null and added.id == 'regular_tips', 'новое событие стоит на заданной позиции')
 	for work in [work_a, work_b, work_c, work_d]:
 		work.free()
+
+
+## История решений: флаги мира и выбор альтернативного стартового диалога
+func _test_world_flags_and_start_dialog_rules() -> void:
+	print('История решений и стартовые диалоги')
+	var state: GameState = GameState.new()
+	_check(not state.get_flag("fisherman_refused"), 'неустановленный флаг считается false')
+	_check(state.set_flag("fisherman_refused", true), 'флаг решения записывается')
+	_check(state.get_flag("fisherman_refused"), 'записанный флаг читается')
+	_check(state.set_flag("fisherman_refused", false), 'флаг можно сбросить')
+	_check(not state.get_flag("fisherman_refused"), 'сброшенный флаг возвращает false')
+
+	var character: Character = Character.new()
+	character.start_dialog = "default"
+	var default_dialog: LinearDialog = LinearDialog.new()
+	default_dialog.name = "default"
+	var alternate_dialog: LinearDialog = LinearDialog.new()
+	alternate_dialog.name = "react_to_refusal"
+	character.dialogs = [default_dialog, alternate_dialog]
+
+	var rule: StartDialogRule = StartDialogRule.new()
+	rule.flag_name = "fisherman_refused"
+	rule.expected_value = true
+	rule.dialog_name = "react_to_refusal"
+	character.start_dialog_rules.append(rule)
+
+	_check(character.validate_configuration(), 'правило альтернативного диалога проходит валидацию')
+	_check(character.get_start_dialog(state) == "default", 'без флага используется стандартный диалог')
+	state.set_flag("fisherman_refused", true)
+	_check(character.get_start_dialog(state) == "react_to_refusal", 'при совпадении флага выбирается альтернативный диалог')
+	state.reset()
+	_check(character.get_start_dialog(state) == "default", 'reset очищает историю мира')
+	state.free()

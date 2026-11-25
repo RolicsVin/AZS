@@ -3,6 +3,7 @@ class_name GameState extends Node
 
 signal state_changed(money_delta: int, respect_delta: int)
 signal fuel_changed(new_fuel: int)
+signal world_flag_changed(flag_name: String, value: bool)
 
 const MAX_DELTA: int = 1000000 ## Максимальное по модулю изменение за одну операцию
 const MAX_VALUE: int = 100000000 ## Предел значений денег, репутации и топлива
@@ -10,13 +11,16 @@ const MAX_VALUE: int = 100000000 ## Предел значений денег, р
 var money: int = 10 ## Текущее количество денег
 var respect: int = 10 ## Текущая репутация
 var fuel: int = 45 ## Текущий запас бензина
+## Флаги решений и других значимых состояний игрового мира.
+var world_flags: Dictionary[String, bool] = {}
+
 
 ## Применяет изменения атомарно: либо все показатели обновляются, либо ни один.
 func apply_delta(money_delta: int, respect_delta: int, fuel_delta: int = 0) -> bool:
 	if absi(money_delta) > MAX_DELTA or absi(respect_delta) > MAX_DELTA or absi(fuel_delta) > MAX_DELTA:
 		push_warning('GameState: операция отклонена — изменение превышает допустимый предел.')
 		return false
-	
+
 	var next_money: int = money + money_delta ## Деньги после операции
 	var next_respect: int = respect + respect_delta ## Репутация после операции
 	var next_fuel: int = fuel + fuel_delta ## Запас топлива после операции
@@ -36,10 +40,30 @@ func apply_delta(money_delta: int, respect_delta: int, fuel_delta: int = 0) -> b
 	return true
 
 
-## Задаёт начальные значения; значения вне допустимых пределов ограничиваются.
+## Возвращает значение флага. Для ещё не установленного флага возвращает false.
+func get_flag(flag_name: String) -> bool:
+	if flag_name.strip_edges().is_empty():
+		return false
+	return world_flags.get(flag_name, false)
+
+
+## Устанавливает флаг мира и отправляет сигнал только при фактическом изменении.
+func set_flag(flag_name: String, value: bool) -> bool:
+	if flag_name.strip_edges().is_empty():
+		push_warning("GameState: имя флага мира не может быть пустым.")
+		return false
+	if world_flags.has(flag_name) and world_flags[flag_name] == value:
+		return true
+	world_flags[flag_name] = value
+	world_flag_changed.emit(flag_name, value)
+	return true
+
+
+## Задаёт начальные значения и очищает историю мира для новой игры.
 func reset(start_money: int = 0, start_respect: int = 0, start_fuel: int = 100) -> void:
 	money = clampi(start_money, 0, MAX_VALUE)
 	respect = clampi(start_respect, -MAX_VALUE, MAX_VALUE)
 	fuel = clampi(start_fuel, 0, MAX_VALUE)
+	world_flags.clear()
 	state_changed.emit(money, respect)
 	fuel_changed.emit(fuel)
