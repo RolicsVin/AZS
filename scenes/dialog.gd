@@ -171,9 +171,11 @@ func _show_choices(choice_name: String) -> void:
 
 	var answers: Array[String] = []
 	for answer_text in choice.choises:
+		var target_dialog: String = choice.choises[answer_text]
 		answers.append(str(answer_text))
-		_choice_dialog_names.append(choice.choises[answer_text])
-		_choice_respect_rewards.append(choice.respect_rewards.get(answer_text, 0))
+		_choice_dialog_names.append(target_dialog)
+		# Награда индексируется именем диалога назначения (например, "agro"), а не текстом ответа.
+		_choice_respect_rewards.append(choice.respect_rewards.get(target_dialog, 0))
 
 	choice_visual.display_choices(answers)
 	if not choice_visual.visible:
