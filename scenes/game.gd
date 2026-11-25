@@ -52,10 +52,10 @@ var event_service: EventService
 var event_controller: EventController
 ## Компонент применения внешнего контента к сменам.
 var content_applier: ContentApplier
-## Единое хранилище денег и репутации; Autoload Data.
-var game_state: GameState ## Единственное хранилище денег и репутации (автозагрузка Data)
+## Единое хранилище игрового состояния; Autoload Data.
+var game_state: GameState
 ## Результат загрузки и проверки внешнего контента.
-var content_report: ContentBundle ## Итог загрузки внешнего контента
+var content_report: ContentBundle
 ## Ожидает ли завершения перехода снятие слоя затемнения.
 var transition_pending: bool = false
 ## Защищает переход к концовке от повторного запуска.
@@ -71,7 +71,7 @@ func _ready() -> void:
 	#_log_content_report(content_report)
 
 	game_state = Data
-	
+
 	# Отключил ContentLoader
 	# Раскоментировать, чтобы вернуть загрузку
 	#game_state.reset(content_report.start_money, content_report.start_respect)
@@ -84,21 +84,21 @@ func _ready() -> void:
 
 	sequence_controller = SequenceController.new()
 	sequence_controller.setup(works)
-	
+
 	ui_controller = UIController.new()
 	ui_controller.setup(_build_ui_bindings())
-	
+
 	decision_service = DecisionService.new()
 	event_service = EventService.new()
 	event_controller = EventController.new()
 	event_controller.setup(event_service, ui_controller)
-	
+
 	ui_controller.set_decision_buttons_enabled(false)
-	
+
 	if is_instance_valid(transition_overlay):
 		transition_overlay.modulate.a = 0.0
 		transition_overlay.hide()
-	
+
 	if dialog != null and dialog.has_signal("dialog_finished"):
 		var callback := Callable(self, "_on_dialog_finished")
 		if not dialog.is_connected("dialog_finished", callback):
@@ -107,19 +107,23 @@ func _ready() -> void:
 		var reward_callback := Callable(self, "_on_dialog_respect_reward_requested")
 		if not dialog.is_connected("respect_reward_requested", reward_callback):
 			dialog.connect("respect_reward_requested", reward_callback)
-	
+	if dialog != null and dialog.has_signal("world_flag_requested"):
+		var flag_callback := Callable(self, "_on_dialog_world_flag_requested")
+		if not dialog.is_connected("world_flag_requested", flag_callback):
+			dialog.connect("world_flag_requested", flag_callback)
+
 	for work in works:
 		if work == null:
 			push_warning("Game: обнаружен пустой Work.")
 		else:
 			work.validate_sequence()
-	
+
 	next()
 
 
 ## Собирает ссылки на узлы интерфейса: единственное место, знающее пути в сцене
 func _build_ui_bindings() -> UIBindings:
-	var bindings: UIBindings = UIBindings.new() ## Привязки для UIController
+	var bindings: UIBindings = UIBindings.new()
 	bindings.main_ui = ui
 	bindings.resume = resume
 	bindings.web = web
@@ -156,24 +160,24 @@ func next() -> void:
 	while true:
 		var entry: SequenceEntry = sequence_controller.take_next()
 		event_panel.hide()
-		
+
 		if entry.finished:
 			if transition_pending:
 				await _fade_from_black()
 				transition_pending = false
 			end_game()
 			return
-		
+
 		var work: Work = entry.work
 		if entry.changed_work:
 			await _fade_to_black()
 			transition_pending = true
-		
+
 		if entry.entered_work and is_instance_valid(anim) and not work.anim_name.is_empty():
 			anim.play(work.anim_name)
-		
+
 		var item: Variant = entry.item
-		
+
 		if item is Car:
 			current_car = item as Car
 			if not current_car.validate_configuration():
@@ -185,7 +189,7 @@ func next() -> void:
 				await _fade_from_black()
 				transition_pending = false
 			return
-		
+
 		if item is Event:
 			var event := item as Event
 			var previous_fuel: int = game_state.fuel
@@ -202,7 +206,7 @@ func next() -> void:
 					transition_pending = false
 				return
 			continue
-		
+
 		push_warning(
 			"Game: пропущен некорректный элемент #%d смены '%s'." %
 			[int(entry.item_index), work.name]
@@ -271,7 +275,7 @@ func open_web() -> void:
 	ui_controller.open_social_networks(current_car)
 
 
-## Запускает диалог текущего посетителя и блокирует решения на всю цепочку реплик и выборов.
+## Запускает диалог текущего посетителя с учётом истории решений.
 func start_dialog() -> void:
 	if dialog_session_active or current_car == null or current_car.character == null:
 		return
@@ -283,7 +287,8 @@ func start_dialog() -> void:
 	ui_controller.set_decision_buttons_enabled(false)
 	ui_controller.prepare_dialog()
 
-	if not dialog.start_dialog(current_car.get_character()):
+	var initial_dialog: String = current_car.get_start_dialog(game_state)
+	if not dialog.start_dialog(current_car.get_character(), initial_dialog):
 		# Не разблокируем кнопки, если Dialog уже выполняет другую цепочку.
 		if dialog.get("is_active") != true:
 			dialog_session_active = false
@@ -296,6 +301,14 @@ func _on_dialog_respect_reward_requested(respect_delta: int) -> void:
 		push_warning("Game: не задано хранилище игрового состояния.")
 		return
 	game_state.apply_delta(0, respect_delta)
+
+
+## Сохраняет выбранный игроком флаг в глобальном состоянии мира.
+func _on_dialog_world_flag_requested(flag_name: String, value: bool) -> void:
+	if game_state == null:
+		push_warning("Game: не задано хранилище игрового состояния.")
+		return
+	game_state.set_flag(flag_name, value)
 
 
 ## Обрабатывает завершение диалоговой цепочки и возвращает доступность решений.
