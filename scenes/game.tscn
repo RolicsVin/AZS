@@ -812,7 +812,7 @@ resume = NodePath("Resume")
 web = NodePath("UI/Control/Panel")
 event_panel = NodePath("UI/Panel")
 dialog = NodePath("UI/Dialog")
-back_button = NodePath("UI/Control/Panel/ScrollContainer/VBoxContainer/Button")
+back_button = NodePath("UI/Control/Panel/BackButton")
 anim = NodePath("AnimationPlayer")
 transition_overlay = NodePath("TransitionLayer/TransitionOverlay")
 
@@ -1658,6 +1658,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -90.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1666,9 +1667,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="UI/Control/Panel/ScrollContainer/VBoxContainer" unique_id=1068076007]
-layout_mode = 2
-size_flags_vertical = 3
+[node name="BackButton" type="Button" parent="UI/Control/Panel" unique_id=1068076007]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -75.0
+offset_right = 72.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("47_8qswn")
 theme_override_styles/normal = SubResource("StyleBoxFlat_l30wr")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_ttpub")
@@ -1951,7 +1962,7 @@ mouse_filter = 2
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
 [connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]
 [connection signal="pressed" from="Dialog" to="." method="start_dialog"]
-[connection signal="pressed" from="UI/Control/Panel/ScrollContainer/VBoxContainer/Button" to="." method="player_continue"]
+[connection signal="pressed" from="UI/Control/Panel/BackButton" to="." method="player_continue"]
 [connection signal="pressed" from="UI/Panel/Button" to="." method="player_continue"]
 [connection signal="pressed" from="Pause/Control/PanelContainer/Control/VBoxContainer/resume" to="Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause/Control/PanelContainer/Control/VBoxContainer/quit" to="Pause" method="_on_quit_pressed"]
