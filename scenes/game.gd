@@ -28,6 +28,14 @@ const ENDING_REPUTATION_SCENE: String = "res://scenes/endings/ending_reputation.
 ## Продолжительность затемнения и появления сцены в секундах.
 @export_range(0.0, 3.0, 0.1) var transition_duration: float = 0.5
 
+## Пороговые значения и отдельные сцены трёх финалов.
+@export_group("Концовки")
+@export_range(1, 100000000, 1) var money_ending_threshold: int = 10000
+@export_range(1, 100000000, 1) var respect_ending_threshold: int = 100
+@export var rich_ending_scene: PackedScene = preload("res://scenes/endings/ending_rich.tscn")
+@export var respect_ending_scene: PackedScene = preload("res://scenes/endings/ending_respect.tscn")
+@export var failure_ending_scene: PackedScene = preload("res://scenes/endings/ending_failure.tscn")
+
 ## Кнопка согласия на запрос посетителя.
 @onready var accert_button: AreaButon = $Buttons/Accert
 ## Кнопка отказа на запрос посетителя.
@@ -42,6 +50,8 @@ var dialog_session_active: bool = false
 
 ## Контроллер порядка смен и элементов.
 var sequence_controller: SequenceController
+## Сервис определения финала по итоговым показателям.
+var endings: Endings
 ## Контроллер отображения интерфейса.
 var ui_controller: UIController
 ## Сервис обработки решений игрока.
@@ -71,6 +81,7 @@ func _ready() -> void:
 	#_log_content_report(content_report)
 
 	game_state = Data
+	endings = Endings.new()
 
 	# Отключил ContentLoader
 	# Раскоментировать, чтобы вернуть загрузку
@@ -340,7 +351,26 @@ func player_continue() -> void:
 ## Завершает игровой цикл и передаёт UIController управление финальным экраном.
 func end_game() -> void:
 	current_car = null
-	ui_controller.show_end_screen()
+	if ending_started:
+		return
+
+	var ending_id: String = endings.determine(
+		game_state.money,
+		game_state.respect,
+		money_ending_threshold,
+		respect_ending_threshold
+	)
+	var ending_scene: PackedScene
+	match ending_id:
+		Endings.RICH:
+			ending_scene = rich_ending_scene
+		Endings.RESPECT:
+			ending_scene = respect_ending_scene
+		_:
+			ending_scene = failure_ending_scene
+
+	if not _open_ending_packed(ending_scene, ending_id):
+		ui_controller.show_end_screen()
 
 
 ## Проверяет, какой ресурс закончился после последней операции, и открывает соответствующую концовку.
@@ -366,5 +396,22 @@ func _open_ending(scene_path: String) -> bool:
 	if error != OK:
 		ending_started = false
 		push_error("Game: не удалось открыть концовку '%s'. Код ошибки: %d" % [scene_path, error])
+		return false
+	return true
+
+
+## Загружает отдельную PackedScene выбранного финала.
+func _open_ending_packed(ending_scene: PackedScene, ending_id: String) -> bool:
+	if ending_started:
+		return true
+	if ending_scene == null:
+		push_error("Game: для концовки '%s' не назначена сцена." % ending_id)
+		return false
+
+	ending_started = true
+	var error: Error = get_tree().change_scene_to_packed(ending_scene)
+	if error != OK:
+		ending_started = false
+		push_error("Game: не удалось открыть концовку '%s'. Код ошибки: %d" % [ending_id, error])
 		return false
 	return true
