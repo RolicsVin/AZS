@@ -476,6 +476,33 @@ emission_energy_multiplier = 0.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_oq1mk"]
 size = Vector3(1.4253235, 0.6828613, 0.20532227)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l30wr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttpub"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tnp4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8rbl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owdg2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnexy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="LabelSettings" id="LabelSettings_pr1ej"]
 font = ExtResource("47_8qswn")
 outline_size = 3
@@ -773,33 +800,6 @@ corner_radius_bottom_left = 20
 font = ExtResource("47_8qswn")
 font_size = 23
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l30wr"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttpub"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tnp4"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8rbl"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owdg2"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnexy"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i4re6"]
 shader = ExtResource("48_rm0al")
 shader_parameter/lod = 2.0
@@ -812,7 +812,7 @@ resume = NodePath("Resume")
 web = NodePath("UI/Control/Panel")
 event_panel = NodePath("UI/Panel")
 dialog = NodePath("UI/Dialog")
-back_button = NodePath("UI/Button")
+back_button = NodePath("UI/Control/Panel/ScrollContainer/VBoxContainer/Button")
 anim = NodePath("AnimationPlayer")
 transition_overlay = NodePath("TransitionLayer/TransitionOverlay")
 
@@ -1644,7 +1644,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="UI/Control" unique_id=335995691 node_paths=PackedStringArray("container")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1666,6 +1665,18 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="UI/Control/Panel/ScrollContainer/VBoxContainer" unique_id=1068076007]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("47_8qswn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l30wr")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_ttpub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7tnp4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f8rbl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_owdg2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hnexy")
+text = "Назад"
 
 [node name="Dialog" type="Control" parent="UI" unique_id=624629380 node_paths=PackedStringArray("container", "choice_visual", "camera")]
 visible = false
@@ -1792,14 +1803,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("47_8qswn")
 text = "Продолжить"
-
-[node name="Button" type="Button" parent="UI" unique_id=1068076007]
-visible = false
-layout_mode = 1
-offset_right = 210.0
-offset_bottom = 86.0
-theme_override_fonts/font = ExtResource("47_8qswn")
-text = "Назад"
 
 [node name="UI2" type="Control" parent="." unique_id=264580989]
 layout_mode = 3
@@ -1948,7 +1951,7 @@ mouse_filter = 2
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
 [connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]
 [connection signal="pressed" from="Dialog" to="." method="start_dialog"]
+[connection signal="pressed" from="UI/Control/Panel/ScrollContainer/VBoxContainer/Button" to="." method="player_continue"]
 [connection signal="pressed" from="UI/Panel/Button" to="." method="player_continue"]
-[connection signal="pressed" from="UI/Button" to="." method="player_continue"]
 [connection signal="pressed" from="Pause/Control/PanelContainer/Control/VBoxContainer/resume" to="Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause/Control/PanelContainer/Control/VBoxContainer/quit" to="Pause" method="_on_quit_pressed"]
