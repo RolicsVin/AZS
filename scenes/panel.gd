@@ -20,7 +20,7 @@ func set_text(texts: Array[String]) -> void: ## Установить текст 
 
 		# Небольшие внутренние отступы и скруглённый синий фон карточки.
 		var panel_style := StyleBoxFlat.new()
-		panel_style.bg_color = Color("#DCEBFA")
+		panel_style.bg_color = Color("#005BFF")
 		panel_style.corner_radius_top_left = 5
 		panel_style.corner_radius_top_right = 5
 		panel_style.corner_radius_bottom_left = 5
@@ -34,6 +34,8 @@ func set_text(texts: Array[String]) -> void: ## Установить текст 
 		var label := Label.new()
 		label.text = post
 		label.add_theme_font_override("font", SOCIAL_FONT)
+		label.add_theme_color_override("font_outline_color", Color.BLACK)
+		label.add_theme_constant_override("outline_size", 1)
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		label.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
