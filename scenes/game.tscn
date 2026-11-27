@@ -477,10 +477,12 @@ emission_energy_multiplier = 0.0
 size = Vector3(1.4253235, 0.6828613, 0.20532227)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pr1ej"]
+font = ExtResource("47_8qswn")
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0sl42"]
+font = ExtResource("47_8qswn")
 font_size = 20
 
 [sub_resource type="Animation" id="Animation_pr1ej"]
@@ -761,7 +763,7 @@ border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
+border_color = Color(0.54509807, 0.43529412, 0.36862746, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -1531,6 +1533,7 @@ mesh = ExtResource("39_3x28f")
 transform = Transform3D(-0.72537446, 0, -0.6883545, 0, 1, 0, 0.6883545, 0, -0.72537446, 3.5564072, 2.9454715, -21.78095)
 pixel_size = 0.0013
 text = "Почитать об этом человеке"
+font = ExtResource("47_8qswn")
 font_size = 40
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AZSModel" unique_id=1907153043]
@@ -1592,6 +1595,7 @@ script = ExtResource("3_iywne")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.045685828)
 pixel_size = 0.0013
 text = "Текст"
+font = ExtResource("47_8qswn")
 font_size = 40
 outline_size = 5
 
@@ -1739,6 +1743,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("47_8qswn")
 text = "Игра окончена!
 Посетителей больше нет!
 (Пока)"
@@ -1768,6 +1773,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("47_8qswn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1784,6 +1790,7 @@ offset_right = 72.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("47_8qswn")
 text = "Продолжить"
 
 [node name="Button" type="Button" parent="UI" unique_id=1068076007]
@@ -1791,6 +1798,7 @@ visible = false
 layout_mode = 1
 offset_right = 210.0
 offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("47_8qswn")
 text = "Назад"
 
 [node name="UI2" type="Control" parent="." unique_id=264580989]
@@ -1808,11 +1816,6 @@ layout_mode = 1
 offset_right = 10.0
 offset_bottom = 92.0
 mouse_filter = 2
-
-[node name="respect" type="Label" parent="UI2/VBoxContainer" unique_id=1754398849]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_0sl42")
-vertical_alignment = 1
 
 [node name="money" type="Label" parent="UI2/VBoxContainer" unique_id=862029156]
 layout_mode = 2
@@ -1843,6 +1846,7 @@ color = Color(0, 0, 0, 1)
 [node name="Pause" type="CanvasLayer" parent="." unique_id=1683573541]
 process_mode = 3
 layer = 15
+visible = false
 script = ExtResource("46_fedci")
 
 [node name="Control" type="Control" parent="Pause" unique_id=1652302047]
