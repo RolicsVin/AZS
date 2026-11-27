@@ -1,6 +1,8 @@
 ## Скрипт для отображения текста социальных сетей
 extends Panel
 
+const SOCIAL_FONT: Font = preload("res://assets/fonts/FredokaOneCyrillic-Regular.ttf")
+
 @export var container: VBoxContainer
 
 
@@ -18,6 +20,7 @@ func set_text(texts: Array[String]) -> void: ## Установить текст 
 
 		var label := Label.new()
 		label.text = post
+		label.add_theme_font_override("font", SOCIAL_FONT)
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		label.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
