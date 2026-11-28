@@ -88,6 +88,9 @@
 [ext_resource type="ArrayMesh" uid="uid://be7h83pgqggx4" path="res://assets/models/cars/lada-vesta/Cylinder_005.res" id="44_veaf0"]
 [ext_resource type="ArrayMesh" uid="uid://cwudlxvyguyhf" path="res://assets/models/cars/lada-vesta/Cylinder_004.res" id="45_flw08"]
 [ext_resource type="ArrayMesh" uid="uid://cbraosqvtspat" path="res://assets/models/characters/valera_zkh/base_mesh_001.res" id="45_i1hsc"]
+[ext_resource type="Script" uid="uid://b651cb7y0xadp" path="res://scenes/pause.gd" id="46_fedci"]
+[ext_resource type="FontFile" uid="uid://cmpsdumo2fb2i" path="res://assets/fonts/FredokaOneCyrillic-Regular.ttf" id="47_8qswn"]
+[ext_resource type="Shader" uid="uid://d0ivgi6ble16m" path="res://assets/shaders/menu.gdshader" id="48_rm0al"]
 [ext_resource type="ArrayMesh" uid="uid://b2yn7xxow8q63" path="res://assets/models/cars/bmw-m5-f90/Cube_002.res" id="51_ounyb"]
 [ext_resource type="ArrayMesh" uid="uid://bir3noxynq5yy" path="res://assets/models/cars/bmw-m5-f90/Circle_003.res" id="52_iekjf"]
 [ext_resource type="ArrayMesh" uid="uid://ckj0nrmgkd6bp" path="res://assets/models/cars/bmw-m5-f90/Circle_001.res" id="53_okmmv"]
@@ -929,11 +932,40 @@ emission_energy_multiplier = 0.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_oq1mk"]
 size = Vector3(1.4253235, 0.6828613, 0.20532227)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l30wr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttpub"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tnp4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8rbl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owdg2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnexy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="LabelSettings" id="LabelSettings_pr1ej"]
+font = ExtResource("47_8qswn")
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0sl42"]
+font = ExtResource("47_8qswn")
 font_size = 20
 
 [sub_resource type="Animation" id="Animation_pr1ej"]
@@ -1388,6 +1420,26 @@ _data = {
 &"not_look": SubResource("Animation_eky20")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
+bg_color = Color(0.10224319, 0.10224321, 0.10224321, 0.44313726)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.54509807, 0.43529412, 0.36862746, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_mcrhi"]
+font = ExtResource("47_8qswn")
+font_size = 23
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4re6"]
+shader = ExtResource("48_rm0al")
+shader_parameter/lod = 2.0
+
 [node name="Game" type="Node3D" unique_id=383884584 node_paths=PackedStringArray("works", "ui", "resume", "web", "event_panel", "dialog", "back_button", "anim", "transition_overlay")]
 script = ExtResource("1_uwrxv")
 works = [NodePath("Work"), NodePath("Work2")]
@@ -1396,7 +1448,7 @@ resume = NodePath("Resume")
 web = NodePath("UI/Control/Panel")
 event_panel = NodePath("UI/Panel")
 dialog = NodePath("UI/Dialog")
-back_button = NodePath("UI/Button")
+back_button = NodePath("UI/Control/Panel/BackButton")
 anim = NodePath("AnimationPlayer")
 transition_overlay = NodePath("TransitionLayer/TransitionOverlay")
 
@@ -3407,6 +3459,7 @@ mesh = ExtResource("39_3x28f")
 transform = Transform3D(-0.72537446, 0, -0.6883545, 0, 1, 0, 0.6883545, 0, -0.72537446, 3.5564072, 2.9454715, -21.78095)
 pixel_size = 0.0013
 text = "Почитать об этом человеке"
+font = ExtResource("47_8qswn")
 font_size = 40
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AZSModel" unique_id=1907153043]
@@ -3467,7 +3520,7 @@ script = ExtResource("3_iywne")
 [node name="Label3D" type="Label3D" parent="Resume" unique_id=246045015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.045685828)
 pixel_size = 0.0013
-text = "Текст"
+font = ExtResource("47_8qswn")
 font_size = 40
 outline_size = 5
 
@@ -3524,20 +3577,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_lbhrr")
-container = NodePath("ScrollContainer/VBoxContainer")
+container = NodePath("ScrollContainer/MarginContainer/VBoxContainer")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/Control/Panel" unique_id=556362297]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -90.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/Panel/ScrollContainer" unique_id=776418579]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/Panel/ScrollContainer" unique_id=480554551]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/Panel/ScrollContainer/MarginContainer" unique_id=776418579]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="UI/Control/Panel" unique_id=1068076007]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -75.0
+offset_right = 72.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("47_8qswn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l30wr")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_ttpub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7tnp4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f8rbl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_owdg2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hnexy")
+text = "Назад"
 
 [node name="Dialog" type="Control" parent="UI" unique_id=624629380 node_paths=PackedStringArray("container", "choice_visual", "camera")]
 visible = false
@@ -3615,6 +3700,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("47_8qswn")
 text = "Игра окончена!
 Посетителей больше нет!
 (Пока)"
@@ -3644,6 +3730,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("47_8qswn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -3660,14 +3747,8 @@ offset_right = 72.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("47_8qswn")
 text = "Продолжить"
-
-[node name="Button" type="Button" parent="UI" unique_id=1068076007]
-visible = false
-layout_mode = 1
-offset_right = 210.0
-offset_bottom = 86.0
-text = "Назад"
 
 [node name="UI2" type="Control" parent="." unique_id=264580989]
 layout_mode = 3
@@ -3684,11 +3765,6 @@ layout_mode = 1
 offset_right = 10.0
 offset_bottom = 92.0
 mouse_filter = 2
-
-[node name="respect" type="Label" parent="UI2/VBoxContainer" unique_id=1754398849]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_0sl42")
-vertical_alignment = 1
 
 [node name="money" type="Label" parent="UI2/VBoxContainer" unique_id=862029156]
 layout_mode = 2
@@ -3720,9 +3796,112 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Pause" type="CanvasLayer" parent="." unique_id=1683573541]
+process_mode = 3
+layer = 15
+visible = false
+script = ExtResource("46_fedci")
+
+[node name="Control" type="Control" parent="Pause" unique_id=1652302047]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Pause/Control" unique_id=340061739]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3637153
+anchor_top = 0.17438272
+anchor_right = 0.6362847
+anchor_bottom = 0.8256173
+pivot_offset = Vector2(157, 211)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="Pause/Control/PanelContainer" unique_id=1128496061]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/Control/PanelContainer/Control" unique_id=2056314287]
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10526316
+anchor_top = 0.08252427
+anchor_right = 0.88486844
+anchor_bottom = 0.9247573
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(157, 211)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Pause/Control/PanelContainer/Control/VBoxContainer" unique_id=148451042]
+layout_mode = 2
+size_flags_vertical = 6
+text = "ПАУЗА"
+label_settings = SubResource("LabelSettings_mcrhi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="resume" type="Button" parent="Pause/Control/PanelContainer/Control/VBoxContainer" unique_id=1967831059]
+z_index = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("47_8qswn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l30wr")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_ttpub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7tnp4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f8rbl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_owdg2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hnexy")
+text = "продолжить"
+
+[node name="settings" type="Button" parent="Pause/Control/PanelContainer/Control/VBoxContainer" unique_id=1006483761]
+z_index = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("47_8qswn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l30wr")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_ttpub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7tnp4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f8rbl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_owdg2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hnexy")
+text = "настройки"
+
+[node name="quit" type="Button" parent="Pause/Control/PanelContainer/Control/VBoxContainer" unique_id=1085913185]
+z_index = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("47_8qswn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l30wr")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_ttpub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7tnp4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f8rbl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_owdg2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hnexy")
+text = "выйти"
+
+[node name="ColorRect" type="ColorRect" parent="Pause" unique_id=1866740310]
+material = SubResource("ShaderMaterial_i4re6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [connection signal="pressed" from="Buttons/Accert" to="." method="accert"]
 [connection signal="pressed" from="Buttons/Deny" to="." method="deny"]
 [connection signal="pressed" from="Buttons/SocialNetworks" to="." method="open_web"]
 [connection signal="pressed" from="Dialog" to="." method="start_dialog"]
+[connection signal="pressed" from="UI/Control/Panel/BackButton" to="." method="player_continue"]
 [connection signal="pressed" from="UI/Panel/Button" to="." method="player_continue"]
-[connection signal="pressed" from="UI/Button" to="." method="player_continue"]
+[connection signal="pressed" from="Pause/Control/PanelContainer/Control/VBoxContainer/resume" to="Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause/Control/PanelContainer/Control/VBoxContainer/quit" to="Pause" method="_on_quit_pressed"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dx8dioudnth1k" path="res://core/classes/ui/buttons.gd" id="1_vjb58"]
 [ext_resource type="Script" uid="uid://bqqq216ui6c7n" path="res://scenes/play.gd" id="2_mhnvy"]
+[ext_resource type="FontFile" uid="uid://cmpsdumo2fb2i" path="res://assets/fonts/FredokaOneCyrillic-Regular.ttf" id="3_b5gwo"]
 [ext_resource type="ArrayMesh" uid="uid://cwcoljx4n4vkv" path="res://assets/models/azs/Cube_010.res" id="4_hwfsl"]
 [ext_resource type="Shader" uid="uid://d0ivgi6ble16m" path="res://assets/shaders/menu.gdshader" id="4_mhnvy"]
 [ext_resource type="ArrayMesh" uid="uid://bebv76ch3dwjl" path="res://assets/models/azs/Cube_090.res" id="5_a04p5"]
@@ -118,6 +119,7 @@ metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 [node name="Label3D" type="Label3D" parent="Buttons/Play" unique_id=1297497775]
 transform = Transform3D(-9.8550075e-09, 0.22545618, 4.3711385e-08, -0.2254563, -9.855002e-09, -4.3711385e-08, -9.8550075e-09, -9.855002e-09, 0.99999994, 0, 0.0007840395, 0.07741201)
 text = "играть"
+font = ExtResource("3_b5gwo")
 font_size = 82
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/Play" unique_id=480638377]
@@ -151,6 +153,7 @@ metadata/_custom_type_script = "uid://bgmdgnweoav8o"
 [node name="Label3D2" type="Label3D" parent="Buttons/Play3" unique_id=1862326084]
 transform = Transform3D(-9.8550075e-09, 0.22545618, 4.3711385e-08, -0.2254563, -9.855002e-09, -4.3711385e-08, -9.8550075e-09, -9.855002e-09, 0.99999994, 0, -0.0022403002, 0.062541276)
 text = "выйти"
+font = ExtResource("3_b5gwo")
 font_size = 82
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/Play3" unique_id=1626233945]
@@ -368,6 +371,7 @@ mesh = ExtResource("30_ygt0d")
 transform = Transform3D(-0.72537446, 0, -0.6883545, 0, 1, 0, 0.6883545, 0, -0.72537446, 3.5564072, 2.9454715, -21.78095)
 pixel_size = 0.0013
 text = "Настройки"
+font = ExtResource("3_b5gwo")
 font_size = 40
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=727671551 node_paths=PackedStringArray("rotation_point", "position_point")]

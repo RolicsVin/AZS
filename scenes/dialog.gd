@@ -1,6 +1,8 @@
 ## Управляет состоянием диалога и переходами между его узлами.
 extends Control
 
+const DIALOG_FONT: Font = preload("res://assets/fonts/FredokaOneCyrillic-Regular.ttf")
+
 signal dialog_started
 signal dialog_finished
 ## Запрашивает применение изменения репутации; само состояние изменяет Game.
@@ -54,6 +56,7 @@ func _ready() -> void:
 		push_error("Dialog: не назначен ChoiceVisual.")
 		return
 
+	$Label.add_theme_font_override("font", DIALOG_FONT)
 	choice_visual.setup(container, choice_font_size)
 	choice_visual.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
