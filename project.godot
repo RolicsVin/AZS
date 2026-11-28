@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Core="*uid://kv2lr600deg1"
 Data="*uid://c5ag5tornxr05"
+Core="*uid://kv2lr600deg1"
 
 [display]
 
@@ -34,6 +34,10 @@ folder_colors={
 "res://assets/ui/": "green",
 "res://core/": "red"
 }
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 

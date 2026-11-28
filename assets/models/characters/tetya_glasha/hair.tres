@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ccjv60wnp3slr"]
+
+[resource]
+resource_name = "hair"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.613923, 0.41919845, 0.3362161, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0

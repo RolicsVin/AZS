@@ -1,0 +1,126 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://70tom30a3s8l"
+path="res://.godot/imported/audi.fbx-7245bec59b0823480bad41f420e2c308.scn"
+
+[deps]
+
+source_file="res://assets/models/cars/audi-rs7/audi.fbx"
+dest_files=["res://.godot/imported/audi.fbx-7245bec59b0823480bad41f420e2c308.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"CarPaint": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/audi-rs7/CarPaint.tres",
+"use_external/path": "uid://btimie2706fa"
+},
+"FrontLight": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/audi-rs7/FrontLight.tres",
+"use_external/path": "uid://clvdq3u04fx16"
+},
+"Plastic": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/audi-rs7/Plastic.tres",
+"use_external/path": "uid://5fgux716k331"
+},
+"RearLight": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/audi-rs7/RearLight.tres",
+"use_external/path": "uid://120dl1fnw34w"
+},
+"Rims": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/audi-rs7/Rims.tres",
+"use_external/path": "uid://dgypx56ma5r85"
+},
+"Window": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/audi-rs7/Window.tres",
+"use_external/path": "uid://2fdaib7ck2pf"
+}
+},
+"meshes": {
+"Cube_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/audi-rs7/Cube_002.res",
+"save_to_file/path": "uid://buvcay180amyu"
+},
+"Cylinder": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/audi-rs7/Cylinder.res",
+"save_to_file/path": "uid://7jwmhosisno8"
+},
+"Cylinder_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/audi-rs7/Cylinder_002.res",
+"save_to_file/path": "uid://d1vk3nnmkk73y"
+},
+"Cylinder_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/audi-rs7/Cylinder_003.res",
+"save_to_file/path": "uid://diovl0i7588cq"
+},
+"Cylinder_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/audi-rs7/Cylinder_004.res",
+"save_to_file/path": "uid://xs1uicj5djdp"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
+fbx/naming_version=2

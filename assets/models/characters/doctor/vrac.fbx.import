@@ -1,0 +1,164 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://6320s53meowg"
+path="res://.godot/imported/vrac.fbx-e6a3916dd4b75972ad3fdfcc64dca7a7.scn"
+
+[deps]
+
+source_file="res://assets/models/characters/doctor/vrac.fbx"
+dest_files=["res://.godot/imported/vrac.fbx-e6a3916dd4b75972ad3fdfcc64dca7a7.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"base_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/doctor/base_material.tres",
+"use_external/path": "uid://d3xmm5i1b6kpx"
+},
+"body": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/doctor/body.tres",
+"use_external/path": "uid://ctrbcdoevdapo"
+},
+"hair": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/doctor/hair.tres",
+"use_external/path": "uid://bm1gh4ykplngp"
+},
+"metal": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/doctor/metal.tres",
+"use_external/path": "uid://c0p328qre121x"
+},
+"pants": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/doctor/pants.tres",
+"use_external/path": "uid://dvtxenrfokxjj"
+},
+"red": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/doctor/red.tres",
+"use_external/path": "uid://ty4m488qrpae"
+},
+"skin": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/doctor/skin.tres",
+"use_external/path": "uid://chapqfhqdbup"
+},
+"skin.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/doctor/skin.001.tres",
+"use_external/path": "uid://2qgl1yahl3af"
+},
+"Материал": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/doctor/Материал.tres",
+"use_external/path": "uid://4v63cljb2hr7"
+},
+"Материал.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/doctor/Материал.001.tres",
+"use_external/path": "uid://cermp8fgefpvb"
+}
+},
+"meshes": {
+"base_mesh": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/doctor/base_mesh.res",
+"save_to_file/path": "uid://wly8fr20fqpi"
+},
+"base_mesh_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/doctor/base_mesh_001.res",
+"save_to_file/path": "uid://b4lldg7wkovak"
+},
+"base_mesh_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/doctor/base_mesh_002.res",
+"save_to_file/path": "uid://d01g358bj6ip6"
+},
+"Окружность_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/doctor/Окружность_001.res",
+"save_to_file/path": "uid://cqtjpu71kbkn0"
+},
+"Плоскость": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/doctor/Плоскость.res",
+"save_to_file/path": "uid://ciga5vah85bha"
+},
+"Плоскость_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/doctor/Плоскость_001.res",
+"save_to_file/path": "uid://dh64x8ekvu448"
+},
+"Плоскость_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/doctor/Плоскость_002.res",
+"save_to_file/path": "uid://cxxm5rxbgjysf"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
+fbx/naming_version=2

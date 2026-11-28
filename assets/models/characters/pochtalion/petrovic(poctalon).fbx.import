@@ -1,0 +1,131 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://42ey08r25vea"
+path="res://.godot/imported/petrovic(poctalon).fbx-dce28a8055cdcdbed21c6096ca9cefea.scn"
+
+[deps]
+
+source_file="res://assets/models/characters/pochtalion/petrovic(poctalon).fbx"
+dest_files=["res://.godot/imported/petrovic(poctalon).fbx-dce28a8055cdcdbed21c6096ca9cefea.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"base_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/pochtalion/base_material.tres",
+"use_external/path": "uid://ddpm14brh1nl1"
+},
+"body": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/pochtalion/body.tres",
+"use_external/path": "uid://btf55sr0mhugm"
+},
+"pants": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/pochtalion/pants.tres",
+"use_external/path": "uid://6xror808bfuv"
+},
+"skin": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/pochtalion/skin.tres",
+"use_external/path": "uid://b5pm3hdb3nso2"
+},
+"skin.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/pochtalion/skin.001.tres",
+"use_external/path": "uid://drsmwbbd74ma"
+},
+"Материал": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/pochtalion/Материал.tres",
+"use_external/path": "uid://chetyreg8wd62"
+},
+"Материал.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/pochtalion/Материал.001.tres",
+"use_external/path": "uid://1mwgumvptdfq"
+}
+},
+"meshes": {
+"base_mesh": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/pochtalion/base_mesh.res",
+"save_to_file/path": "uid://dvue0c75iux4i"
+},
+"base_mesh_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/pochtalion/base_mesh_001.res",
+"save_to_file/path": "uid://cxmr7oi5aqk14"
+},
+"Плоскость": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/pochtalion/Плоскость.res",
+"save_to_file/path": "uid://0do2rmsamdul"
+},
+"Плоскость_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/pochtalion/Плоскость_002.res",
+"save_to_file/path": "uid://bbrxpu0i81sqp"
+},
+"Цилиндр": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/pochtalion/Цилиндр.res",
+"save_to_file/path": "uid://bthsqi2esnjvg"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
+fbx/naming_version=2
