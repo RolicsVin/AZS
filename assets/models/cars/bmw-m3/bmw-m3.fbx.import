@@ -39,7 +39,130 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"CarPaint": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/CarPaint.tres",
+"use_external/path": "uid://cd74vwm8jmejm"
+},
+"DayLights": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/DayLights.tres",
+"use_external/path": "uid://ej6uvuopnqu1"
+},
+"Exhaust": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/Exhaust.tres",
+"use_external/path": "uid://dfi6exinwjtfs"
+},
+"Mirror": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/Mirror.tres",
+"use_external/path": "uid://c1n115gvtut54"
+},
+"Plastic": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/Plastic.tres",
+"use_external/path": "uid://gvqssl28aa4x"
+},
+"RearLight": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/RearLight.tres",
+"use_external/path": "uid://f46mcc56f6jw"
+},
+"RedPart": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/RedPart.tres",
+"use_external/path": "uid://cluypeqom1t6h"
+},
+"Rims": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/Rims.tres",
+"use_external/path": "uid://dsdwep1ny1ngl"
+},
+"Tires": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/Tires.tres",
+"use_external/path": "uid://n5l6ix0ast3j"
+},
+"Transparent": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/Transparent.tres",
+"use_external/path": "uid://dss28l66dgc0p"
+},
+"Window": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/cars/bmw-m3/Window.tres",
+"use_external/path": "uid://6assebdnmo5q"
+}
+},
+"meshes": {
+"Circle_005": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/bmw-m3/Circle_005.res",
+"save_to_file/path": "uid://oen774x1xxrg"
+},
+"Circle_007": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/bmw-m3/Circle_007.res",
+"save_to_file/path": "uid://s6n78tl1hil1"
+},
+"Circle_011": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/bmw-m3/Circle_011.res",
+"save_to_file/path": "uid://b3ew6x7fy6fr0"
+},
+"Circle_013": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/bmw-m3/Circle_013.res",
+"save_to_file/path": "uid://by7su3408tj5p"
+},
+"Cube_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/bmw-m3/Cube_001.res",
+"save_to_file/path": "uid://dl6bpb48axyrl"
+},
+"Cylinder_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/bmw-m3/Cylinder_002.res",
+"save_to_file/path": "uid://bimsqmju8dpin"
+},
+"Cylinder_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/cars/bmw-m3/Cylinder_003.res",
+"save_to_file/path": "uid://cuf581bqfntwe"
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
