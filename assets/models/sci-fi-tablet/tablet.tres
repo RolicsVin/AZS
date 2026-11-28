@@ -1,7 +1,18 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://c5uxabnirkqe2"]
 
+[ext_resource type="Texture2D" uid="uid://cmmevujajsic8" path="res://assets/models/sci-fi-tablet/textures/Tablet_tablet_BaseColor.jpeg" id="1_7u2c5"]
+[ext_resource type="Texture2D" uid="uid://bswcbudw5p4pj" path="res://assets/models/sci-fi-tablet/textures/Tablet_tablet_Emissive.jpeg" id="2_k06rx"]
+[ext_resource type="Texture2D" uid="uid://d4mcwrslag7l5" path="res://assets/models/sci-fi-tablet/textures/Tablet_tablet_Metallic.jpeg" id="3_cbhkh"]
+[ext_resource type="Texture2D" uid="uid://detdfegssvx5u" path="res://assets/models/sci-fi-tablet/textures/Tablet_tablet_Normal.jpeg" id="4_aish7"]
+[ext_resource type="Texture2D" uid="uid://cpq7qdtsephgy" path="res://assets/models/sci-fi-tablet/textures/Tablet_tablet_Roughness.jpeg" id="5_k06rx"]
+
 [resource]
 resource_name = "tablet"
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.6651851, 0.6651851, 0.6651851, 1)
+albedo_texture = ExtResource("1_7u2c5")
+metallic = 1.0
+metallic_texture = ExtResource("3_cbhkh")
+roughness_texture = ExtResource("5_k06rx")
 emission_enabled = true
+emission_texture = ExtResource("2_k06rx")
+normal_enabled = true
+normal_texture = ExtResource("4_aish7")

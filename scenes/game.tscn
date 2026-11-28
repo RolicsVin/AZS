@@ -113,6 +113,8 @@
 [ext_resource type="ArrayMesh" uid="uid://7frdpp7ocrqt" path="res://assets/models/characters/doctor/base_mesh.res" id="70_fsry6"]
 [ext_resource type="ArrayMesh" uid="uid://dy008wr5v1yll" path="res://assets/models/characters/doctor/base_mesh_001.res" id="71_eky20"]
 [ext_resource type="ArrayMesh" uid="uid://c2ucq4m32ml5t" path="res://assets/models/characters/doctor/base_mesh_002.res" id="72_o3ulk"]
+[ext_resource type="ArrayMesh" uid="uid://cegsq4u5k4jvy" path="res://assets/models/sci-fi-tablet/Tablet_low.res" id="108_7kwaa"]
+[ext_resource type="ArrayMesh" uid="uid://bynqqo10cfbpf" path="res://assets/models/sci-fi-tablet/Screen_low.res" id="109_jye5l"]
 [ext_resource type="Resource" path="res://assets/events/donation.tres" id="donation_event"]
 [ext_resource type="Script" uid="uid://rfq1ncy2ix6k" path="res://core/classes/resources/work.gd" id="work_script"]
 
@@ -928,6 +930,15 @@ albedo_color = Color(0.99999994, 0.13018629, 0.22936049, 1)
 emission_enabled = true
 emission = Color(0.8934089, 0.12166699, 0, 1)
 emission_energy_multiplier = 0.0
+
+[sub_resource type="Animation" id="Animation_tgihs"]
+resource_name = "Take 001"
+length = 4.958333333333333
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_csxg1"]
+_data = {
+&"Take 001": SubResource("Animation_tgihs")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oq1mk"]
 size = Vector3(1.4253235, 0.6828613, 0.20532227)
@@ -3591,11 +3602,29 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0
 script = ExtResource("3_iywne")
 
 [node name="Label3D" type="Label3D" parent="Resume" unique_id=246045015]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.045685828)
-pixel_size = 0.0013
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10980798, -0.0039560795, 0.051884502)
+pixel_size = 0.0004
+text = "Это резюме
+человека"
 font = ExtResource("47_8qswn")
 font_size = 40
 outline_size = 5
+
+[node name="Tablet" type="Node3D" parent="Resume" unique_id=1536485769]
+transform = Transform3D(-2.9505188e-08, -0.675, 2.9505188e-08, -0.675, 2.950519e-08, 2.9505186e-08, -2.9505188e-08, -2.9505186e-08, -0.675, 0.14595558, -0.009123325, 0.042399824)
+
+[node name="tablet_optimized" type="Node3D" parent="Resume/Tablet" unique_id=1113412331]
+
+[node name="Tablet_low" type="MeshInstance3D" parent="Resume/Tablet/tablet_optimized" unique_id=270808556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010093021, -0.003656082, 1.1920929e-09)
+mesh = ExtResource("108_7kwaa")
+
+[node name="Screen_low" type="MeshInstance3D" parent="Resume/Tablet/tablet_optimized" unique_id=816126909]
+visible = false
+mesh = ExtResource("109_jye5l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Resume/Tablet" unique_id=838381687]
+libraries/ = SubResource("AnimationLibrary_csxg1")
 
 [node name="Dialog" type="Area3D" parent="." unique_id=1727247794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11267769, 1.109772, -2.5897028)
