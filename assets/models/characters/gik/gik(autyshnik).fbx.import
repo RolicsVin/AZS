@@ -39,7 +39,97 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"base_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/gik/base_material.tres",
+"use_external/path": "uid://wjpt31rc42uc"
+},
+"hair": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/gik/hair.tres",
+"use_external/path": "uid://dbdoi4ff7wk4d"
+},
+"pants": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/gik/pants.tres",
+"use_external/path": "uid://bhaa5qj7x4c16"
+},
+"skin": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/gik/skin.tres",
+"use_external/path": "uid://cnlclv117qlp6"
+},
+"skin.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/gik/skin.001.tres",
+"use_external/path": "uid://8uknvjpy66kw"
+},
+"Материал": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/gik/Материал.tres",
+"use_external/path": "uid://22apasxxnk8p"
+},
+"Материал.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/gik/Материал.001.tres",
+"use_external/path": "uid://bx7bcyrbhfidw"
+},
+"Материал.003": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/gik/Материал.003.tres",
+"use_external/path": "uid://sqgww3lrtejf"
+}
+},
+"meshes": {
+"base_mesh": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/gik/base_mesh.res",
+"save_to_file/path": "uid://cssgd3kmm5yat"
+},
+"base_mesh_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/gik/base_mesh_002.res",
+"save_to_file/path": "uid://qpg54vj03kxv"
+},
+"Плоскость": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/gik/Плоскость.res",
+"save_to_file/path": "uid://brvh8mvgj0amu"
+},
+"Плоскость_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/gik/Плоскость_002.res",
+"save_to_file/path": "uid://c5u5j35ncuwpe"
+},
+"Тор": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/gik/Тор.res",
+"save_to_file/path": "uid://fdp0fa8keh6v"
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1

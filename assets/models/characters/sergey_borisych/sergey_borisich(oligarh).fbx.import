@@ -39,7 +39,116 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"body": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/sergey_borisych/body.tres",
+"use_external/path": "uid://dxb370nn2mihb"
+},
+"body.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/sergey_borisych/body.001.tres",
+"use_external/path": "uid://bgfvu5qipe3xc"
+},
+"pants": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/sergey_borisych/pants.tres",
+"use_external/path": "uid://n25vfxyrvuf1"
+},
+"skin": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/sergey_borisych/skin.tres",
+"use_external/path": "uid://6ubig2g8bbvp"
+},
+"skin.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/sergey_borisych/skin.001.tres",
+"use_external/path": "uid://cbfk6843wlnlw"
+},
+"white": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/sergey_borisych/white.tres",
+"use_external/path": "uid://b1dqnibhefgpx"
+},
+"wood": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/sergey_borisych/wood.tres",
+"use_external/path": "uid://c5hclahoifvus"
+},
+"Материал": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/sergey_borisych/Материал.tres",
+"use_external/path": "uid://b1kwbfa51y1ti"
+},
+"Материал.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/sergey_borisych/Материал.001.tres",
+"use_external/path": "uid://k7c3tjnp77ie"
+},
+"Материал.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/sergey_borisych/Материал.002.tres",
+"use_external/path": "uid://5vnttw4wp564"
+}
+},
+"meshes": {
+"base_mesh": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/sergey_borisych/base_mesh.res",
+"save_to_file/path": "uid://do4a8t47n6mit"
+},
+"base_mesh_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/sergey_borisych/base_mesh_001.res",
+"save_to_file/path": "uid://d33b6c5bkj8rn"
+},
+"Куб": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/sergey_borisych/Куб.res",
+"save_to_file/path": "uid://bu8p7txyh33sx"
+},
+"Куб_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/sergey_borisych/Куб_001.res",
+"save_to_file/path": "uid://dkd7j2vsk1lt7"
+},
+"Плоскость": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/sergey_borisych/Плоскость.res",
+"save_to_file/path": "uid://dw1nr18n8sj6y"
+},
+"Плоскость_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/sergey_borisych/Плоскость_002.res",
+"save_to_file/path": "uid://dallasmihkt73"
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1

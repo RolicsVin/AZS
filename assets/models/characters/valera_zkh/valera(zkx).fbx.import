@@ -39,7 +39,92 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"body": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/valera_zkh/body.tres",
+"use_external/path": "uid://ck3eei1ea0645"
+},
+"orange": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/valera_zkh/orange.tres",
+"use_external/path": "uid://bvvia81hvuw23"
+},
+"pants": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/valera_zkh/pants.tres",
+"use_external/path": "uid://c5kpgfbo1tsmv"
+},
+"skin": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/valera_zkh/skin.tres",
+"use_external/path": "uid://qc3ivqmqm2ae"
+},
+"skin.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/valera_zkh/skin.001.tres",
+"use_external/path": "uid://ch6scoqc725lq"
+},
+"Материал": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/valera_zkh/Материал.tres",
+"use_external/path": "uid://biuw2vfsk1xfr"
+},
+"Материал.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/characters/valera_zkh/Материал.001.tres",
+"use_external/path": "uid://83eu014d8gqr"
+}
+},
+"meshes": {
+"base_mesh": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/valera_zkh/base_mesh.res",
+"save_to_file/path": "uid://dtjdkbt7b6au4"
+},
+"base_mesh_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/valera_zkh/base_mesh_001.res",
+"save_to_file/path": "uid://dxwk1uhv8u6wh"
+},
+"Плоскость": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/valera_zkh/Плоскость.res",
+"save_to_file/path": "uid://6oh3fg1cv6kn"
+},
+"Плоскость_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/valera_zkh/Плоскость_002.res",
+"save_to_file/path": "uid://dcd4wdxfxenhv"
+},
+"Цилиндр": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/characters/valera_zkh/Цилиндр.res",
+"save_to_file/path": "uid://5sv0m4tib273"
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
