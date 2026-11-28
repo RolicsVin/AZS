@@ -3,14 +3,10 @@
 [ext_resource type="Script" uid="uid://8k33cet5l0y3" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://clmjcoqlf4st7" path="res://scenes/resume.gd" id="3_iywne"]
 [ext_resource type="Script" uid="uid://gcg38oqbhffp" path="res://core/classes/gameplay/car.gd" id="3_lnu2h"]
-[ext_resource type="Script" uid="uid://tic1p5mu7nxj" path="res://core/classes/resources/character.gd" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://8nrd34x813vr" path="res://core/classes/resources/event.gd" id="3_pr1ej"]
-[ext_resource type="Script" uid="uid://xy3l37ktt48x" path="res://core/classes/resources/choise.gd" id="3_vtaks"]
-[ext_resource type="Script" uid="uid://cqdq3s3etltn0" path="res://core/classes/resources/linear_dialog.gd" id="4_kvpfn"]
 [ext_resource type="Script" uid="uid://bjs4mlnnvenhf" path="res://scenes/panel.gd" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://bgmdgnweoav8o" path="res://core/classes/gameplay/area_button.gd" id="4_u5sy4"]
 [ext_resource type="Script" uid="uid://cuomswlv4mlrx" path="res://scenes/dialog.gd" id="8_gee14"]
-[ext_resource type="Script" uid="uid://cahwygdnwiud5" path="res://core/classes/resources/start_dialog_rule.gd" id="8_oaba0"]
 [ext_resource type="Script" uid="uid://ob2eebenxy77" path="res://core/classes/ui/circular_container.gd" id="11_kvpfn"]
 [ext_resource type="Script" uid="uid://dnj1dhrdae4tj" path="res://core/classes/ui/choise_visual.gd" id="12_dinhu"]
 [ext_resource type="ArrayMesh" uid="uid://cwcoljx4n4vkv" path="res://assets/models/azs/Cube_010.res" id="13_7025r"]
@@ -101,57 +97,6 @@ event_text = "Поздравляем! Ты закончил свою
 мы даём тебе подарок: Золотой куб"
 anim_name = "gold_cube"
 metadata/_custom_type_script = "uid://8nrd34x813vr"
-
-[sub_resource type="Resource" id="Resource_q8j3a"]
-script = ExtResource("3_vtaks")
-name = "choise"
-choises = Dictionary[String, String]({
-"Агрессивно: Мне плевать, кто у тебя там голодный. Бензин не раздают бесплатно.": "agro",
-"С сочувствием: Тяжело тебе, наверное... Давно ничего не ловил?": "good"
-})
-respect_rewards = Dictionary[String, int]({
-"agro": -5,
-"good": 5
-})
-metadata/_custom_type_script = "uid://xy3l37ktt48x"
-
-[sub_resource type="Resource" id="Resource_7ixpq"]
-script = ExtResource("4_kvpfn")
-name = "start"
-replicas = Array[String](["Рыбак: Слушай, мне бы немного бензина. Литров десять, если найдётся.", "Игрок: Зачем столько?", "Рыбак: На озере ещё осталась рыба. Но близко к берегу уже пусто. Придётся идти дальше. Дома дети голодные, понимаешь?"])
-next_choise = "choise"
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_bk1p3"]
-script = ExtResource("4_kvpfn")
-name = "agro"
-replicas = Array[String](["Рыбак (на агрессивный ответ): Да уж, вижу, человечности тут не осталось. Ладно, сам как-нибудь справлюсь."])
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_n8ral"]
-script = ExtResource("4_kvpfn")
-name = "good"
-replicas = Array[String](["Рыбак (на сочувственный ответ): Третий день уже. Жена старается не показывать, но я вижу, как она переживает. Хоть бы сегодня повезло..."])
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_yd4ix"]
-script = ExtResource("3_p57ef")
-resume = "Он просит бензин, чтобы добраться
-до дальнего участка озера, где, по
-слухам, ещё осталась рыба."
-social_networks = Array[String](["Пост №1 — за несколько месяцев до кризиса
-
-Фото: утренний улов на фоне озера
-
-Вот это я понимаю — удачная рыбалка! Сегодня даже пришлось второй раз возвращаться к берегу. Жена уже шутит, что скоро рыбу из дома выгонять придётся. Всем хорошего клёва!", "Пост №2 — начало кризиса
-
-Фото: лодка у пустого берега
-
-Что-то совсем невесело стало. Бензин дорожает, снасти дорожают, а рыбы всё меньше. Сегодня впервые за много лет вернулся домой с пустыми руками. Надеюсь, скоро всё наладится."])
-start_dialog = "start"
-dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_7ixpq"), SubResource("Resource_bk1p3"), SubResource("Resource_n8ral")])
-choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_q8j3a")])
-metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
 [sub_resource type="Animation" id="Animation_iywne"]
 resource_name = "accept"
@@ -270,156 +215,11 @@ albedo_color = Color(0.8332363, 0.75295025, 0.5369804, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_hf7dp"]
 material = SubResource("StandardMaterial3D_7025r")
 
-[sub_resource type="Resource" id="Resource_ms3bu"]
-script = ExtResource("3_vtaks")
-name = "choise"
-choises = Dictionary[String, String]({
-"Агрессивно: Не моя проблема. Ищите топливо в другом месте.": "angry",
-"С пониманием: Работа у вас, конечно, сейчас незавидная. И давно станция не работает?": "good"
-})
-metadata/_custom_type_script = "uid://xy3l37ktt48x"
-
-[sub_resource type="Resource" id="Resource_66xif"]
-script = ExtResource("4_kvpfn")
-name = "start"
-replicas = Array[String](["Работник ЖКХ: Здравствуйте. Мне нужно топливо. Желательно литров пятнадцать.", "Игрок: И куда это вы собрались?", "Работник ЖКХ: Насосная станция на окраине встала. Если сегодня не запустить насосы, несколько районов останутся без воды.", "Игрок: А почему я должен вам верить?", "Работник ЖКХ: А вы думаете, мне самому охота по такой жаре мотаться? Я уже неделю без выходных работаю."])
-next_choise = "choise"
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_bnuda"]
-script = ExtResource("4_kvpfn")
-name = "angry"
-replicas = Array[String](["Работник ЖКХ (на агрессивный ответ): Ну и ладно. Только когда из кранов перестанет течь вода, не жалуйтесь."])
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_0rmfi"]
-script = ExtResource("4_kvpfn")
-name = "good"
-replicas = Array[String](["Работник ЖКХ (на сочувственный ответ): Со вчерашнего вечера. Там ещё пара мужиков осталась, но генератор без топлива долго не протянет."])
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_xbak0"]
-script = ExtResource("3_p57ef")
-resume = "Сейчас ему необходимо топливо для
-служебной машины, чтобы добраться
-до насосной станции и восстановить
-водоснабжение нескольких районов."
-social_networks = Array[String](["Пост №1 — до кризиса
-
-Фото: рабочая бригада возле коммунальной машины
-
-Очередной день, очередной прорыв трубы. Кто-то отдыхает по выходным, а мы снова в грязи по колено. Зато у людей вода будет. С праздником всех коллег!", "Пост №2 — начало кризиса
-
-Фото: пустая улица и служебная машина
-
-Сегодня опять задержали зарплату. Говорят, проблемы с поставками топлива и запчастей. А трубы сами себя чинить не будут. Странно, что когда всё работает, нас никто не замечает. А когда ломается — виноваты сразу мы."])
-start_dialog = "start"
-dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_66xif"), SubResource("Resource_bnuda"), SubResource("Resource_0rmfi")])
-choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_ms3bu")])
-metadata/_custom_type_script = "uid://tic1p5mu7nxj"
-
 [sub_resource type="Resource" id="Resource_mmvbu"]
 script = ExtResource("3_pr1ej")
 event_text = "Наступила твоя вторая смена.
 Всё также, как и в прошлый раз!"
 metadata/_custom_type_script = "uid://8nrd34x813vr"
-
-[sub_resource type="Resource" id="Resource_h3rex"]
-script = ExtResource("3_vtaks")
-name = "choise"
-choises = Dictionary[String, String]({
-"Агрессивно: И что теперь? Я должен спасать каждого, кто сюда придёт?": "agro",
-"С жалостью: Ребёнок, говорите?.. И помочь ему больше некому?": "good"
-})
-metadata/_custom_type_script = "uid://xy3l37ktt48x"
-
-[sub_resource type="Resource" id="Resource_fedci"]
-script = ExtResource("4_kvpfn")
-name = "start"
-replicas = Array[String](["Врач: Добрый день. Мне нужно немного бензина. Литров пять-десять.", "Игрок: Для чего?", "Врач: В соседнем посёлке несколько больных. Один из них ребёнок. Самостоятельно до больницы они не доберутся.", "Игрок: А скорая где?", "Врач: (после короткой паузы) Больше нет скорой. Машину разобрали на запчасти ещё на прошлой неделе."])
-next_choise = "choise"
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_8qswn"]
-script = ExtResource("4_kvpfn")
-name = "agro"
-replicas = Array[String](["Врач (на агрессивный ответ): Я понимаю. Но если мы все начнём думать только о себе, то скоро лечить будет уже некого."])
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_rm0al"]
-script = ExtResource("4_kvpfn")
-name = "good"
-replicas = Array[String](["Врач (на сочувственный ответ): К сожалению, нет. Я обещал его матери, что вернусь. Не хочу нарушать это обещание."])
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_i4re6"]
-script = ExtResource("3_p57ef")
-resume = "Сегодня ему необходимо попасть в
-небольшой посёлок, где несколько
-человек заболели неизвестной
-инфекцией. Он просит бензин для
-своей старой машины."
-social_networks = Array[String](["Пост №1 — до кризиса
-
-Фото: врачебный кабинет, чашка кофе и медицинская карта
-
-Иногда после тяжёлой смены кажется, что сил больше нет. Но потом видишь, как пациент, которого ты лечил несколько недель, наконец улыбается. И понимаешь, ради чего всё это. Берегите себя.", "Пост №2 — начало кризиса
-
-Фото: пустой коридор больницы
-
-Сегодня пришлось отказать трём пациентам. Нет необходимых препаратов, часть оборудования не работает, а поставки задерживаются. Никогда не думал, что однажды буду вынужден объяснять людям, почему не могу им помочь. Тяжёлые времена."])
-start_dialog = "start"
-dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_fedci"), SubResource("Resource_8qswn"), SubResource("Resource_rm0al")])
-choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_h3rex")])
-metadata/_custom_type_script = "uid://tic1p5mu7nxj"
-
-[sub_resource type="Resource" id="Resource_pf7vy"]
-script = ExtResource("3_vtaks")
-name = "choise"
-choises = Dictionary[String, String]({
-"Агрессивно: Нашёлся тут спаситель человечества. Иди работай, а не выпрашивай бензин.": "agro",
-"С добротой: Похоже, у тебя там действительно много забот. Давно этим занимаешься?": "good"
-})
-metadata/_custom_type_script = "uid://xy3l37ktt48x"
-
-[sub_resource type="Resource" id="Resource_o8ni1"]
-script = ExtResource("4_kvpfn")
-name = "start"
-replicas = Array[String](["Строитель: Здорово. Слушай, не выручишь бензином? Литров двадцать хотя бы.", "Игрок: Немало. Куда собрался?", "Строитель: За город. Мы там убежище строим. Несколько семей поселились в старом здании, а крыша после последнего дождя почти обвалилась.", "Игрок: И без тебя никак?", "Строитель: (усмехается) Ну, если ты умеешь поднимать бетонные плиты голыми руками, то, может, и без меня."])
-next_choise = "choise"
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_3hbvx"]
-script = ExtResource("4_kvpfn")
-name = "agro"
-replicas = Array[String](["Строитель (на агрессивный ответ): Да я и не прошу бесплатно. Просто хотел помочь людям. Видимо, зря."])
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_3x28f"]
-script = ExtResource("4_kvpfn")
-name = "good"
-replicas = Array[String](["Строитель (на добрый ответ): С самого начала кризиса. Сначала думали, что всё быстро закончится. А теперь сами не знаем, сколько ещё продержимся."])
-metadata/_custom_type_script = "uid://cqdq3s3etltn0"
-
-[sub_resource type="Resource" id="Resource_l6q63"]
-script = ExtResource("3_p57ef")
-resume = "Без бензина работа встанет, а люди,
-оставшиеся в убежище, рискуют
-провести зиму без крыши над
-головой."
-social_networks = Array[String](["Пост №1 — до кризиса
-
-Фото: готовый многоэтажный дом
-
-Ещё один объект сдан! Три месяца работы, куча нервов, но результат того стоил. Всегда приятно видеть, как из груды бетона получается чей-то будущий дом.", "Пост №2 — начало кризиса
-
-Фото: недостроенное здание с заброшенной строительной техникой
-
-Ну вот и приехали. Стройку заморозили, половину бригады распустили. Говорят, денег нет, материалов нет, бензина нет. А люди всё ещё нуждаются в жилье. Думаю, пора перестать ждать, пока кто-то решит наши проблемы."])
-start_dialog = "start"
-dialogs = Array[ExtResource("4_kvpfn")]([SubResource("Resource_o8ni1"), SubResource("Resource_3hbvx"), SubResource("Resource_3x28f")])
-choises = Array[ExtResource("3_vtaks")]([SubResource("Resource_pf7vy")])
-metadata/_custom_type_script = "uid://tic1p5mu7nxj"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4url"]
 albedo_color = Color(0.61981034, 0.68230593, 0.42204976, 1)
@@ -790,7 +590,6 @@ metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006052017, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
-character = SubResource("Resource_yd4ix")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
@@ -885,7 +684,6 @@ mesh = SubResource("SphereMesh_hf7dp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
-character = SubResource("Resource_xbak0")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
@@ -976,6 +774,100 @@ mesh = SubResource("BoxMesh_a1aj3")
 transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.09625243, 0.70653903, 0.20237923)
 mesh = SubResource("SphereMesh_hf7dp")
 
+[node name="Car3" type="Node3D" parent="Work" unique_id=1745959341 node_paths=PackedStringArray("anim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
+visible = false
+script = ExtResource("3_lnu2h")
+anim = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://gcg38oqbhffp"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Work/Car3" unique_id=1948205845]
+libraries/ = SubResource("AnimationLibrary_iywne")
+autoplay = &"ready"
+
+[node name="Marker3D" type="Marker3D" parent="Work/Car3" unique_id=1277275157]
+gizmo_extents = 3.66
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Work/Car3" unique_id=1795704432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075660616, 0.95606875, 0)
+mesh = SubResource("BoxMesh_w1h7m")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Work/Car3" unique_id=397574733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1344452, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Work/Car3" unique_id=1953818269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5462557, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Work/Car3" unique_id=85510603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38807476, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Work/Car3" unique_id=1543929469]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.07971232, 0.72605115, -0.47261524)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Work/Car3" unique_id=1504045273]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.32458532, 0.72605115, 0.47214937)
+mesh = SubResource("BoxMesh_fedci")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Work/Car3" unique_id=383832619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1364126, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Work/Car3" unique_id=743141374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104602516, 0)
+mesh = SubResource("BoxMesh_8ool0")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Work/Car3" unique_id=540425566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8501587, 0.49783748, 0)
+mesh = SubResource("BoxMesh_0sl42")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Work/Car3" unique_id=986703731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73331547, 0.49783748, 0)
+mesh = SubResource("BoxMesh_458eo")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Work/Car3" unique_id=260318906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, 0.4897461)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Work/Car3" unique_id=73194748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Work/Car3" unique_id=1814183265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Work/Car3" unique_id=1621556233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Work/Car3" unique_id=1741703175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Work/Car3" unique_id=586727162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Work/Car3" unique_id=1213878405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Work/Car3" unique_id=578338017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, -0.4887414)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Work/Car3" unique_id=600842564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09871488, 0.3551934, 0.20237589)
+mesh = SubResource("BoxMesh_a1aj3")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Work/Car3" unique_id=587473053]
+transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.09625243, 0.70653903, 0.20237923)
+mesh = SubResource("SphereMesh_hf7dp")
+
 [node name="Work2" type="Node3D" parent="." unique_id=1595405582]
 script = ExtResource("work_script")
 anim_name = "evening"
@@ -986,7 +878,6 @@ metadata/_custom_type_script = "uid://rfq1ncy2ix6k"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006052017, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
-character = SubResource("Resource_i4re6")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
@@ -1081,7 +972,6 @@ mesh = SubResource("SphereMesh_hf7dp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
 visible = false
 script = ExtResource("3_lnu2h")
-character = SubResource("Resource_l6q63")
 anim = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcg38oqbhffp"
 
@@ -1169,6 +1059,100 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09871488, 0.3551934, 0.2023
 mesh = SubResource("BoxMesh_a1aj3")
 
 [node name="MeshInstance3D20" type="MeshInstance3D" parent="Work2/Car2" unique_id=1633782904]
+transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.09625243, 0.70653903, 0.20237923)
+mesh = SubResource("SphereMesh_hf7dp")
+
+[node name="Car3" type="Node3D" parent="Work2" unique_id=1251545230 node_paths=PackedStringArray("anim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.501451, 0, -5.583511)
+visible = false
+script = ExtResource("3_lnu2h")
+anim = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://gcg38oqbhffp"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Work2/Car3" unique_id=672279288]
+libraries/ = SubResource("AnimationLibrary_iywne")
+autoplay = &"ready"
+
+[node name="Marker3D" type="Marker3D" parent="Work2/Car3" unique_id=1500330706]
+gizmo_extents = 3.66
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Work2/Car3" unique_id=1239920690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075660616, 0.95606875, 0)
+mesh = SubResource("BoxMesh_w1h7m")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Work2/Car3" unique_id=1232432875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1344452, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Work2/Car3" unique_id=2110530418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5462557, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Work2/Car3" unique_id=635820815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38807476, 0.72605115, 0)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Work2/Car3" unique_id=2143651014]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.07971232, 0.72605115, -0.47261524)
+mesh = SubResource("BoxMesh_oaba0")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Work2/Car3" unique_id=1401485815]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.32458532, 0.72605115, 0.47214937)
+mesh = SubResource("BoxMesh_fedci")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Work2/Car3" unique_id=55871152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1364126, 0.32382083, 0)
+mesh = SubResource("BoxMesh_pr1ej")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Work2/Car3" unique_id=1216073689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104602516, 0)
+mesh = SubResource("BoxMesh_8ool0")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Work2/Car3" unique_id=31395273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8501587, 0.49783748, 0)
+mesh = SubResource("BoxMesh_0sl42")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Work2/Car3" unique_id=674981734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73331547, 0.49783748, 0)
+mesh = SubResource("BoxMesh_458eo")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Work2/Car3" unique_id=1944191827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, 0.4897461)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Work2/Car3" unique_id=1340226286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Work2/Car3" unique_id=975796775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5401306, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Work2/Car3" unique_id=819887149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Work2/Car3" unique_id=287523853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37904632, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Work2/Car3" unique_id=891616559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, 0.4897461)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Work2/Car3" unique_id=261224031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10353592, 0.7205083, -0.48771286)
+mesh = SubResource("BoxMesh_h3rex")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Work2/Car3" unique_id=548532950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30235642, -0.4887414)
+mesh = SubResource("BoxMesh_05nbr")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Work2/Car3" unique_id=496537911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09871488, 0.3551934, 0.20237589)
+mesh = SubResource("BoxMesh_a1aj3")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Work2/Car3" unique_id=855335667]
 transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0.09625243, 0.70653903, 0.20237923)
 mesh = SubResource("SphereMesh_hf7dp")
 
