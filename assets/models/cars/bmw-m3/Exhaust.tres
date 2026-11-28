@@ -2,8 +2,4 @@
 
 [resource]
 resource_name = "Exhaust"
-vertex_color_use_as_albedo = true
 albedo_color = Color(0.5675824, 0.5675824, 0.5675824, 1)
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.0

@@ -2,8 +2,5 @@
 
 [resource]
 resource_name = "CarPaint"
-vertex_color_use_as_albedo = true
+cull_mode = 2
 albedo_color = Color(0, 0.80113345, 0.027685327, 1)
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.0
