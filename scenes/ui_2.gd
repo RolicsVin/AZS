@@ -11,4 +11,3 @@ func _process(delta: float) -> void:
 	pass
 	$VBoxContainer/fuel.text = 'Топливо: ' + str(Data.fuel)
 	$VBoxContainer/money.text = 'Деньги: ' + str(Data.money)
-	$VBoxContainer/respect.text = 'Репутация: ' + str(Data.respect)

@@ -5,6 +5,8 @@ extends Control
 signal choice_changed(index: int)
 signal choice_confirmed(index: int)
 
+const CHOICE_FONT: Font = preload("res://assets/fonts/FredokaOneCyrillic-Regular.ttf")
+
 @export var chooser: Control
 @export_range(1, 128, 1) var choice_font_size: int = 8
 @export_range(0.0, 3.0, 0.1) var confirmation_delay: float = 0.5
@@ -47,6 +49,7 @@ func display_choices(answers: Array[String]) -> void:
 	for answer in answers:
 		var label := Label.new()
 		label.text = answer
+		label.add_theme_font_override("font", CHOICE_FONT)
 		label.add_theme_font_size_override("font_size", choice_font_size)
 		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		_container.add_child(label)
