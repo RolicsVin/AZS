@@ -39,7 +39,40 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Ui": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/sci-fi-tablet/Ui.tres",
+"use_external/path": "uid://0l3exldbs68r"
+},
+"tablet": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/sci-fi-tablet/tablet.tres",
+"use_external/path": "uid://c5uxabnirkqe2"
+}
+},
+"meshes": {
+"Screen_low": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/sci-fi-tablet/Screen_low.res",
+"save_to_file/path": "uid://cfp4fuq5bb3j8"
+},
+"Tablet_low": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/sci-fi-tablet/Tablet_low.res",
+"save_to_file/path": "uid://dr5lo55fuafxq"
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
