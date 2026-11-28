@@ -964,6 +964,58 @@ font = ExtResource("47_8qswn")
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kwaa"]
+bg_color = Color(0.31764707, 0.26666668, 0.21960784, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_gxty1"]
+font = ExtResource("47_8qswn")
+font_color = Color(0.9019608, 0.827451, 0.7137255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghitk"]
+bg_color = Color(0.75686276, 0.5411765, 0.2901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rundi"]
+bg_color = Color(0.75686276, 0.5411765, 0.2901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8c3s0"]
+bg_color = Color(0.572301, 0.39797425, 0.19137454, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [sub_resource type="LabelSettings" id="LabelSettings_0sl42"]
 font = ExtResource("47_8qswn")
 font_size = 20
@@ -3708,7 +3760,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="UI" unique_id=467885109]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -3722,6 +3773,7 @@ offset_bottom = 267.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7kwaa")
 
 [node name="Label" type="Label" parent="UI/Panel" unique_id=190633531]
 layout_mode = 1
@@ -3731,6 +3783,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("47_8qswn")
+label_settings = SubResource("LabelSettings_gxty1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -3747,8 +3800,14 @@ offset_right = 72.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("47_8qswn")
-text = "Продолжить"
+theme_override_styles/normal = SubResource("StyleBoxFlat_ghitk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rundi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8c3s0")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8c3s0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_8c3s0")
+text = "Продолжить →"
 
 [node name="UI2" type="Control" parent="." unique_id=264580989]
 layout_mode = 3
